@@ -4,7 +4,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { Grid } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
+import { useHistory } from "react-router-dom";
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -18,9 +21,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function Navigation() {
   const classes = useStyles();
-
+  const history = useHistory();
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{backgroundColor:"black", color:"white"}}>
@@ -37,16 +40,34 @@ export default function ButtonAppBar() {
             justify="flex-end"
           >
             <Grid item xs={2}>
-              <Typography variant="h6" >Home</Typography>
+              <Button onClick={()=>{
+                  history.push("/home");
+                }} style={{backgroundColor:"black", color:"white"}}>
+                <Typography variant="subtitle2" >Home</Typography>
+              </Button>
             </Grid>
             <Grid item xs={2}>
-              <Typography variant="h6" >Donate</Typography>
+            <Button onClick={()=>{
+                  history.push("/donate");
+                }} style={{backgroundColor:"black", color:"white"}}>
+              <Typography variant="subtitle2">Donate</Typography>
+            </Button>
             </Grid>
             <Grid item xs={2}>
-              <Typography variant="h6" >Sign Up</Typography>
+            <Button onClick={()=>{
+                  history.push("/register");
+                }} style={{backgroundColor:"black", color:"white"}}>
+              <Typography variant="subtitle2">Register</Typography>
+            </Button>
+            
             </Grid>
             <Grid item xs={2}>
-              <Typography variant="h6">Login</Typography>
+            <Button onClick={()=>{
+                  history.push("/login");
+                }} style={{backgroundColor:"black", color:"white"}}>
+              <Typography variant="subtitle2">Login</Typography>
+            </Button>
+            
             </Grid>
           </Grid>
         </Toolbar>
