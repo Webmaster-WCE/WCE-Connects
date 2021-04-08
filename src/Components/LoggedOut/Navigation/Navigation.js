@@ -7,7 +7,6 @@ import Box from '@material-ui/core/Box';
 import { Button, Grid } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -18,7 +17,11 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     textAlign: 'left',
+    fontFamily:'RocknRoll One',
   },
+  navitem: {
+    fontFamily:'RocknRoll One',
+  }
 }));
 
 export default function Navigation() {
@@ -30,7 +33,7 @@ export default function Navigation() {
         <Toolbar>
           <Box display="flex" width="100%">
             <Typography variant="h5" className={classes.title}>
-              WCE Network
+              WCE Connects
             </Typography>
           </Box>
           <Grid
@@ -43,21 +46,21 @@ export default function Navigation() {
               <Button onClick={()=>{
                   history.push("/home");
                 }} style={{backgroundColor:"black", color:"white"}}>
-                <Typography variant="subtitle2" >Home</Typography>
+                <Typography variant="subtitle2" className={classes.navitem}>Home</Typography>
               </Button>
             </Grid>
             <Grid item xs={2}>
             <Button onClick={()=>{
-                  history.push("/donate");
+                  history.push("/events");
                 }} style={{backgroundColor:"black", color:"white"}}>
-              <Typography variant="subtitle2">Donate</Typography>
+              <Typography variant="subtitle2" className={classes.navitem}>Events</Typography>
             </Button>
             </Grid>
             <Grid item xs={2}>
             <Button onClick={()=>{
                   history.push("/register");
                 }} style={{backgroundColor:"black", color:"white"}}>
-              <Typography variant="subtitle2">Register</Typography>
+              <Typography variant="subtitle2" className={classes.navitem}>Register</Typography>
             </Button>
             
             </Grid>
@@ -65,7 +68,7 @@ export default function Navigation() {
             <Button onClick={()=>{
                   history.push("/login");
                 }} style={{backgroundColor:"black", color:"white"}}>
-              <Typography variant="subtitle2">Login</Typography>
+              <Typography variant="subtitle2" className={classes.navitem}>Login</Typography>
             </Button>
             
             </Grid>
