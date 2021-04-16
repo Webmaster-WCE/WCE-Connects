@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -10,7 +11,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
-
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+// import FormHelperText from '@material-ui/core/FormHelperText';
+import FormLabel from '@material-ui/core/FormLabel';
+// import HighlighedInformation from '../../Shared/HighlightedInformation';
 
 function Copyright() {
   return (
@@ -58,6 +65,12 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  formControl: {
+    margin: theme.spacing(3),
+  },
+  button: {
+    margin: theme.spacing(1, 1, 0, 0),
+  },
 }));
 
 
@@ -65,22 +78,69 @@ const useStyles = makeStyles((theme) => ({
 export default function Register() {
   const classes = useStyles();
   const history= useHistory();
-  
-  function onSubmit(e) {
+  const [value, setValue] = useState('');
+  const [error, setError] = useState(true);
+  const [helperText, setHelperText] = useState('');
+  // const [post, setPost] = useState();
+
+  const handleRadioChange = (event) => {
+    setValue(event.target.value);
+    setHelperText(' ');
+    setError(false);
+  };
+
+  function handleSubmit(e) {
     
     e.preventDefault();
     var form = document.getElementById('signup_form');
     var data = new FormData(form);
     const entries = data.entries();
     const userData = Object.fromEntries(entries);
-    
-    axios.post('http://localhost:5000/user/', userData)
-    .then(res => { 
-      if(res.status === 200)
+    var post=false;
+  
+    if (value === 'student') {
+     if(!userData.email.includes('walchandsangli.ac.in'))
       {
-        history.push("/home"); 
+        setHelperText('Use college email ID');
+        setError(true);
+        post=false;
       }
-    }).catch(res => {
+      else
+      {
+        setError(false);
+        post=true;
+      }
+    } else if (value === 'teacher') {
+      if(!userData.email.includes('walchandsangli.ac.in'))
+      {
+        setHelperText('Use college email ID');
+        setError(true);
+        post=false;
+      }
+      else
+      {
+        setError(false);
+        post=true;
+      }
+    } else if (value === 'alumni') {
+      setError(false);
+      post=true;
+    }else {
+      setHelperText('Please select an option.');
+      setError(true);
+      post=false;
+    }
+
+    if(post===true && error===false) 
+    {
+      post=false;
+      axios.post('http://localhost:5000/user/', userData)
+      .then(res => { 
+        if(res.status === 200)
+        {
+          history.push("/home"); 
+        }
+      }).catch(res => {
         if(res.status !== 200)
         {
           if( res.status === 404)
@@ -90,16 +150,17 @@ export default function Register() {
           else
           {
             swal("We are facing problem...\nBackend Guy please wake up...")
-              .then((value) => {
-                if(value)
-                {
-                  history.push("/register");
-                }
+            .then((value) => {
+              if(value)
+              {
+                history.push("/register");
               }
+            }
             );
           }
         }
-    });
+      });
+    }
 
 }
 
@@ -113,7 +174,7 @@ export default function Register() {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <form className={classes.form} name="signup_form" id="signup_form" onSubmit={onSubmit}>
+          <form className={classes.form} name="signup_form" id="signup_form" onSubmit={handleSubmit}>
           <div className="d-flex flex-row">
             <div className="p-2 flex-fill">
             <TextField
@@ -143,7 +204,15 @@ export default function Register() {
             </div>
         </div>
           
-            
+        <FormControl component="fieldset" className={classes.formControl}>
+          <FormLabel component="legend">You are ...</FormLabel>
+          <RadioGroup aria-label="role" name="role" value={value} onChange={handleRadioChange} row>
+            <FormControlLabel value="student" control={<Radio />} label="Student" />
+            <FormControlLabel value="teacher" control={<Radio />} label="Teacher" />
+            <FormControlLabel value="alumni" control={<Radio />} label="Alumni" />
+          </RadioGroup>
+          
+        </FormControl>
             <TextField
               variant="outlined"
               margin="normal"
@@ -153,8 +222,8 @@ export default function Register() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              
             />
+            
             <TextField
               variant="outlined"
               margin="normal"
@@ -170,6 +239,10 @@ export default function Register() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
+
+            <div style={{color:"red", fontSize:"medium"}}>
+                {helperText}
+            </div>
             <Button
               type="submit"
               fullWidth
