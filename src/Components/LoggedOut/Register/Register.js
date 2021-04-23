@@ -134,7 +134,8 @@ export default function Register() {
     if(post===true && error===false) 
     {
       post=false;
-      axios.post('http://localhost:5000/user/', userData)
+      console.log(userData);
+      axios.post('http://localhost:5000/users/', userData)
       .then(res => { 
         if(res.status === 200)
         {
@@ -149,7 +150,7 @@ export default function Register() {
           }
           else
           {
-            swal("We are facing problem...\nBackend Guy please wake up...")
+            swal("Already Registered with this Email ID")
             .then((value) => {
               if(value)
               {
@@ -206,7 +207,7 @@ export default function Register() {
           
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">You are ...</FormLabel>
-          <RadioGroup aria-label="role" name="role" value={value} onChange={handleRadioChange} row>
+          <RadioGroup aria-label="role" name="user_role" value={value} onChange={handleRadioChange} row>
             <FormControlLabel value="student" control={<Radio />} label="Student" />
             <FormControlLabel value="teacher" control={<Radio />} label="Teacher" />
             <FormControlLabel value="alumni" control={<Radio />} label="Alumni" />

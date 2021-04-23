@@ -73,7 +73,7 @@ export default function Login(){
     const entries = data.entries();
     const userData = Object.fromEntries(entries);
     
-    axios.post('http://localhost:5000/user/', userData)
+    axios.post('http://localhost:5000/auth/', userData)
     .then(res => { 
       if(res.status === 200)
       {
@@ -88,7 +88,7 @@ export default function Login(){
           }
           else
           {
-            swal("We are facing problem...\nBackend Guy please wake up...")
+            swal("Invalid Email/Password")
               .then((value) => {
                 if(value)
                 {
