@@ -134,15 +134,14 @@ export default function Register() {
     if(post===true && error===false) 
     {
       post=false;
-      console.log(userData);
       axios.post('http://localhost:5000/users/', userData)
       .then(res => { 
-        if(res.status === 200)
+        if(res.status === 202)
         {
-          history.push("/home"); 
+          history.push("/verify"); 
         }
       }).catch(res => {
-        if(res.status !== 200)
+        if(res.status !== 202)
         {
           if( res.status === 404)
           {
@@ -167,7 +166,6 @@ export default function Register() {
 
   return (
       <Grid container component="main" className={classes.root}>
-        {console.log("in register")}
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
