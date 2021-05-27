@@ -1,7 +1,7 @@
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import { Link } from 'react-router-dom';
+import { Link, BrowserRouter as Route } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -12,6 +12,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 
 function Copyright() {
+  
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
@@ -33,10 +34,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat:'no-repeat',
     backgroundPosition:'top',
     backgroundSize:'cover',
-    /* color: white; */
-    /* opacity: 40%; */
-    /* margin-top: 10px; */
-    // background-position-y: 20px;
     height: '100vh',
 
   },
@@ -64,9 +61,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Login(){
   const classes = useStyles();
   const history= useHistory();
-  
+
   function onSubmit(e) {
-    
+  
     e.preventDefault();
     var form = document.getElementById('signup_form');
     var data = new FormData(form);
@@ -77,7 +74,8 @@ export default function Login(){
     .then(res => { 
       if(res.status === 200)
       {
-        history.push("/home"); 
+        history.push("/u/landing")
+        window.location.reload()
       }
     }).catch(res => {
         if(res.status !== 200)
@@ -103,9 +101,9 @@ export default function Login(){
 }
 
   return (
-    
+    <Route>
+
     <Grid container component="main" className={classes.root}>
-        {console.log("In Login")}
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -124,7 +122,7 @@ export default function Login(){
               name="email"
               autoComplete="email"
               
-            />
+              />
             <TextField
               variant="outlined"
               margin="normal"
@@ -135,7 +133,7 @@ export default function Login(){
               type="password"
               id="password"
               autoComplete="current-password"
-            />
+              />
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -146,19 +144,18 @@ export default function Login(){
               variant="contained"
               style={{ background: 'black' }}
               className={classes.submit}
-              // onClick={}
-            >
+              >
               
               <div style={{color:"white"}}>LogIn</div>
             </Button>
             </form>
             {/* <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+              <Link href="#" variant="body2">
+              Forgot password?
+              </Link>
               </Grid>
-              <Grid item> */}
+            <Grid item> */}
                 <Link to="/register" variant="body2" style={{textDecoration: 'none', fontSize:'15px'}}>
                   Don't have an account? Register
                 </Link>
@@ -171,5 +168,6 @@ export default function Login(){
         </div>
       </Grid>
     </Grid>
+    </Route>
   );
 }

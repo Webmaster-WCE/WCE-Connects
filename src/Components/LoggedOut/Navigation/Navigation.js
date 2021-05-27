@@ -44,7 +44,7 @@ export default function Navigation() {
           >
             <Grid item xs={2}>
               <Button onClick={()=>{
-                  history.push("/home");
+                  history.push("/");
                 }} style={{backgroundColor:"black", color:"white"}}>
                 <Typography variant="subtitle2" className={classes.navitem}>Home</Typography>
               </Button>
