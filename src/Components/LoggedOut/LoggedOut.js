@@ -6,17 +6,25 @@ import Navigation from './Navigation/Navigation';
 import Footer from './Footer/Footer';
 import {Route, BrowserRouter as Router} from "react-router-dom";
 import Events from './Events/Events';
+import { EmailVerifation } from './Register/EmailVerifation';
 
-export default function LoggedOut(){
+export default function LoggedOut(props){
+    const { loggedIn, setLoggedIn } = props;
+
     return(
         <>
             <Router>
-                {console.log("In LoggedOut")}
                 <Navigation/>
-                <Route exact path="/home" component={Home}/>
+                <Route exact path="/" component={Home}/>
                 <Route exact path="/events" component={Events}/>
-                <Route exact path="/login" component={Login}/>
+                <Route
+                    path='/login'
+                    render={(props) => (
+                        <Login {...props} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+                    )}
+                    />
                 <Route exact path="/register" component={Register}/>
+                <Route exact path="/verify" component={EmailVerifation}/>
                 <Footer/>
             </Router>
         </>
