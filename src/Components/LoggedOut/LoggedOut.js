@@ -3,10 +3,10 @@ import Home from './Home/Home';
 import Login from './Login/Login';
 import Register from './Register/Register';
 import Navigation from './Navigation/Navigation';
-import Footer from './Footer/Footer';
 import {Route, BrowserRouter as Router} from "react-router-dom";
 import Events from './Events/Events';
-import { EmailVerifation } from './Register/EmailVerifation';
+import { VerifyEmail } from './Register/VerifyEmail';
+import EmailVerified from './Register/EmailVerified';
 
 export default function LoggedOut(props){
     const { loggedIn, setLoggedIn } = props;
@@ -24,8 +24,8 @@ export default function LoggedOut(props){
                     )}
                     />
                 <Route exact path="/register" component={Register}/>
-                <Route exact path="/verify" component={EmailVerifation}/>
-                <Footer/>
+                <Route exact path="/verify" component={VerifyEmail}/>
+                <Route exact path="/verified" component={EmailVerified}/>
             </Router>
         </>
     );
