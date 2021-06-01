@@ -1,3 +1,4 @@
+import { useContext, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -10,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
+import {AuthContext} from '../../../context/AuthContext';
 
 function Copyright() {
   
@@ -61,48 +63,53 @@ const useStyles = makeStyles((theme) => ({
 export default function Login(){
   const classes = useStyles();
   const history= useHistory();
-
-  function onSubmit(e) {
+  const {token,isFetching, dispatch} = useContext(AuthContext);
   
+  useEffect(() => {
+    if(token !== null){
+      history.push("/u/landing");
+    }
+  },[token]);
+      
+  // const {token} = useContext(AuthContext);
+
+  const onSubmit= async (e) => {
     e.preventDefault();
     var form = document.getElementById('signup_form');
     var data = new FormData(form);
     const entries = data.entries();
     const userData = Object.fromEntries(entries);
-    
-    axios.post('http://localhost:5000/auth/', userData)
-    .then(res => { 
-      if(res.status === 200)
-      {
-        history.push("/u/landing")
-        window.location.reload()
-      }
-    }).catch(res => {
-        if(res.status !== 200)
-        {
-          if( res.status === 404)
+      console.log("token "+token);
+      dispatch({ type: "LOGIN_START" });
+      try {
+        const res = await axios.post('http://localhost:5000/auth/', userData);
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+      } catch (err) {
+        dispatch({ type: "LOGIN_FAILURE", payload: err });
+        swal("Invalid Email/Password")
+        .then((value) => {
+          if(value)
           {
-            swal("Sorry but currently our server is sleeping...\nTry after some time...");
+            history.push("/login");
+            return;
           }
-          else
-          {
-            swal("Invalid Email/Password")
-              .then((value) => {
-                if(value)
-                {
-                  history.push("/login");
-                }
-              }
-            );
-          }
-        }
-    });
+        });
 
+      }
+      finally {
+        if(token)
+        {
+            console.log("token "+token);
+            history.push("/u/landing")
+            window.location.reload()
+        }
+      }
+    // };
 }
 
   return (
     <Route>
-
+    {console.log(token)}
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
