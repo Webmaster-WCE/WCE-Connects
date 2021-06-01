@@ -2,36 +2,42 @@ const AuthReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN_START":
       return {
-        user: null,
+        token: null,
         isFetching: true,
         error: false,
       };
     case "LOGIN_SUCCESS":
       return {
-        user: action.payload,
+        token: action.payload,
         isFetching: false,
         error: false,
       };
     case "LOGIN_FAILURE":
       return {
-        user: null,
+        token: null,
         isFetching: false,
         error: true,
+      };
+    case "LOGOUT":
+      return {
+        token: null,
+        isFetching: false,
+        error: false,
       };
     case "FOLLOW":
       return {
         ...state,
-        user: {
-          ...state.user,
-          followings: [...state.user.followings, action.payload],
+        token: {
+          ...state.token,
+          followings: [...state.token.followings, action.payload],
         },
       };
     case "UNFOLLOW":
       return {
         ...state,
-        user: {
-          ...state.user,
-          followings: state.user.followings.filter(
+        token: {
+          ...state.token,
+          followings: state.token.followings.filter(
             (following) => following !== action.payload
           ),
         },
