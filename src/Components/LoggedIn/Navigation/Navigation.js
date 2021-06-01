@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,6 +14,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { useHistory } from 'react-router-dom';
+import {AuthContext} from '../../../context/AuthContext';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -88,7 +89,7 @@ export default function Navigation() {
   const history= useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const {dispatch} = useContext(AuthContext);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -126,8 +127,9 @@ export default function Navigation() {
       }}>Profile</MenuItem>
       <MenuItem onClick={()=>{
         handleMenuClose();
+        dispatch({ type: "LOGOUT" });
         history.push("/");
-        window.location.reload()
+        window.location.reload();
       }}>Sign Out</MenuItem>
     </Menu>
   );
