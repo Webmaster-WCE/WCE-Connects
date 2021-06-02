@@ -197,7 +197,9 @@ export default function Navigation() {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
+            <IconButton aria-label="show 4 new mails" color="inherit" onClick={()=>{
+              history.push("/u/messenger");
+            }}>
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
               </Badge>
