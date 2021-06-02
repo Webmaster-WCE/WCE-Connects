@@ -2,27 +2,28 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./conversation.css";
 
-export default function Conversation({ conversation, currentUser }) {
+export default function Conversation({ conversation, currentUserId }) {
   const [user, setUser] = useState(null);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
-    const friendId = conversation.members.find((m) => m !== currentUser._id);
+    const friendId = conversation.members.find((m) => m !== currentUserId);
 
     const getUser = async () => {
       try {
-        const res = await axios("/users?userId=" + friendId);
+        const res = await axios("http://localhost:5000/users/" + friendId);
         setUser(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     getUser();
-  }, [currentUser, conversation]);
+  }, [currentUserId, conversation]);
 
   return (
     <div className="conversation">
-      <img
+       {/* To Add Profile Picture in list
+        <img
         className="conversationImg"
         src={
           user?.profilePicture
@@ -30,8 +31,8 @@ export default function Conversation({ conversation, currentUser }) {
             : PF + "person/noAvatar.png"
         }
         alt=""
-      />
-      <span className="conversationName">{user?.username}</span>
+      /> */}
+      <span className="conversationName">{user? user.first_name+" "+user.last_name: "User Not Found"}</span>
     </div>
   );
 }

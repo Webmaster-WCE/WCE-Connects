@@ -20,6 +20,7 @@
 
 .conversationName {
   font-weight: 500;
+  margin-left: 50px;
 }
 
 @media screen and (max-width: 768px) {
