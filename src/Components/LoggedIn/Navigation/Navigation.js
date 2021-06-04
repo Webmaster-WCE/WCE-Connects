@@ -15,6 +15,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { useHistory } from 'react-router-dom';
 import {AuthContext} from '../../../context/AuthContext';
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -146,6 +147,12 @@ export default function Navigation() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
+        <IconButton aria-label="go to home" color="inherit">
+            <HomeIcon />
+        </IconButton>
+        <p>Home</p>
+      </MenuItem>
+      <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="secondary">
             <MailIcon />
@@ -197,15 +204,22 @@ export default function Navigation() {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit" onClick={()=>{
-              history.push("/u/messenger");
+            <IconButton aria-label="go to home" color="inherit" onClick={()=>{
+              history.push("/u/landing");
             }}>
-              <Badge badgeContent={4} color="secondary">
+              <HomeIcon />
+            </IconButton>
+            <IconButton aria-label="show new messages" color="inherit" onClick={()=>{
+              history.push("/u/inbox");
+            }}>
+              <Badge badgeContent={0} color="secondary">
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+            <IconButton aria-label="show new notifications" color="inherit"onClick={()=>{
+              history.push("/u/notifications");
+            }}>
+              <Badge badgeContent={0} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
