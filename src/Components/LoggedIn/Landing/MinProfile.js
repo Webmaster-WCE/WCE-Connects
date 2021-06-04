@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,7 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-
+import {AuthContext} from '../../../context/AuthContext';
+import axios from 'axios';
 
 //styling used
 const useStyles = makeStyles((theme) => ({
@@ -36,9 +37,34 @@ const useStyles = makeStyles((theme) => ({
 //Exported Min Profile Component
 export default function MinProfile() {
   const classes = useStyles();
+  const { token } = useContext(AuthContext);
+  const [currentUserId, setCurrentUserId] = useState();
+  const [currentUser, setCurrentUser] = useState();
+  useEffect(() => {
+    async function getID(){
+      const res = await axios.get("http://localhost:5000/users/getid/", {
+        headers: {'x-auth-token':token}
+      })
+      setCurrentUserId(res.data);
+    }
+    getID();
+  },[token]);
+
+  useEffect(() => {
+    async function fetchUser(){
+        
+      if(currentUserId)
+      {
+        const res = await axios.get("http://localhost:5000/users/"+currentUserId);
+        setCurrentUser(res.data);
+      }
+    }
+    fetchUser();
+  },[currentUserId]);
 
   return (
-    <Card className={classes.root}>
+    <>
+    {currentUser? <Card className={classes.root}>
       <Button 
         href="/u/profile/userid/edit" 
         color="primary" 
@@ -75,18 +101,19 @@ export default function MinProfile() {
                 fontFamily:"Open Sans"
               }}
             >
-              Mark Zukerberg
+              {currentUser.first_name+" "+currentUser.last_name}
             </Typography>
             <Typography 
               variant="body2" 
               color="textSecondary" 
               component="p"
             >
-              CEO at Facebook
+              {/* {currentUser.short_profile.post+" at "+currentUser.short_profile.organization} */}
             </Typography>  
           </Grid>
         </Grid>
       </CardContent>
-    </Card>
+    </Card>: null}
+    </>
   );
 }
