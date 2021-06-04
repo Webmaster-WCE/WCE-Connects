@@ -87,7 +87,7 @@ export default function MultilineTextFields() {
             value={targetBranch}
             onChange={targetBranchChange}
             >
-                <option value="all" selected>All</option>
+                <option value="all">All</option>
                 <option value="cse">Computer Science and Engineering</option>
                 <option value="it">Information Technology</option>
                 <option value="mech">Mechanical Engineering</option>
@@ -102,7 +102,7 @@ export default function MultilineTextFields() {
             value={target}
             onChange={targetChange}
             >
-            <option value="all" selected>All</option>
+            <option value="all">All</option>
             <option value="alumni-only">Alumni Only</option>
             <option value="teachers-only">Teachers Only</option>
             <optgroup label="Students Only">
@@ -117,8 +117,8 @@ export default function MultilineTextFields() {
         <input type="file" id="img" name="img" accept="image/*" style={{display:"none"}} onChange={onSelectFile}/>
         {selectedFile &&  <img src={preview} alt="postid" style={{maxWidth:"50ch", margin:"20px"}}/> }
         <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginTop:"15px"}}>
-          <label for="img">
-              <AddAPhotoIcon style={{ marginLeft:"20px",padding:"10px", display:"flex", position:"flex-start"}}/>
+          <label htmlFor="img">
+              <AddAPhotoIcon style={{ marginLeft:"20px",padding:"10px", display:"flex", position:"flex-start", cursor:"pointer"}}/>
           </label>
           <div style={{marginRight:"30px"}}>
             <input type="reset" value="Cancel" onClick={handleReset}/>

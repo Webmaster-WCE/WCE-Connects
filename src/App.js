@@ -1,14 +1,14 @@
 import React, {useContext} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import { LoggedIn } from './Components/LoggedIn/LoggedIn';
-import { VerifyEmail } from './Components/LoggedOut/Register/VerifyEmail';
-import EmailVerified from './Components/LoggedOut/Register/EmailVerified';
-import Home from './Components/LoggedOut/Home/Home';
-import Login from './Components/LoggedOut/Login/Login';
-import Register from './Components/LoggedOut/Register/Register';
-import Navigation from './Components/LoggedOut/Navigation/Navigation';
-import Events from './Components/LoggedOut/Events/Events';
+import { LoggedIn } from './components/LoggedIn/LoggedIn';
+import { VerifyEmail } from './components/LoggedOut/Register/VerifyEmail';
+import EmailVerified from './components/LoggedOut/Register/EmailVerified';
+import Home from './components/LoggedOut/Home/Home';
+import Login from './components/LoggedOut/Login/Login';
+import Register from './components/LoggedOut/Register/Register';
+import Navigation from './components/LoggedOut/Navigation/Navigation';
+import Events from './components/LoggedOut/Events/Events';
 import {AuthContext} from './context/AuthContext';
 
 function App() {
@@ -17,12 +17,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {token !== null? <Redirect to="/u/landing"/> : 
         <Switch>
+            {token !== null? <Redirect to="/u/landing"/> : 
             <Route exact path="/">
               <Navigation/>
               <Home/>
-            </Route>
+            </Route>}
             <Route exact path="/events">
               <Navigation/>
               <Events/>
@@ -41,7 +41,7 @@ function App() {
             <Route exact path="/verified">
               <EmailVerified/>
             </Route>
-        </Switch>}
+        </Switch>
         <Route path="/u"> 
           <LoggedIn/>
         </Route>

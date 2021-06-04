@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "./conversation.css";
+import "./Conversation.css";
 
 export default function Conversation({ conversation, currentUserId }) {
   const [user, setUser] = useState(null);
@@ -22,16 +22,15 @@ export default function Conversation({ conversation, currentUserId }) {
 
   return (
     <div className="conversation">
-       {/* To Add Profile Picture in list
         <img
         className="conversationImg"
         src={
           user?.profilePicture
             ? PF + user.profilePicture
-            : PF + "person/noAvatar.png"
+            : PF + "default.png"
         }
         alt=""
-      /> */}
+      />
       <span className="conversationName">{user? user.first_name+" "+user.last_name: "User Not Found"}</span>
     </div>
   );

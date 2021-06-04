@@ -1,13 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import "./messenger.css";
-import Conversation from "../conversations/Conversation";
-import Message from "../message/Message";
+import "./Inbox.css";
+import Conversation from "../Conversation/Conversation";
+import Message from "../Message/Message";
 import axios from "axios";
 import { io } from "socket.io-client";
 import {AuthContext} from "../../../context/AuthContext";
 
 
-export default function Messenger() {
+export default function Inbox() {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -27,10 +27,12 @@ export default function Messenger() {
   
 
   //Sends Token to Server and Get User ID
-  useEffect(async () => {
-    const res = await axios.get("http://localhost:5000/users/getid/", {headers: {'x-auth-token':token}});
-    setCurrentUserId(res.data);
-    console.log("fetched id "+currentUserId);
+  useEffect(() => {
+    async function fetchID() {
+      const res = await axios.get("http://localhost:5000/users/getid/", {headers: {'x-auth-token':token}});
+      setCurrentUserId(res.data);
+    }
+    fetchID();
   }, [token])
 
   

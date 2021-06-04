@@ -12,6 +12,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 import {AuthContext} from '../../../context/AuthContext';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function Copyright() {
   
@@ -69,9 +70,10 @@ export default function Login(){
     if(token !== null){
       history.push("/u/landing");
     }
-  },[token]);
-      
-  // const {token} = useContext(AuthContext);
+    else{
+      history.push("/login");
+    }
+  },[token, history]);
 
   const onSubmit= async (e) => {
     e.preventDefault();
@@ -79,37 +81,31 @@ export default function Login(){
     var data = new FormData(form);
     const entries = data.entries();
     const userData = Object.fromEntries(entries);
-      console.log("token "+token);
-      dispatch({ type: "LOGIN_START" });
-      try {
-        const res = await axios.post('http://localhost:5000/auth/', userData);
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
-      } catch (err) {
-        dispatch({ type: "LOGIN_FAILURE", payload: err });
-        swal("Invalid Email/Password")
-        .then((value) => {
-          if(value)
-          {
-            history.push("/login");
-            return;
-          }
-        });
-
-      }
-      finally {
-        if(token)
+    dispatch({ type: "LOGIN_START" });
+    try {
+      const res = await axios.post('http://localhost:5000/auth/', userData);
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+    } catch (err) {
+      dispatch({ type: "LOGIN_FAILURE", payload: err });
+      swal("Invalid Email/Password")
+      .then((value) => {
+        if(value)
         {
-            console.log("token "+token);
-            history.push("/u/landing")
-            window.location.reload()
+          history.push("/login");
+          return;
         }
+      });
+    }
+    finally {
+      if(token)
+      {
+          history.push("/u/landing")
       }
-    // };
+    }
 }
 
   return (
     <Route>
-    {console.log(token)}
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -129,7 +125,7 @@ export default function Login(){
               name="email"
               autoComplete="email"
               
-              />
+            />
             <TextField
               variant="outlined"
               margin="normal"
@@ -140,11 +136,7 @@ export default function Login(){
               type="password"
               id="password"
               autoComplete="current-password"
-              />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
+            />
             <Button
               type="submit"
               fullWidth
@@ -152,26 +144,17 @@ export default function Login(){
               style={{ background: 'black' }}
               className={classes.submit}
               >
-              
-              <div style={{color:"white"}}>LogIn</div>
+              <div style={{color:"white"}}>
+              {isFetching? <CircularProgress color="inherit" size="25px"/> : "Log In"} 
+              </div>
             </Button>
             </form>
-            {/* <Grid container>
-              <Grid item xs>
-              <Link href="#" variant="body2">
-              Forgot password?
-              </Link>
-              </Grid>
-            <Grid item> */}
-                <Link to="/register" variant="body2" style={{textDecoration: 'none', fontSize:'15px'}}>
-                  Don't have an account? Register
-                </Link>
-              {/* </Grid>
-            </Grid> */}
+            <Link to="/register" variant="body2" style={{textDecoration: 'none', fontSize:'15px'}}>
+                Don't have an account? Register
+            </Link>
             <Box mt={5}>
               <Copyright />
             </Box>
-          
         </div>
       </Grid>
     </Grid>

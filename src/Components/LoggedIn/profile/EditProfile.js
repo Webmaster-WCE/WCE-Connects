@@ -7,7 +7,6 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BusinessIcon from '@material-ui/icons/Business';
 import SchoolRoundedIcon from '@material-ui/icons/SchoolRounded';
-import defaultPic from './default.png';
 import { Button, Grid, Typography } from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
@@ -17,7 +16,7 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 let user = {
@@ -131,7 +130,7 @@ export default function ProfilePage() {
 
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(true);
-
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const toggleExpanded = () => {
       setExpanded(!expanded);
     };
@@ -201,7 +200,7 @@ export default function ProfilePage() {
     return (
         <>
             <div className={classes.short_profile}>
-                <Avatar alt="Profile Photo" className={classes.propic} src={defaultPic} />
+                <Avatar alt="Profile Photo" className={classes.propic} src={PF+"default.png"} />
                 <div className={classes.basic_info}>
                     <div className={classes.short_profile_heading}>
                         <p style={{fontFamily:"Montserrat", fontSize:"40px", margin: "0px" }}>{user.short_profile.first_name} {user.short_profile.last_name}</p>
