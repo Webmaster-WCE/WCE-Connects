@@ -130,7 +130,7 @@ export default function Navigation() {
     >
       <MenuItem onClick={()=>{
         handleMenuClose();
-        history.push("/u/profile/userid")  
+        history.push("/u/profile/current")  
       }}>Profile</MenuItem>
       <MenuItem onClick={()=>{
         handleMenuClose();
