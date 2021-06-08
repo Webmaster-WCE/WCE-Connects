@@ -24,6 +24,24 @@ const AuthReducer = (state, action) => {
         isFetching: false,
         error: false,
       };
+    case "FETCH_START":
+      return {
+        token: state.token,
+        isFetching: true,
+        error: false
+      };
+    case "FETCH_COMPLETE":
+      return {
+        token: state.token,
+        isFetching: false,
+        error: false
+      };
+    case "FETCH_ABORT":
+      return {
+        token: state.token,
+        isFetching: false,
+        error: true
+      };
     case "FOLLOW":
       return {
         ...state,
