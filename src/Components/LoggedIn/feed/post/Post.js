@@ -2,7 +2,7 @@ import "./Post.css";
 import { MoreVert } from "@material-ui/icons";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-// import { format } from "timeago.js";
+import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../context/AuthContext";
 
@@ -37,7 +37,7 @@ export default function Post({ post }) {
       { user && user.info ? <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <Link to={`/profile/${user.username}`}>
+            <Link to={`/u/profile/${post.author}`}>
               <img
                 className="postProfileImg"
                 src={
@@ -49,7 +49,7 @@ export default function Post({ post }) {
               />
             </Link>
             <span className="postUsername">{user.info.first_name} {user.info.last_name}</span>
-            {/* <span className="postDate">{format(post.createdAt)}</span> */}
+            <span className="postDate">{format(post.createdAt)}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
