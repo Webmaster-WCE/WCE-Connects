@@ -13,7 +13,11 @@ import axios from 'axios';
 //styling used
 const useStyles = makeStyles((theme) => ({
   root: {
+    minWidth: 345,
     maxWidth: 345,
+    position:"fixed",
+    scroll:"no-scroll",
+    marginTop: "5%"
   },
   media: {
     height: 0,
@@ -55,12 +59,14 @@ export default function MinProfile() {
         
       if(currentUserId)
       {
-        const res = await axios.get("http://localhost:5000/users/"+currentUserId);
+        const res = await axios.get("http://localhost:5000/users/"+currentUserId, {
+          headers: {'x-auth-token':token}
+        });
         setCurrentUser(res.data);
       }
     }
     fetchUser();
-  },[currentUserId]);
+  },[currentUserId, token]);
 
   return (
     <>
@@ -101,17 +107,24 @@ export default function MinProfile() {
                 fontFamily:"Open Sans"
               }}
             >
-              {currentUser.first_name+" "+currentUser.last_name}
+              {currentUser.info.first_name+" "+currentUser.info.last_name}
             </Typography>
             <Typography 
               variant="body2" 
               color="textSecondary" 
               component="p"
             >
-              {/* {currentUser.short_profile.post+" at "+currentUser.short_profile.organization} */}
+              {currentUser.info.current_post+" at "+currentUser.info.current_organization}
             </Typography>  
           </Grid>
         </Grid>
+        <div style={{display:"flex",justifyContent:"center", marginTop:"4%"}}>
+          <div style={{backgroundColor:'lightgrey', borderRadius:"50%", padding:"10px", fontFamily:"Montserrat"}}>
+            {currentUser.info.user_role==="alumni"?"Alumni":null}
+            {currentUser.info.user_role==="student"?"Student":null}
+            {currentUser.info.user_role==="teacher"?"Professor":null}
+          </div>
+        </div>
       </CardContent>
     </Card>: null}
     </>

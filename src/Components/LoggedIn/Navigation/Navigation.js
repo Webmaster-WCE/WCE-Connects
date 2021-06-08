@@ -18,6 +18,12 @@ import {AuthContext} from '../../../context/AuthContext';
 import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
+  root:{
+    position:"fixed",
+    top:"0",
+    width: '100%',
+    zIndex:"100"
+  },
   grow: {
     flexGrow: 1,
   },
@@ -183,6 +189,7 @@ export default function Navigation() {
   );
 
   return (
+    <div className={classes.root}>
     <div className={classes.grow}>
       <AppBar position="static" className={classes.appbar}>
         <Toolbar>
@@ -249,6 +256,7 @@ export default function Navigation() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+    </div>
     </div>
   );
 }
