@@ -134,7 +134,8 @@ export default function Register() {
     if(post===true && error===false) 
     {
       post=false;
-      axios.post('http://localhost:5000/users/', userData)
+      console.log(userData);
+      axios.post('http://localhost:5000/auth/register', userData)
       .then(res => { 
         if(res.status === 202)
         {
@@ -212,6 +213,27 @@ export default function Register() {
           </RadioGroup>
           
         </FormControl>
+
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="current_post"
+              label="Current Post (Ex. Software Engineer, Student)"
+              name="current_post"
+            />
+            
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="current_organization"
+              label="Current Organization/ College Name"
+              name="current_organization"
+            />
+
             <TextField
               variant="outlined"
               margin="normal"
