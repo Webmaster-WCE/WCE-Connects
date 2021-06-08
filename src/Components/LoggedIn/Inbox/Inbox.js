@@ -29,7 +29,9 @@ export default function Inbox() {
   //Sends Token to Server and Get User ID
   useEffect(() => {
     async function fetchID() {
-      const res = await axios.get("http://localhost:5000/users/getid/", {headers: {'x-auth-token':token}});
+      const res = await axios.get("http://localhost:5000/users/getid/", 
+        {headers: {'x-auth-token':token}
+      });
       setCurrentUserId(res.data);
     }
     fetchID();
@@ -67,26 +69,33 @@ export default function Inbox() {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/conversations/" + currentUserId);
+        const res = await axios.get(`http://localhost:5000/conversations/${currentUserId}`,{
+          headers: {'x-auth-token':token}
+        });
         setConversations(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     getConversations();
-  },[currentUserId]);
+  },[currentUserId, token]);
 
   useEffect(() => {
     const getMessages = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/messages/" + currentChat?._id);
-        setMessages(res.data);
-      } catch (err) {
-        console.log(err);
+      if(currentChat){
+        try {
+          const res = await axios.get(`http://localhost:5000/messages/${currentChat._id}`, 
+          {
+            headers: {'x-auth-token':token}
+          });
+          setMessages(res.data);
+        } catch (err) {
+          console.log(err);
+        }
       }
     };
     getMessages();
-  }, [currentChat]);
+  }, [currentChat, token]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,7 +116,10 @@ export default function Inbox() {
     });
 
     try {
-      const res = await axios.post("http://localhost:5000/messages", message);
+      const res = await axios.post(`http://localhost:5000/messages`, message,
+      {
+        headers: {'x-auth-token':token}
+      });
       setMessages([...messages, res.data]);
       setNewMessage("");
     } catch (err) {
@@ -122,12 +134,13 @@ export default function Inbox() {
 
   return (
     <>
+      {console.log("rendering inbox...")}
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             <input placeholder="Search for friends" className="chatMenuInput" />
             {conversations.map((c) => (
-              <div onClick={() => setCurrentChat(c)}>
+              <div  key={c.id} onClick={() => setCurrentChat(c)}>
                 <Conversation conversation={c} currentUserId={currentUserId} />
               </div>
             ))}
