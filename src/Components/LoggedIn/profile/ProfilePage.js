@@ -1,4 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
@@ -87,7 +88,8 @@ export default function ProfilePage() {
     const [isLoading, setIsLoading] = useState(false);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const {token} = useContext(AuthContext);
-
+    const {userid} = useParams();
+    // alert(userId);
     const toggleExpanded = () => {
         setExpanded(!expanded);
     };
@@ -96,7 +98,7 @@ export default function ProfilePage() {
         const fetchUser = async () => {
             setIsLoading(true);
             try{
-                const res = await axios.get(`http://localhost:5000/users/current`, 
+                const res = await axios.get(`http://localhost:5000/users/${userid}`, 
                     { headers: {'x-auth-token':token}
                 });
                 setUser(res.data);
@@ -107,13 +109,13 @@ export default function ProfilePage() {
             setIsLoading(false);
         }
         fetchUser();
-    },[token]);
+    },[token, userid]);
 
     useEffect(() => {
         const fetchUserProfile = async () => {
             setIsLoading(true);
             try{
-                const res = await axios.get(`http://localhost:5000/userProfile/current`, 
+                const res = await axios.get(`http://localhost:5000/userProfile/${userid}`, 
                     { headers: {'x-auth-token':token}
                 });
                 setUserProfile(res.data);
@@ -124,7 +126,7 @@ export default function ProfilePage() {
             setIsLoading(false);
         }
         fetchUserProfile();
-    },[token]);
+    },[token, userid]);
 
     return (
         <>
@@ -134,7 +136,13 @@ export default function ProfilePage() {
                 <div className={classes.basic_info}>
                     <div className={classes.short_profile_heading}>
                         <p style={{fontFamily:"Montserrat", fontSize:"40px", margin: "0px" }}>{user.info.first_name} {user.info.last_name}</p>
-                        <a href="/u/profile/userid/edit" style={{textDecoration:"none"}}><Button variant="contained">Edit Profile</Button></a>
+                        {userid==="current" && <a href="/u/profile/userid/edit" style={{textDecoration:"none"}}><Button variant="contained">Edit Profile</Button></a>}
+                        {userid!=="current" && 
+                            <div style={{backgroundColor:'lightgrey', borderRadius:"50%", padding:"10px", fontFamily:"Montserrat"}}>
+                                {user.info.user_role==="alumni"?"Alumni":null}
+                                {user.info.user_role==="student"?"Student":null}
+                                {user.info.user_role==="teacher"?"Faculty":null}
+                            </div>}
                     </div>
                     <div className={classes.short_profile_subheading}>
                         <p style={{ fontSize:"large",   margin:"10px 0px 0px 0px" }}>{user.info.current_post}</p>
