@@ -1,10 +1,12 @@
-import {React, useState, useEffect} from 'react';
+import {React, useState, useEffect, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import {AuthContext} from '../../../context/AuthContext';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,13 +22,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MultilineTextFields() {
+export default function CreatePost() {
   const classes = useStyles();
+  const { token, dispatch } = useContext(AuthContext);
+
+  const [ID, setID] = useState('');
   const [value, setValue] = useState('');
   const [target, setTarget] = useState('');
   const [targetBranch, setTargetBranch] = useState('');
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState()
+
+  useEffect(() => {
+    async function getID(){
+      const res = await axios.get("http://localhost:5000/users/getid/", {headers: { 'x-auth-token':token }})
+      setID(res.data);
+    }
+    getID();
+  }, [token]);
 
   // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
@@ -62,8 +75,33 @@ export default function MultilineTextFields() {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    dispatch({ type: "FETCH_START" });
+    let newPost = {
+      Feed:{
+
+        author: ID,
+        text: value,
+        picture: JSON.stringify(selectedFile),
+        target_audience: target,
+        target_branch: targetBranch
+      }
+    };
+    
+    await axios.post("http://localhost:5000/feeds", newPost, 
+      {
+        headers: { 'x-auth-token':token }
+      }
+    ).catch((err)=> {
+      dispatch({ type: "LOGIN_ABORT", payload: err });
+      console.log(err);
+    }).then(()=>{
+      dispatch({ type: "FETCH_COMPLETE" });
+      console.log("Posted Successfully")
+    });
+    handleReset();
   };
   const handleReset = () => {
     setValue('');
@@ -71,7 +109,7 @@ export default function MultilineTextFields() {
   };
 
   return (
-    <form className={classes.root}>
+    <form className={classes.root} onSubmit={handleSubmit}>
         <TextField
             id="filled-multiline-static"
             label="Type your text here..."
