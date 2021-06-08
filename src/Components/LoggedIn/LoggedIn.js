@@ -18,7 +18,7 @@ export const LoggedIn = () => {
                         {user? <Landing/>  : <Redirect to="/login"/>}
                     </Route> 
                     <Route exact path="/u/profile/userid/edit" component={EditProfile}/> 
-                    <Route exact path="/u/profile/userid" component={ProfilePage} />
+                    <Route exact path="/u/profile/:userid" component={ProfilePage} />
                     <Route exact path="/u/inbox" component={Inbox} />
                     <Route exact path="/u/notifications" component={Notification} />
             </Router>
