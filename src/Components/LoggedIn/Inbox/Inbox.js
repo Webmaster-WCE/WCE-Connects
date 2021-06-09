@@ -56,13 +56,13 @@ export default function Inbox() {
   }, [arrivalMessage, currentChat]);
 
   useEffect(() => {
-    socket.current.emit("addUser", currentUserId);
+    currentUserId !==null && socket.current.emit("addUser", currentUserId);
 
     //To Show Online Users
     // socket.current.on("getUsers", (users) => {
-    //   setOnlineUsers(
-    //     tmpUser.followings.filter((f) => users.some((u) => u.userId === f))
-    //   );
+      // setOnlineUsers(
+      //   tmpUser.followings.filter((f) => users.some((u) => u.userId === f))
+      // );
     // });
   }, [currentUserId]);
 
