@@ -1,74 +1,21 @@
-import React from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import BusinessIcon from '@material-ui/icons/Business';
-import SchoolRoundedIcon from '@material-ui/icons/SchoolRounded';
-import { Button, Grid, Typography } from "@material-ui/core";
-import IconButton from '@material-ui/core/IconButton';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import YouTubeIcon from '@material-ui/icons/YouTube';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import FacebookIcon from '@material-ui/icons/Facebook';
+// import BusinessIcon from '@material-ui/icons/Business';
+// import SchoolRoundedIcon from '@material-ui/icons/SchoolRounded';
+import { Button, Typography } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
-// import axios from 'axios';
+import axios from 'axios';
+import {AuthContext} from '../../../context/AuthContext';
 
 
-let user = {
-    short_profile: {
-        first_name: 'Saurabh',
-        last_name: 'Hirugade',
-        post:'Student',
-        organization:'Walchand College of Engineering, Sangli',
-    },
-    professional_info: [
-        {
-            post: 'Program Director',
-            company: 'WCE ACM Student Chapter',
-            from:'2019-04-01',
-            to: '2021-05-28'
-        },
-    ],
-    educational_info:[
-        {
-            school:'Walchand College of Engineering, Sangli',
-            course:'B.Tech in Computer Science and Engineering',
-            score:'8.37',
-            outof:'10',
-        },
-        {
-            
-            school:'Swami Vivekanand College, Kolhapur',
-            course:'HSC (Science)',
-            score:'89.85',
-            outof:'100'
-        },
-
-    ],
-    personal_info: {
-        about_me: "Hello, I'm Pre-Final Year Computer Science And Enigneering Student. I love development and problem solving.",
-        birthdate:'2000-09-11',
-    },
-    contact_info: {
-        mobile_no: '7769983805',
-        email: 'saurabhhirugade@gmail.com',
-    },
-    profiles: {
-        linkedin: 'https://www.linkedin.com/in/saurabh-hirugade/',
-        github: 'https://github.com/cognitive-ninja',
-        twitter: 'https://twitter.com/DarkEnergy__',
-        youtube: '',
-        instagram: '',
-        facebook: '',
-    }
-}
 const useStyles = makeStyles((theme) => ({
     short_profile: {
+        marginTop:"5%",
         padding: '30px',
         display: 'flex',
         flexDirection: 'row',
@@ -126,180 +73,234 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-export default function ProfilePage() {
+export default function EditProfile() {
 
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(true);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const [userProfile, setUserProfile] = useState();
+    const [user, setUser] = useState();
+    const [isLoading, setIsLoading] = useState(false);
+    const {token} = useContext(AuthContext);
+    
+    useEffect(() => {
+        const fetchUser = async () => {
+            setIsLoading(true);
+            try{
+                const res = await axios.get(`http://localhost:5000/users/current`, 
+                    { headers: {'x-auth-token':token}
+                });
+                setUser(res.data);
+            }
+            catch(err){
+                console.log(err);
+            }
+            setIsLoading(false);
+        }
+        fetchUser();
+    },[token]);
+
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            setIsLoading(true);
+            try{
+                const res = await axios.get(`http://localhost:5000/userProfile/current`, 
+                    { headers: {'x-auth-token':token}
+                });
+                setUserProfile(res.data);
+            }
+            catch(err){
+                console.log(err);
+            }
+            setIsLoading(false);
+        }
+        fetchUserProfile();
+    },[token]);
+
+
     const toggleExpanded = () => {
       setExpanded(!expanded);
     };
 
-    const updatePersonalInfo = (e) => {
-        e.preventDefault();
-        var form = document.getElementById('updatePersonalInfo');
-        var data = new FormData(form);
-        const entries = data.entries();
-        const updatedUser = Object.fromEntries(entries);
-        console.log(updatedUser)
-        user.personal_info.about_me = updatedUser.about_me;
-        user.personal_info.birthdate = updatedUser.birthdate;
-    }
+    // const updatePersonalInfo = (e) => {
+    //     e.preventDefault();
+    //     var form = document.getElementById('updatePersonalInfo');
+    //     var data = new FormData(form);
+    //     const entries = data.entries();
+    //     const updatedUser = Object.fromEntries(entries);
+    //     console.log(updatedUser)
+    //     user.personal_info.about_me = updatedUser.about_me;
+    //     user.personal_info.birthdate = updatedUser.birthdate;
+    // }
 
-    const updateContactInfo = (e) => {
-        e.preventDefault();
-        var form = document.getElementById('updateContactInfo');
-        var data = new FormData(form);
-        const entries = data.entries();
-        const updatedUser = Object.fromEntries(entries);
-        console.log(updatedUser)
-        user.contact_info.email = updatedUser.email;
-        user.contact_info.mobile_no = updatedUser.mobile_no;
-    }
+    // const updateContactInfo = (e) => {
+    //     e.preventDefault();
+    //     var form = document.getElementById('updateContactInfo');
+    //     var data = new FormData(form);
+    //     const entries = data.entries();
+    //     const updatedUser = Object.fromEntries(entries);
+    //     console.log(updatedUser)
+    //     user.contact_info.email = updatedUser.email;
+    //     user.contact_info.mobile_no = updatedUser.mobile_no;
+    // }
 
-    const updateProfessionalInfoSingle = (e) => {
-        e.preventDefault();
-        var form = document.getElementById('updateProfessionalInfoSingle');
-        var data = new FormData(form);
-        const entries = data.entries();
-        const updatedUser = Object.fromEntries(entries);
-        console.log(updatedUser)
-        //updation to made locally
-    }
+    // const updateProfessionalInfoSingle = (e) => {
+    //     e.preventDefault();
+    //     var form = document.getElementById('updateProfessionalInfoSingle');
+    //     var data = new FormData(form);
+    //     const entries = data.entries();
+    //     const updatedUser = Object.fromEntries(entries);
+    //     console.log(updatedUser)
+    //     //updation to made locally
+    // }
 
-    const updateProfessionalInfoAll = (e) => {
-        e.preventDefault();
-        var form = document.getElementById('updateProfessionalInfoAll');
-        var data = new FormData(form);
-        const entries = data.entries();
-        const updatedUser = Object.fromEntries(entries);
-        console.log(updatedUser)
-        //updation to made in database
-    }
+    // const updateProfessionalInfoAll = (e) => {
+    //     e.preventDefault();
+    //     var form = document.getElementById('updateProfessionalInfoAll');
+    //     var data = new FormData(form);
+    //     const entries = data.entries();
+    //     const updatedUser = Object.fromEntries(entries);
+    //     console.log(updatedUser)
+    //     //updation to made in database
+    // }
 
-    const updateEducationalInfoSingle = (e) => {
-        e.preventDefault();
-        var form = document.getElementById('updateEducationalInfoSingle');
-        var data = new FormData(form);
-        const entries = data.entries();
-        const updatedUser = Object.fromEntries(entries);
-        console.log(updatedUser)
-        //updation to be made locally
-    }
+    // const updateEducationalInfoSingle = (e) => {
+    //     e.preventDefault();
+    //     var form = document.getElementById('updateEducationalInfoSingle');
+    //     var data = new FormData(form);
+    //     const entries = data.entries();
+    //     const updatedUser = Object.fromEntries(entries);
+    //     console.log(updatedUser)
+    //     //updation to be made locally
+    // }
     
-    const updateEducationalInfoAll = (e) => {
-        e.preventDefault();
-        var form = document.getElementById('updateEducationalInfoSingle');
-        var data = new FormData(form);
-        const entries = data.entries();
-        const updatedUser = Object.fromEntries(entries);
-        console.log(updatedUser)
-        //updation to be made in database
-    }
+    // const updateEducationalInfoAll = (e) => {
+    //     e.preventDefault();
+    //     var form = document.getElementById('updateEducationalInfoSingle');
+    //     var data = new FormData(form);
+    //     const entries = data.entries();
+    //     const updatedUser = Object.fromEntries(entries);
+    //     console.log(updatedUser)
+    //     //updation to be made in database
+    // }
 
+    const handleSaveAll = (e) => {
+        e.preventDefault();
+
+    }
     return (
         <>
-            <div className={classes.short_profile}>
+            {isLoading ? console.log("Loading in progress...") : null}
+            
+            {user? <div className={classes.short_profile}>
                 <Avatar alt="Profile Photo" className={classes.propic} src={PF+"default.png"} />
                 <div className={classes.basic_info}>
                     <div className={classes.short_profile_heading}>
-                        <p style={{fontFamily:"Montserrat", fontSize:"40px", margin: "0px" }}>{user.short_profile.first_name} {user.short_profile.last_name}</p>
-                        <a href="/u/profile/userid/edit" style={{textDecoration:"none"}}><Button variant="contained">Edit Profile</Button></a>
+                        <TextField
+                            id="first_name"
+                            name="first_name"
+                            label="First Name"
+                            defaultValue={user.info.first_name}
+                            className={classes.textField}
+                            InputLabelProps={{
+                            shrink: true,
+                            }}
+                        />
+                        <TextField
+                            id="last_name"
+                            name="last_name"
+                            label="Last Name"
+                            defaultValue={user.info.last_name}
+                            className={classes.textField}
+                            InputLabelProps={{
+                            shrink: true,
+                            }}
+                        />
+                        <Button variant="contained" onClick={handleSaveAll}>Save All Changes</Button>
                     </div>
                     <div className={classes.short_profile_subheading}>
-                        <p style={{ fontSize:"large",   margin:"10px 0px 0px 0px" }}>{user.short_profile.post}</p>
-                        <p style={{fontSize:"x-large",  margin:"0px" }}>{user.short_profile.organization}</p>
+                        <TextField
+                            id="current_post"
+                            name="current_post"
+                            label="Current Post"
+                            defaultValue={user.info.current_post}
+                            className={classes.textField}
+                            InputLabelProps={{
+                            shrink: true,
+                            }}
+                            style={{ margin:"10px 0px 10px 0px" }}
+                        /><br/>
+                        <TextField
+                            id="current_organization"
+                            name="current_organization"
+                            label="Current Organization / College"
+                            defaultValue={user.info.current_organization}
+                            className={classes.textField}
+                            fullWidth
+                            style={{ marginTop:"10px" }}
+                        />
                     </div>
                 </div>
-            </div>
+            </div> : null}
         
-
-            <Grid container justify="center" direction="row">
-                {user.profiles.linkedin && <IconButton href={user.profiles.linkedin} target="_blank" rel="noreferrer">
-                    <LinkedInIcon className={classes.profileIcons}/>
-                </IconButton>}
-                {user.profiles.github && <IconButton href={user.profiles.github} target="_blank" rel="noreferrer">
-                    <GitHubIcon className={classes.profileIcons}/>
-                </IconButton>}
-                {user.profiles.twitter && <IconButton href={"https://twitter.com/"+user.profiles.twitter} target="_blank" rel="noreferrer">
-                    <TwitterIcon className={classes.profileIcons}/>
-                </IconButton>}
-                {user.profiles.youtube && <IconButton href={user.profiles.youtube} target="_blank" rel="noreferrer">
-                    <YouTubeIcon className={classes.profileIcons}/>
-                </IconButton>}
-                {user.profiles.facebook && <IconButton href={user.profiles.facebook} target="_blank" rel="noreferrer">
-                    <FacebookIcon className={classes.profileIcons}/>
-                </IconButton>}
-                {user.profiles.instagram && <IconButton href={"https://www.instagram.com/"+user.profiles.instagram} target="_blank" rel="noreferrer">
-                    <InstagramIcon className={classes.profileIcons}/>
-                </IconButton>}
-            </Grid>
-
-            <div className={classes.root}>
+{/****************************************************************************************************************/}
+            {userProfile ? <div className={classes.root}>
                 <Accordion className={classes.accordionItem} expanded={expanded} onChange={toggleExpanded}>
                     <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1d-content"
                     id="panel1d-header"
-                    //   classes={{ content: classes.content }}
                     >
                     <Typography className={classes.heading}>PROFESSIONAL INFORMATION</Typography>
                     </AccordionSummary>
 
                     <AccordionDetails className={classes.details}>
-                        <div style={{display:"flex", alignItems:"flex-start", padding:"2px 10px"}}>
-                            <BusinessIcon />
-                            <div style={{padding:"0px 10px"}}>
-                                <form onSubmit={updateProfessionalInfoAll} id="updateProfessionalInfoAll" name="updateProfessionalInfoAll">
-                                <form className={classes.container} onSubmit={updateProfessionalInfoSingle} id="updateProfessionalInfoSingle" name="updateProfessionalInfoSingle">
-                                    <TextField
-                                        id="post"
-                                        name="post"
-                                        label="Post"
-                                        defaultValue={user.professional_info[0].post}
-                                        className={classes.textField}
-                                        InputLabelProps={{
-                                        shrink: true,
-                                        }}
-                                    />
-                                    <TextField
-                                        id="company"
-                                        name="company"
-                                        label="Company"
-                                        defaultValue={user.professional_info[0].company}
-                                        className={classes.textField}
-                                        InputLabelProps={{
-                                        shrink: true,
-                                        }}
-                                    />
-                                    <TextField
-                                        id="from"
-                                        name="from"
-                                        label="From:"
-                                        type="date"
-                                        defaultValue={user.professional_info[0].from}
-                                        className={classes.textField}
-                                        InputLabelProps={{
-                                        shrink: true,
-                                        }}
-                                    />
-                                    <TextField
-                                        id="to"
-                                        name="to"
-                                        label="To:"
-                                        type="date"
-                                        defaultValue={user.professional_info[0].to}
-                                        className={classes.textField}
-                                        InputLabelProps={{
-                                        shrink: true,
-                                        }}
-                                    />  
-                                    <button type="submit">Save</button>
-                                </form> 
-                                <hr></hr>
-                                <button type="submit">Save professional_info</button>
-                                </form>
-                            </div>
+                        <div style={{padding:"10px"}}>
+                            <TextField
+                                id="post"
+                                name="post"
+                                label="Post"
+                                defaultValue={userProfile.professional_info[0].post}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                            />
+                            <TextField
+                                id="company"
+                                name="company"
+                                label="Company"
+                                defaultValue={userProfile.professional_info[0].company}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                            /><br/>
+                            <TextField
+                                id="from"
+                                name="from"
+                                label="From:"
+                                // type="date"
+                                defaultValue={userProfile.professional_info[0].from}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                            />
+                            <TextField
+                                id="to"
+                                name="to"
+                                label="To:"
+                                // type="date"
+                                defaultValue={userProfile.professional_info[0].to}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                style={{marginLeft:"10px"}}
+                            />
                         </div>
                     </AccordionDetails>
                 </Accordion>
@@ -312,57 +313,50 @@ export default function ProfilePage() {
                     <Typography className={classes.heading}>EDUCATIONAL INFORMATION</Typography>
                     </AccordionSummary>
                     <AccordionDetails className={classes.details}>
-                        <div style={{display:"flex", alignItems:"flex-start", padding:"2px 10px"}}>
-                            <SchoolRoundedIcon />
-                            <div style={{padding:"0px 10px"}}>
-                                <form onSubmit={updateEducationalInfoAll} id="updateEducationalInfoAll" name="updateEducationalInfoAll">
-                                <form className={classes.container} onSubmit={updateEducationalInfoSingle} id="updateEducationalInfoSingle" name="updateEducationalInfoSingle">
-                                    <TextField
-                                        id="school"
-                                        name="school"
-                                        label="Institute"
-                                        defaultValue={user.educational_info[0].school}
-                                        className={classes.textField}
-                                        InputLabelProps={{
-                                        shrink: true,
-                                        }}
-                                    />
-                                    <TextField
-                                        id="course"
-                                        name="course"
-                                        label="Course"
-                                        defaultValue={user.educational_info[0].course}
-                                        className={classes.textField}
-                                        InputLabelProps={{
-                                        shrink: true,
-                                        }}
-                                    />
-                                    <TextField
-                                        id="score"
-                                        name="score"
-                                        label="Your Score:"
-                                        defaultValue={user.educational_info[0].score}
-                                        className={classes.textField}
-                                        InputLabelProps={{
-                                        shrink: true,
-                                        }}
-                                    />
-                                    <TextField
-                                        id="outof"
-                                        name="outof"
-                                        label="Out of:"
-                                        defaultValue={user.educational_info[0].outof}
-                                        className={classes.textField}
-                                        InputLabelProps={{
-                                        shrink: true,
-                                        }}
-                                    />  
-                                    <button type="submit">Save</button>
-                                </form> 
-                                <hr></hr>
-                                <button type="submit">Save educational_info</button>
-                                </form>
-                            </div>
+                        <div style={{padding:"0px 10px"}}>
+                            <TextField
+                                id="school"
+                                name="school"
+                                label="Institute"
+                                defaultValue={userProfile.educational_info[0].school}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                            /><br/>
+                            <TextField
+                                id="course"
+                                name="course"
+                                label="Course"
+                                defaultValue={userProfile.educational_info[0].course}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                            /><br/>
+                            <TextField
+                                id="score"
+                                name="score"
+                                label="Your Score:"
+                                defaultValue={userProfile.educational_info[0].score}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                            />
+                            <TextField
+                                id="outof"
+                                name="outof"
+                                label="Out of:"
+                                defaultValue={userProfile.educational_info[0].outof}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                style={{marginLeft:"10px"}}
+                            />
                         </div>
                     </AccordionDetails>
                 </Accordion>
@@ -375,34 +369,30 @@ export default function ProfilePage() {
                     <Typography className={classes.heading}>PERSONAL INFORMATION</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                    
-                        <div style={{display: 'flex', flexDirection: 'column', padding:"2px"}}>
-                            <form className={classes.container} onSubmit={updatePersonalInfo} id="updatePersonalInfo" name="updatePersonalInfo">
-                                <TextField
-                                    id="about_me"
-                                    name="about_me"
-                                    label="About Me"
-                                    defaultValue={user.personal_info.about_me}
-                                    className={classes.textField}
-                                    InputLabelProps={{
-                                    shrink: true,
-                                    }}
-                                />
-                                <TextField
-                                    id="birthdate"
-                                    name="birthdate"
-                                    label="Birthday"
-                                    type="date"
-                                    defaultValue={user.personal_info.birthdate}
-                                    className={classes.textField}
-                                    InputLabelProps={{
-                                    shrink: true,
-                                    }}
-                                />
-                                <button type="submit">Update</button>
-                            </form>
+                        <div style={{width:"70%", textAlign:"left", padding:"10px"}}>
+                            <TextField
+                                id="about_me"
+                                name="about_me"
+                                label="About Me"
+                                defaultValue={userProfile.personal_info.about_me}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                            /><br/>
+                            <TextField
+                                id="birthdate"
+                                name="birthdate"
+                                label="Birthday"
+                                type="date"
+                                defaultValue={userProfile.personal_info.birthdate}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                            />
                         </div>
-
                     </AccordionDetails>
                 </Accordion>
                 <Accordion className={classes.accordionItem}>
@@ -414,35 +404,115 @@ export default function ProfilePage() {
                     <Typography className={classes.heading}>CONTACT INFORMATION</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <div style={{display: 'flex', flexDirection: 'column', padding:"2px"}}>
-                            <form className={classes.container} onSubmit={updateContactInfo} id="updateContactInfo" name="updateContactInfo">
-                                <TextField
-                                    id="email"
-                                    name="email"
-                                    label="E-mali"
-                                    defaultValue={user.contact_info.email}
-                                    className={classes.textField}
-                                    InputLabelProps={{
-                                    shrink: true,
-                                    }}
-                                />
-                                <TextField
-                                    id="mobile_no"
-                                    name="mobile_no"
-                                    label="Mobile No"
-                                    type="number"
-                                    defaultValue={user.contact_info.mobile_no}
-                                    className={classes.textField}
-                                    InputLabelProps={{
-                                    shrink: true,
-                                    }}
-                                />
-                                <button type="submit">Update</button>
-                            </form>
+                        <div style={{width:"50%", textAlign:"left", padding:"10px"}}>
+                            <TextField
+                                id="email"
+                                name="email"
+                                label="E-mali"
+                                defaultValue={userProfile.contact_info.email}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                            /><br/>
+                            <TextField
+                                id="mobile_no"
+                                name="mobile_no"
+                                label="Mobile No"
+                                type="number"
+                                defaultValue={userProfile.contact_info.mobile_no}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                            />
                         </div>
                     </AccordionDetails>
                 </Accordion>
-            </div>
+                <Accordion className={classes.accordionItem}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                    >
+                        <Typography className={classes.heading}>PROFILES</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <div style={{width:"50%", textAlign:"left", padding:"10px"}}>
+                            <TextField
+                                id="linkedin"
+                                name="linkedin"
+                                label="LinkedIn URL"
+                                defaultValue={userProfile.profiles.linkedin}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                                
+                            /><br/><br/>
+                            <TextField
+                                id="github"
+                                name="github"
+                                label="GitHub URL"
+                                defaultValue={userProfile.profiles.github}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                            /><br/><br/>
+                            <TextField
+                                id="twitter"
+                                name="twitter"
+                                label="Twitter Username"
+                                defaultValue={userProfile.profiles.twitter}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                            /><br/><br/>
+                            <TextField
+                                id="youtube"
+                                name="youtube"
+                                label="YouTube Channel"
+                                defaultValue={userProfile.profiles.youtube}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                            /><br/><br/>
+                            <TextField
+                                id="facebook"
+                                name="facebook"
+                                label="Facebook URL"
+                                defaultValue={userProfile.profiles.facebook}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                            /><br/><br/>
+                            <TextField
+                                id="instagram"
+                                name="instagram"
+                                label="Instagram Username"
+                                defaultValue={userProfile.profiles.instagram}
+                                className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                fullWidth
+                            /><br/>
+                            
+                        </div>
+                    </AccordionDetails>
+                </Accordion>
+            </div> : null}
         </>
     );
 }
