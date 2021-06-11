@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     /* opacity: 40%; */
     /* margin-top: 10px; */
     // background-position-y: 20px;
-    height: '100vh',
+    height: '120vh',
 
   },
   paper: {
