@@ -1,2 +1,2 @@
-# sem2project-frontend
-### I'm there in the project 
+# WCE Connects
+#### *Establishing long-standing bond between the alumni, current students and teahers.*
