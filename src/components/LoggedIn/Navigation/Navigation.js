@@ -1,14 +1,14 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
+// import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -16,6 +16,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { useHistory } from 'react-router-dom';
 import {AuthContext} from '../../../context/AuthContext';
 import HomeIcon from '@material-ui/icons/Home';
+// import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root:{
@@ -94,8 +95,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Navigation() {
   const classes = useStyles();
   const history= useHistory();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  // const [searchTerm, setSearchTerm] = useState('');
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const {dispatch} = useContext(AuthContext);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -132,6 +134,10 @@ export default function Navigation() {
         handleMenuClose();
         history.push("/u/profile/current")  
       }}>Profile</MenuItem>
+      <MenuItem onClick={()=>{
+        handleMenuClose();
+        history.push("/u/adminpanel/")  
+      }}>Admin Panel</MenuItem>
       <MenuItem onClick={()=>{
         handleMenuClose();
         dispatch({ type: "LOGOUT" });
@@ -196,19 +202,19 @@ export default function Navigation() {
           <Typography className={classes.title} variant="h6" noWrap>
             WCE Connects
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
+          {/* <div className={classes.search}> */}
+            {/* <div className={classes.searchIcon}> */}
+              
+            {/* </div> */}
+            {/* <InputBase
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
+            /> */}
+          {/* </div> */}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="go to home" color="inherit" onClick={()=>{

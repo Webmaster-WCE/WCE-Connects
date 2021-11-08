@@ -5,7 +5,8 @@ import CreatePost from './CreatePost';
 import Feed from '../Feed/Feed';
 import Notification from '../Notification/Notification';
 // import Events from '../../LoggedOut/Events/Events';
-
+import SearchBar from '../SearchBar/SearchBar';
+import BookData from "../SearchBar/MOCK_DATA.json";
 export const Landing = () => {
     return (
         <div>
@@ -27,17 +28,20 @@ export const Landing = () => {
                 </Grid>
                 <Grid item container direction="column" xs={12} sm={3} spacing={2}>
                     <Grid item>
-                    <Paper style={{ height: "31vh", background: "lightgrey", position:"fixed" , marginTop: "5%"}} >
-                        <div style={{ padding:"5%"}}>
-                         <Notification/>
+                        <Paper style={{ marginLeft:"10px",height: "10vh",width:"50vh", background: "lightgrey", position:"fixed" , marginTop: "5%"}} >
+                            <div style={{ padding:"5%"}}>
+                            <Notification/>
+                            </div>
+                        </Paper>
+                        <div style={{ marginTop: "8%",paddingTop:"70px", position:"fixed"}}>
+                            <SearchBar placeholder="Search..." data={BookData}/>
                         </div>
-                    </Paper>
                     </Grid>
-                    <Grid item>
-                    {/* <Paper style={{ height: "49vh", background: "lightgrey" }} >
+                    {/* <Grid item>
+                    <Paper style={{ height: "49vh", background: "lightgrey" }} >
                         <Events/>
-                    </Paper> */}
-                    </Grid>
+                    </Paper>
+                    </Grid> */}
                 </Grid>
             </Grid>
         </div>

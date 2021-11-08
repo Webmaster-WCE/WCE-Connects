@@ -7,6 +7,7 @@ import ProfilePage from './Profile/ProfilePage';
 import Inbox from './Inbox/Inbox';
 import {AuthContext} from '../../context/AuthContext';
 import Notification from './Notification/Notification';
+import AdminPanel from './AdminPanel/AdminPanel';
 
 export const LoggedIn = () => {
     const user = useContext(AuthContext);
@@ -21,6 +22,7 @@ export const LoggedIn = () => {
                     <Route exact path="/u/profile/:userid" component={ProfilePage} />
                     <Route exact path="/u/inbox" component={Inbox} />
                     <Route exact path="/u/notifications" component={Notification} />
+                    <Route exact path="/u/adminpanel" component={AdminPanel} />
             </Router>
         </div>
     )
