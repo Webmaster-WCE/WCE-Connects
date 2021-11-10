@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { Button, Grid } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
+import swal from 'sweetalert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +51,13 @@ export default function Navigation() {
               </Button>
             </Grid>
             <Grid item xs={2}>
+              <Button onClick={()=>{
+                  history.push("/gallery");
+                }} style={{backgroundColor:"black", color:"white"}}>
+                <Typography variant="subtitle2" className={classes.navitem}>Gallery</Typography>
+              </Button>
+            </Grid>
+            <Grid item xs={2}>
             <Button onClick={()=>{
                   history.push("/events");
                 }} style={{backgroundColor:"black", color:"white"}}>
@@ -58,7 +66,15 @@ export default function Navigation() {
             </Grid>
             <Grid item xs={2}>
             <Button onClick={()=>{
-                  history.push("/register");
+                  history.push("/activities");
+                }} style={{backgroundColor:"black", color:"white"}}>
+              <Typography variant="subtitle2" className={classes.navitem}>Alumni Activities</Typography>
+            </Button>
+            </Grid>
+            {/* <Grid item xs={2}>
+            <Button onClick={()=>{
+                  // history.push("/register");
+                  swal("Portal is opening soon...")
                 }} style={{backgroundColor:"black", color:"white"}}>
               <Typography variant="subtitle2" className={classes.navitem}>Register</Typography>
             </Button>
@@ -66,12 +82,13 @@ export default function Navigation() {
             </Grid>
             <Grid item xs={2}>
             <Button onClick={()=>{
-                  history.push("/login");
+                  // history.push("/login");
+                  swal("Portal is opening soon...")
                 }} style={{backgroundColor:"black", color:"white"}}>
               <Typography variant="subtitle2" className={classes.navitem}>Login</Typography>
             </Button>
             
-            </Grid>
+            </Grid> */}
           </Grid>
         </Toolbar>
       </AppBar>

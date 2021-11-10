@@ -1,17 +1,29 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 function AdminPanel() {
   const { register, handleSubmit } = useForm()
   const onSubmit = async (data) => {
   const formData = new FormData()
-  formData.append("uploadedFile", data.uploadedFile[0])
+  formData.append("file", data.uploadedFile[0])
   console.log(data.uploadedFile[0])
-  const res = await fetch("http://localhost:5000/admin/upload", {
-      method: "POST",
-      file: formData
-    }).then(res => res.json()).catch(res => res)
-    alert(JSON.stringify(res))
+  // const res = await fetch("http://localhost:5000/admin/upload", {
+  //     method: "POST",
+  //     file: formData
+  //   }).then(res => res.json()).catch(res => res)
+  //   alert(JSON.stringify(res))
+  // }
+    const config = {
+      headers: {
+            'content-type': 'multipart/form-data'
+        }
+    };
+    axios.post("http://localhost:5000/admin/upload",formData,config)
+        .then((response) => {
+            alert("The file is successfully uploaded");
+        }).catch((error) => {
+    });
   }
   return (
     //   <div>hello</div>
