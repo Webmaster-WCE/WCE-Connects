@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -16,7 +16,11 @@ export default function Events() {
   const classes = useStyles();
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [eventCount, setEventCount] = useState(1);
-  setEventCount(1);
+  
+  useEffect(() => {
+    setEventCount(1);
+  }, [eventCount]);
+  
   return (
     <>
       { eventCount===0 ? 
