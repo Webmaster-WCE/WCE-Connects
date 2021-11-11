@@ -2,19 +2,6 @@ import { useState, useCallback } from "react";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import { photos } from "./photos";
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
 
 export default function GalleryPage() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -29,7 +16,6 @@ export default function GalleryPage() {
     setCurrentImage(0);
     setViewerIsOpen(false);
   };
-  const classes = useStyles();
   return (
     <div style={{padding:"20px 70px 20px 70px"}}>
       <Gallery photos={photos} onClick={openLightbox} />
