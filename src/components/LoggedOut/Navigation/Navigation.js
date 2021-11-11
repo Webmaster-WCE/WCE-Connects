@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { Button, Grid } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,6 +71,7 @@ export default function Navigation() {
               <Typography variant="subtitle2" className={classes.navitem}>Alumni Activities</Typography>
             </Button>
             </Grid>
+            {/* Portal Login And Registration code below... */}
             {/* <Grid item xs={2}>
             <Button onClick={()=>{
                   // history.push("/register");
