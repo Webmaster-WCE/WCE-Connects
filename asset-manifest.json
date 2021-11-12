@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/WCE-Connects-Frontend/static/css/main.8b786ab8.chunk.css",
-    "main.js": "/WCE-Connects-Frontend/static/js/main.d4ed98c3.chunk.js",
-    "main.js.map": "/WCE-Connects-Frontend/static/js/main.d4ed98c3.chunk.js.map",
-    "runtime-main.js": "/WCE-Connects-Frontend/static/js/runtime-main.b7910568.js",
-    "runtime-main.js.map": "/WCE-Connects-Frontend/static/js/runtime-main.b7910568.js.map",
-    "static/js/2.cc8bc3bc.chunk.js": "/WCE-Connects-Frontend/static/js/2.cc8bc3bc.chunk.js",
-    "static/js/2.cc8bc3bc.chunk.js.map": "/WCE-Connects-Frontend/static/js/2.cc8bc3bc.chunk.js.map",
-    "static/js/3.2965d053.chunk.js": "/WCE-Connects-Frontend/static/js/3.2965d053.chunk.js",
-    "static/js/3.2965d053.chunk.js.map": "/WCE-Connects-Frontend/static/js/3.2965d053.chunk.js.map",
+    "main.css": "/WCE-Connects-Frontend/static/css/main.1635e87c.chunk.css",
+    "main.js": "/WCE-Connects-Frontend/static/js/main.22b742d2.chunk.js",
+    "main.js.map": "/WCE-Connects-Frontend/static/js/main.22b742d2.chunk.js.map",
+    "runtime-main.js": "/WCE-Connects-Frontend/static/js/runtime-main.e093aaa3.js",
+    "runtime-main.js.map": "/WCE-Connects-Frontend/static/js/runtime-main.e093aaa3.js.map",
+    "static/js/2.15947a0c.chunk.js": "/WCE-Connects-Frontend/static/js/2.15947a0c.chunk.js",
+    "static/js/2.15947a0c.chunk.js.map": "/WCE-Connects-Frontend/static/js/2.15947a0c.chunk.js.map",
+    "static/js/3.d06feb10.chunk.js": "/WCE-Connects-Frontend/static/js/3.d06feb10.chunk.js",
+    "static/js/3.d06feb10.chunk.js.map": "/WCE-Connects-Frontend/static/js/3.d06feb10.chunk.js.map",
     "index.html": "/WCE-Connects-Frontend/index.html",
-    "static/css/main.8b786ab8.chunk.css.map": "/WCE-Connects-Frontend/static/css/main.8b786ab8.chunk.css.map",
-    "static/js/2.cc8bc3bc.chunk.js.LICENSE.txt": "/WCE-Connects-Frontend/static/js/2.cc8bc3bc.chunk.js.LICENSE.txt"
+    "static/css/main.1635e87c.chunk.css.map": "/WCE-Connects-Frontend/static/css/main.1635e87c.chunk.css.map",
+    "static/js/2.15947a0c.chunk.js.LICENSE.txt": "/WCE-Connects-Frontend/static/js/2.15947a0c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b7910568.js",
-    "static/js/2.cc8bc3bc.chunk.js",
-    "static/css/main.8b786ab8.chunk.css",
-    "static/js/main.d4ed98c3.chunk.js"
+    "static/js/runtime-main.e093aaa3.js",
+    "static/js/2.15947a0c.chunk.js",
+    "static/css/main.1635e87c.chunk.css",
+    "static/js/main.22b742d2.chunk.js"
   ]
 }
