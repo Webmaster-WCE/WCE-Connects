@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/WCE-Connects-Frontend/static/css/main.8b786ab8.chunk.css",
-    "main.js": "/WCE-Connects-Frontend/static/js/main.85efa72d.chunk.js",
-    "main.js.map": "/WCE-Connects-Frontend/static/js/main.85efa72d.chunk.js.map",
+    "main.js": "/WCE-Connects-Frontend/static/js/main.ffe5db08.chunk.js",
+    "main.js.map": "/WCE-Connects-Frontend/static/js/main.ffe5db08.chunk.js.map",
     "runtime-main.js": "/WCE-Connects-Frontend/static/js/runtime-main.b7910568.js",
     "runtime-main.js.map": "/WCE-Connects-Frontend/static/js/runtime-main.b7910568.js.map",
     "static/js/2.cc8bc3bc.chunk.js": "/WCE-Connects-Frontend/static/js/2.cc8bc3bc.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.b7910568.js",
     "static/js/2.cc8bc3bc.chunk.js",
     "static/css/main.8b786ab8.chunk.css",
-    "static/js/main.85efa72d.chunk.js"
+    "static/js/main.ffe5db08.chunk.js"
   ]
 }
