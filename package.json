@@ -1,6 +1,6 @@
 {
   "name": "wceconnects",
-  "homepage": "http://localhost:3000/",
+  "homepage": "https://www.alumni.wce.ac.in/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,8 +11,8 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
-    "caniuse-lite": "^1.0.30001279",
     "convert-csv-to-json": "^1.3.1",
+    "global": "^4.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.17.2",
@@ -20,12 +20,15 @@
     "react-photo-gallery": "^8.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "serve": "^13.0.2",
     "socket.io-client": "^4.1.2",
     "sweetalert": "^2.1.2",
     "timeago.js": "^4.0.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -48,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
