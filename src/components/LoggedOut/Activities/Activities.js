@@ -1,10 +1,27 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {Link} from 'react-router-dom'
+// import Button from '@material-ui/core/Button';
+// import { useHistory } from 'react-router-dom';
+
 
 function Activities() {
+    // const history= useHistory();
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    },[])
+
     return (
+        <>
         <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
             <div>
-                <p style={{ fontWeight: "bold", fontFamily: "Montserrat", fontStyle: "italic" }}><a href='/activities/form' style={{ color: "#702aff" }}>Click here to fill Activity Form</a></p>
+                <p style={{ fontWeight: "bold", fontFamily: "Montserrat", fontStyle: "italic" }}>
+                    <Link to='/activities/form' style={{ color: "#702aff", textDecoration:"none" }}>
+                        Select activities that you would like to contribute...
+                    </Link>
+                </p>
+                {/* <Button variant="outlined" color="primary" onClick={()=>{history.push("/activities/form")}}>
+                </Button> */}
             </div>
             <div>
                 <p style={{ fontSize: "x-large", fontWeight: "bold", fontFamily: "Montserrat" }}>Alumni Activities</p>
@@ -48,7 +65,7 @@ function Activities() {
                 <p style={{ textAlign: "left" }}>To provide a platform with the help of alumni for aspirant students to work on live industry projects as
                     a part of their academic requirements to ensure industry readiness of students &amp; enrich the
                     industrial environment in the institute.</p>
-                <p style={{ textAlign: "left" }}><strong>10. Scholarships:</strong></p>
+                <p style={{ textAlign: "left" }}><strong>10. Awards:</strong></p>
                 <p style={{ textAlign: "left" }}>To create an endowment fund to assist needy students with the help of generous alumni to ensure that
                     every eligible student admitted to WCE is able to complete his education without any financial worries.
                 </p>
@@ -113,6 +130,7 @@ function Activities() {
                     every year in the Annual Alumni meet.</p>
             </div>
         </div>
+        </>
     )
 }
 
