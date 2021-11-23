@@ -3,8 +3,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-// import { useHistory } from 'react-router-dom';
-// import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import swal from 'sweetalert';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -61,57 +61,58 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function ActivityForm() {
+  // const {isRegistered, setIsSubmitted} = props;
   const classes = useStyles();
-  // const history = useHistory();
+  const history = useHistory();
   const [helperText, setHelperText] = useState('');
   const [programme, setProgramme] = useState('');
   const [branch, setBranch] = useState('');
   const [state, setState] = useState({
-    Serve_as_the_SPOC_for_Alumni_and_Institute: false,
-    Talks_and_Meets: false,
-    Employability_Assistance: false,
-    Mentorship: false,
-    Portal_for_Career_Opportunities: false,
-    Curriculum_Revamping: false,
-    Faculty_Alumni_Workshops: false,
-    Annual_Alumni_Meet: false,
-    Sponsored_Projects: false,
-    Scholarships: false,
-    Modernization_of_Labs: false,
-    Industrial_Visits: false,
-    Internships: false,
-    Testing_and_Consultancy: false,
-    Involvement_in_Evaluation_Process: false,
-    Industrial_Consultancy_Committee_ICC: false,
-    Industry_Institute_Interaction: false,
-    Soft_Skill_Training: false,
-    Member_Academic_Board_Board_of_Studies: false,
-    Helping_Student_Activities: false,
-    Felicitations_of_Distinguished_Alumni: false
+    spoc: false,
+    talks_and_meets: false,
+    employability_assistance: false,
+    mentorship: false,
+    portal_for_career_opportunities: false,
+    curriculum_revamping: false,
+    faculty_alumni_workshops: false,
+    annual_alumni_meet: false,
+    sponsored_projects: false,
+    awards: false,
+    modernization_of_labs: false,
+    industrial_visits: false,
+    internships: false,
+    testing_and_consultancy: false,
+    involvement_in_evolution_process: false,
+    icc: false,
+    industry_institute_interaction: false,
+    soft_skill_training: false,
+    member_academic_board: false,
+    helping_student_activities: false,
+    felicitations_of_distinguished_alumni: false
   });
 
   
-  const { Serve_as_the_SPOC_for_Alumni_and_Institute,
-    Talks_and_Meets,
-    Employability_Assistance,
-    Mentorship,
-    Portal_for_Career_Opportunities,
-    Curriculum_Revamping,
-    Faculty_Alumni_Workshops,
-    Annual_Alumni_Meet,
-    Sponsored_Projects,
-    Scholarships,
-    Modernization_of_Labs,
-    Industrial_Visits,
-    Internships,
-    Testing_and_Consultancy,
-    Involvement_in_Evaluation_Process,
-    Industrial_Consultancy_Committee_ICC,
-    Industry_Institute_Interaction,
-    Soft_Skill_Training,
-    Member_Academic_Board_Board_of_Studies,
-    Helping_Student_Activities,
-    Felicitations_of_Distinguished_Alumni } = state;
+  const { spoc,
+    talks_and_meets,
+    employability_assistance,
+    mentorship,
+    portal_for_career_opportunities,
+    curriculum_revamping,
+    faculty_alumni_workshops,
+    annual_alumni_meet,
+    sponsored_projects,
+    awards,
+    modernization_of_labs,
+    industrial_visits,
+    internships,
+    testing_and_consultancy,
+    involvement_in_evolution_process,
+    icc,
+    industry_institute_interaction,
+    soft_skill_training,
+    member_academic_board,
+    helping_student_activities,
+    felicitations_of_distinguished_alumni } = state;
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
@@ -124,7 +125,7 @@ export default function ActivityForm() {
   const programmeChange = (event) => {
     setProgramme(event.target.value);
   };
-
+  
   function handleSubmit(e) {
 
     e.preventDefault();
@@ -156,18 +157,18 @@ export default function ActivityForm() {
 
     if (post === true) {
       post = false;
-      //   axios.post('http://localhost:5000/auth/register', userData)
-      //   .then(res => { 
-      //     console.log(res);
-      //     if(res.status === 202)
-      //     {
-            swal("Submitted Successfully");
-      //     }
-      //   }).catch(err => {
-      //   if(res.status !== 202)
-      //   {
-      //      swal("Error while submitting...\n"+err.message)
-      //   });
+      console.log(userData)
+      axios.post('http://localhost:5000/auth/register', userData)
+      .then(res => { 
+        // console.log(res.data.message);
+        if(res.status === 202)
+        {
+          swal("Submitted Successfully");
+        }
+      }).catch(err => {
+          console.log(err.response);
+          swal("Error while submitting...\n"+err.response.data)
+      });
     }
   }
 
@@ -184,98 +185,99 @@ export default function ActivityForm() {
               <div style={{ display: 'flex', flexDirection: 'column' }}>
 
                 <FormControlLabel
-                  control={<Checkbox checked={Serve_as_the_SPOC_for_Alumni_and_Institute} onChange={handleChange} value="true" name="Serve_as_the_SPOC_for_Alumni_and_Institute" />}
+                  control={<Checkbox checked={spoc} onChange={handleChange} value="true" name="spoc" />}
                   label={`Serve as the SPOC for Alumni & Institute`}
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Talks_and_Meets} onChange={handleChange} value="true" name="Talks_and_Meets" />}
+                  control={<Checkbox checked={talks_and_meets} onChange={handleChange} value="true" name="talks_and_meets" />}
                   label="Talks and Meets"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Employability_Assistance} onChange={handleChange} value="true" name="Employability_Assistance" />}
+                  control={<Checkbox checked={employability_assistance} onChange={handleChange} value="true" name="employability_assistance" />}
                   label="Employability Assistance"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Mentorship} onChange={handleChange} value="true" name="Mentorship" />}
+                  control={<Checkbox checked={mentorship} onChange={handleChange} value="true" name="mentorship" />}
                   label="Mentorship"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Portal_for_Career_Opportunities} onChange={handleChange} value="true" name="Portal_for_Career_Opportunities" />}
+                  control={<Checkbox checked={portal_for_career_opportunities} onChange={handleChange} value="true" name="portal_for_career_opportunities" />}
                   label="Portal for Career Opportunities"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Curriculum_Revamping} onChange={handleChange} value="true" name="Curriculum_Revamping" />}
+                  control={<Checkbox checked={curriculum_revamping} onChange={handleChange} value="true" name="curriculum_revamping" />}
                   label="Curriculum Revamping"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Faculty_Alumni_Workshops} onChange={handleChange} value="true" name="Faculty_Alumni_Workshops" />}
+                  control={<Checkbox checked={faculty_alumni_workshops} onChange={handleChange} value="true" name="faculty_alumni_workshops" />}
                   label="Faculty Alumni Workshops"
                 />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <FormControlLabel
-                  control={<Checkbox checked={Annual_Alumni_Meet} onChange={handleChange} value="true" name="Annual_Alumni_Meet" />}
+                  control={<Checkbox checked={annual_alumni_meet} onChange={handleChange} value="true" name="annual_alumni_meet" />}
                   label="Annual Alumni Meet"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Sponsored_Projects} onChange={handleChange} value="true" name="Sponsored_Projects" />}
+                  control={<Checkbox checked={sponsored_projects} onChange={handleChange} value="true" name="sponsored_projects" />}
                   label="Sponsored Projects"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Scholarships} onChange={handleChange} value="true" name="Scholarships" />}
-                  label="Scholarships"
+                  control={<Checkbox checked={awards} onChange={handleChange} value="true" name="awards" />}
+                  label="Awards"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Modernization_of_Labs} onChange={handleChange} value="true" name="Modernization_of_Labs" />}
+                  control={<Checkbox checked={modernization_of_labs} onChange={handleChange} value="true" name="modernization_of_labs" />}
                   label="Modernization of Labs"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Industrial_Visits} onChange={handleChange} value="true" name="Industrial_Visits" />}
+                  control={<Checkbox checked={industrial_visits} onChange={handleChange} value="true" name="industrial_visits" />}
                   label="Industrial Visits"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Internships} onChange={handleChange} value="true" name="Internships" />}
+                  control={<Checkbox checked={internships} onChange={handleChange} value="true" name="internships" />}
                   label="Internships"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Testing_and_Consultancy} onChange={handleChange} value="true" name="Testing_and_Consultancy" />}
+                  control={<Checkbox checked={testing_and_consultancy} onChange={handleChange} value="true" name="testing_and_consultancy" />}
                   label="Testing and Consultancy"
                 />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
 
                 <FormControlLabel
-                  control={<Checkbox checked={Involvement_in_Evaluation_Process} onChange={handleChange} value="true" name="Involvement_in_Evaluation_Process" />}
+                  control={<Checkbox checked={involvement_in_evolution_process} onChange={handleChange} value="true" name="involvement_in_evolution_process" />}
                   label=" Involvement in Evaluation Process"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Industrial_Consultancy_Committee_ICC} onChange={handleChange} value="true" name="Industrial_Consultancy_Committee_ICC" />}
+                  control={<Checkbox checked={icc} onChange={handleChange} value="true" name="icc" />}
                   label="Industrial Consultancy Committee (ICC)"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Industry_Institute_Interaction} onChange={handleChange} value="true" name="Industry_Institute_Interaction" />}
+                  control={<Checkbox checked={industry_institute_interaction} onChange={handleChange} value="true" name="industry_institute_interaction" />}
                   label="Industry Institute Interaction"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Soft_Skill_Training} onChange={handleChange} value="true" name="Soft_Skill_Training" />}
+                  control={<Checkbox checked={soft_skill_training} onChange={handleChange} value="true" name="soft_skill_training" />}
                   label="Soft Skill Training"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Member_Academic_Board_Board_of_Studies} onChange={handleChange} value="true" name="Member_Academic_Board_Board_of_Studies" />}
+                  control={<Checkbox checked={member_academic_board} onChange={handleChange} value="true" name="member_academic_board" />}
                   label="Member Academic Board / Board of Studies"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Helping_Student_Activities} onChange={handleChange} value="true" name="Helping_Student_Activities" />}
+                  control={<Checkbox checked={helping_student_activities} onChange={handleChange} value="true" name="helping_student_activities" />}
                   label="Helping Student Activities"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={Felicitations_of_Distinguished_Alumni} onChange={handleChange} value="true" name="Felicitations_of_Distinguished_Alumni" />}
+                  control={<Checkbox checked={felicitations_of_distinguished_alumni} onChange={handleChange} value="true" name="felicitations_of_distinguished_alumni" />}
                   label="Felicitations of Distinguished Alumni"
                 />
               </div>
             </FormGroup>
           </FormControl>
         </div>
+        <div>
         <div className="d-flex flex-row">
           <div className="p-2 flex-fill">
             <TextField
@@ -350,15 +352,6 @@ export default function ActivityForm() {
             margin="normal"
             required
             fullWidth
-            id="area_of_expertise"
-            label="Area Of Expertise (Ex. Machine Learning, CAD Designing)"
-            name="area_of_expertise"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
             id="current_post"
             label="Current Post (Ex. Software Engineer)"
             name="current_post"
@@ -419,28 +412,51 @@ export default function ActivityForm() {
             type="tel"
             id="alternate_mobile"
           />
+          </div>
+          </div>
+          <div style={{ width: '515px', alignItems: "right" }}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="area_of_expertise"
+            label="Area Of Expertise (Ex. Machine Learning, CAD Designing)"
+            name="area_of_expertise"
+          />
           <TextField
             margin="normal"
             label="Brief your idea about Conduction/Implementation of the Activity"
             multiline
             fullWidth
-            rows={4}
+            rows={5}
             variant="outlined"
             id="idea_description"
             name="idea_description"
           />
-        </div>
+          </div>
         <div style={{ color: "red", fontSize: "medium" }}>
           {helperText}
         </div>
-        <Button
-          type="submit"
-          variant="contained"
-          style={{ background: 'black' }}
-          className={classes.submit}
-        >
-          <div style={{ color: "white" }}>Submit</div>
-        </Button>
+        <div style={{ display : 'flex',  }}>
+          <Button
+            type="submit"
+            variant="contained"
+            style={{ background: 'black' }}
+            className={classes.submit}
+            >
+            <div style={{ color: "white" }}>Submit</div>
+          </Button>
+          <Button
+            style={{ margin:"24px 10px 16px", background: 'black'}}
+            variant="contained"
+            onClick = { () => {
+              history.push("/activities")
+            }}
+            >
+            <div style={{ color: "white" }}>Cancel</div>
+          </Button>
+        </div>
       </form>
     </div>
   );
