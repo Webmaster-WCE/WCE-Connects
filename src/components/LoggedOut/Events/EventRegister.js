@@ -264,7 +264,6 @@ export default function EventRegister() {
           variant="contained"
           style={{ background: 'black' }}
           className={classes.submit}
-          onClick={handleSubmit}
         >
           <div style={{ color: "white" }}>Register</div>
         </Button>
