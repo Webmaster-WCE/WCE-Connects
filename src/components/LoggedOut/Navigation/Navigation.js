@@ -5,8 +5,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { Button, Grid } from '@material-ui/core';
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 // import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navigation() {
   const classes = useStyles();
-  const history = useHistory();
+  // const history = useHistory();
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{backgroundColor:"black", color:"white"}}>
@@ -42,55 +43,56 @@ export default function Navigation() {
             direction="row"
             alignItems="center"
             justify="flex-end"
-          >
+            >
             <Grid item xs={2}>
-              <Button onClick={()=>{
-                  history.push("/");
-                }} style={{backgroundColor:"black", color:"white"}}>
-                <Typography variant="subtitle2" className={classes.navitem}>Home</Typography>
-              </Button>
+              <Link to="/" style={{textDecoration:"none"}}>
+                <Button style={{backgroundColor:"black", color:"white"}}>
+                  <Typography variant="subtitle2" className={classes.navitem}>Home</Typography>
+                </Button>
+              </Link>
             </Grid>
             <Grid item xs={2}>
-              <Button onClick={()=>{
-                  history.push("/gallery");
-                }} style={{backgroundColor:"black", color:"white"}}>
-                <Typography variant="subtitle2" className={classes.navitem}>Gallery</Typography>
-              </Button>
+              <Link to="/gallery" style={{textDecoration:"none"}}>
+                <Button style={{backgroundColor:"black", color:"white"}}>
+                  <Typography variant="subtitle2" className={classes.navitem}>Gallery</Typography>
+                </Button>
+              </Link>
             </Grid>
             <Grid item xs={2}>
-            <Button onClick={()=>{
-                  history.push("/events");
-                }} style={{backgroundColor:"black", color:"white"}}>
-              <Typography variant="subtitle2" className={classes.navitem}>Events</Typography>
-            </Button>
+              <Link to="/events" style={{textDecoration:"none"}}>
+                <Button style={{backgroundColor:"black", color:"white"}}>
+                  <Typography variant="subtitle2" className={classes.navitem}>Events</Typography>
+                </Button>
+              </Link>
             </Grid>
             <Grid item xs={2}>
-            <Button onClick={()=>{
-                  history.push("/activities");
-                }} style={{backgroundColor:"black", color:"white"}}>
-              <Typography variant="subtitle2" className={classes.navitem}>Alumni Activities</Typography>
-            </Button>
+              <Link to="/activities" style={{textDecoration:"none"}}>
+                <Button style={{backgroundColor:"black", color:"white"}}>
+                  <Typography variant="subtitle2" className={classes.navitem}>Alumni Activities</Typography>
+                </Button>
+              </Link>
             </Grid>
             {/* Portal Login And Registration code below... */}
             {/* <Grid item xs={2}>
             <Button onClick={()=>{
-                  // history.push("/register");
-                  swal("Portal is opening soon...")
-                }} style={{backgroundColor:"black", color:"white"}}>
-              <Typography variant="subtitle2" className={classes.navitem}>Register</Typography>
+              // history.push("/register");
+              swal("Portal is opening soon...")
+            }} style={{backgroundColor:"black", color:"white"}}>
+            <Typography variant="subtitle2" className={classes.navitem}>Register</Typography>
             </Button>
             
             </Grid>
             <Grid item xs={2}>
             <Button onClick={()=>{
-                  // history.push("/login");
-                  swal("Portal is opening soon...")
-                }} style={{backgroundColor:"black", color:"white"}}>
-              <Typography variant="subtitle2" className={classes.navitem}>Login</Typography>
+              // history.push("/login");
+              swal("Portal is opening soon...")
+            }} style={{backgroundColor:"black", color:"white"}}>
+            <Typography variant="subtitle2" className={classes.navitem}>Login</Typography>
             </Button>
             
-            </Grid> */}
+          </Grid> */}
           </Grid>
+          {/* </Router> */}
         </Toolbar>
       </AppBar>
     </div>
