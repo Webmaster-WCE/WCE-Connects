@@ -55,7 +55,7 @@ export default function EventPage() {
                     <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT DAY: 8th Jan 2022</p>
                     <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT TIME: 10:00 AM</p>
                 </div>
-                <div style={{ marginRight: "35px" }}>
+                <div style={{ marginTop:"2%", marginRight: "5%", textAlign: "right" }}>
                     <Button
                         type="submit"
                         variant="contained"
@@ -65,8 +65,8 @@ export default function EventPage() {
                             <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration:"none" }}>REGISTER NOW</a>
                         </div>
                     </Button>
-                    <p>
-                    Considering pandemic situation prior registration is necessary. On the spot registration can not be permitted.
+                    <p style={{ color:"red", fontFamily: "Montserrat", fontStyle: "italic"}}>
+                        Considering pandemic situation, prior registration is necessary.<br/> On the spot registration can not be permitted.
                     </p>
                 </div>
             </div>
