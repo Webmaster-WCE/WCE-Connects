@@ -88,7 +88,7 @@ export default function MinProfile() {
           container
           direction="row"
           spacing={1}
-          justify="center"
+          justifyContent="center"
         >
           <Grid 
             item 

@@ -152,7 +152,7 @@ export default function ProfilePage() {
             </div> : null}
         
 
-            {userProfile ? <Grid container justify="center" direction="row">
+            {userProfile ? <Grid container justifyContent="center" direction="row">
                 {userProfile.profiles.linkedin && <IconButton href={userProfile.profiles.linkedin} target="_blank" rel="noreferrer">
                     <LinkedInIcon className={classes.profileIcons}/>
                 </IconButton>}
