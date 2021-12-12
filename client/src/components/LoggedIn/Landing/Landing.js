@@ -10,7 +10,7 @@ import BookData from "../SearchBar/MOCK_DATA.json";
 export const Landing = () => {
     return (
         <div>
-            <Grid container spacing={2} justify="center" style={{margin:"10px"}}>
+            <Grid container spacing={2} justifyContent="center" style={{margin:"10px"}}>
                 <Grid item container direction="column" xs={12} sm={3} spacing={2}>
                     <Grid item>
                     {/* <Paper style={{ height: "29vh", background: "orange" }} /> */}
