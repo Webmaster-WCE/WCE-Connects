@@ -13,11 +13,13 @@ function Activities() {
 
     return (
         <>
-        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', marginTop:"4.5%" }}>
             <div>
                 <p style={{ fontWeight: "bold", fontFamily: "Montserrat", fontStyle: "italic" }}>
                     <Link to='/activities/form' style={{ color: "#702aff", textDecoration:"none" }}>
-                        Select activities that you would like to contribute...
+                        <p>
+                            Click here to select activities that you would like to contribute...
+                        </p>
                     </Link>
                 </p>
                 {/* <Button variant="outlined" color="primary" onClick={()=>{history.push("/activities/form")}}>

@@ -17,7 +17,7 @@ export default function GalleryPage() {
     setViewerIsOpen(false);
   };
   return (
-    <div style={{padding:"20px 70px 20px 70px"}}>
+    <div style={{padding:"20px 70px 20px 70px", marginTop:"3%"}}>
       <Gallery photos={photos} onClick={openLightbox} />
       <ModalGateway>
         {viewerIsOpen ? (
