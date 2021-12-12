@@ -17,9 +17,14 @@ export default function EventPage() {
     }      
     function createACData(sr, name, designation, department, mobile, email) {
       return { sr, name, designation, department, mobile, email };
+    } 
+    function createSceduleData(time, desc) {
+        const obj = { time, desc };
+        // setIndex(index+1);
+        return obj;
     }      
     const ecCommittee = [
-        createECData(1,"Dr. P. G. Sonavane","Deputy Director","9822534868","deputy.directorl@walchandsangli.ac.in"),
+        createECData(1,"Dr. P. G. Sonavane","Deputy Director","9822534868","deputy.director@walchandsangli.ac.in"),
         createECData(2,"Dr. D. B. Kulkarni","Chairman WIC","9422615058","dinesh.kulkarni@walchandsangli.ac.in"),
         createECData(3,"Mr. S. B. Dhaigude","TPO","9422615070","tpo@walchandsangli.ac.in"),
         createECData(4,"Dr. M. A. Shah","HOD CSE","9423872296","hod.cse@walchandsangli.ac.in"),
@@ -39,38 +44,55 @@ export default function EventPage() {
         createACData(9,"Dr. A. K. Kokane","Coordinator, Industry Institute Interaction","Civil","9822964111","iiic@walchandsangli.ac.in"),
         createACData(10,"Dr. Anil .A. Agashe", "Coordinator (Polytechnic Wing)","Industrial Electronics","9822026036","anil.agashe@walchandsangli.ac.in"),
         createACData(11,"Mr. A. V. Kamble","Vice-Principal (Polytechnic Wing)","Mechanical","9765165390","ashok.kamble@walchandsangli.ac.in"),
-        createACData(12,"Dr. P. K. Sohoni","PG Coordinator","","9717673322","prachi.sohoni@walchandsangli.ac.in"),
+        createACData(12,"Dr. P. K. Sohoni","PG Coordinator","Civil","9717673322","prachi.sohoni@walchandsangli.ac.in"),
+    ];
+    const Schedule = [
+        createSceduleData("9.00 am to 10.00 am", "Welcome & issuing a kit"),
+        createSceduleData("10.00 am to 10.15 am", "Brief presentation on “75 glorious years of WCE”"),
+        createSceduleData("10.15 am to 10.25 am", "Address by Director, WCE"),
+        createSceduleData("10.25 am to 10.30 am ", "Address by Chairman, WCE"),
+        createSceduleData("10.30 am to 10.35 am", "Felicitation of Chief Guest"),
+        createSceduleData("10.35 am to 11.00 am", "Address by Chief Guest"),
+        createSceduleData("11.00 am to 12.00 noon", "Felicitation of Distinguished Alumni & Industry representative"),
+        createSceduleData("12.00 noon to 12.30 pm", "Reminiscences of student hood: Portraying by Alumni"),
+        createSceduleData("12.30 pm to 01.30 pm", "Panel Discussion on “Role of Alumni and Industry in Development of WCE”"),
+        createSceduleData("01.30 pm to 02.30 pm", "Lunch"),
+        createSceduleData("02.30 pm to 03.15 pm", "Exploring New Facilities Created"),
+        createSceduleData("03.15 pm to 05.00 pm", "Visit and Interaction at Respective Department"),
+        createSceduleData("05.00 pm", "Farewell & Go ahead"),
     ];
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
    
       return (
-        <div>
-            <div style={{ backgroundColor: "black", color: "white" }}>
+        <div style={{marginTop:'4rem'}}>
+            <div style={{ backgroundColor: "#011940", color: "white" }}>
                 <img src={PF+"/event_banner.jpg"} alt="EVENT_BANNER" style={{ maxWidth: "-webkit-fill-available", maxHeight: "400px" }} />
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "black", color: "white" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "#011940", color: "white" }}>
                 <div style={{ textAlign: "left", marginLeft: "45px" }}>
                     <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT DAY: 8th Jan 2022</p>
                     <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT TIME: 10:00 AM</p>
                 </div>
                 <div style={{ marginTop:"2%", marginRight: "5%", textAlign: "right" }}>
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        style={{ background: 'lightgrey' }}
-                    >
-                        <div style={{ color: "black" }}>
-                            <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration:"none" }}>REGISTER NOW</a>
-                        </div>
-                    </Button>
-                    <p style={{ color:"red", fontFamily: "Montserrat", fontStyle: "italic"}}>
+                    <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration:"none" }}>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            style={{ background: 'lightgrey' }}
+                        >
+                            <div style={{ color: "blue", fontSize:"medium" }}>
+                                REGISTER NOW
+                            </div>
+                        </Button>
+                    </a>
+                    <p style={{ color:"white", fontFamily: "Montserrat", fontSize: "20px"}}>
                         Considering pandemic situation, prior registration is necessary.<br/> On the spot registration can not be permitted.
                     </p>
                 </div>
             </div>
-            <svg style={{ marginBottom: "-200px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000000" fill-opacity="1" d="M0,0L120,10.7C240,21,480,43,720,48C960,53,1200,43,1320,37.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+            {/* <svg style={{ marginBottom: "-200px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000000" fill-opacity="1" d="M0,0L120,10.7C240,21,480,43,720,48C960,53,1200,43,1320,37.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg> */}
             <div style={{ fontFamily: "Montserrat",  }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Platinum Jubilee Meet (2021-22)</p>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold",  paddingTop:"1%" }}>Invocation</p>
@@ -100,7 +122,27 @@ export default function EventPage() {
                     </ul>
                 </p>
             </div>
-            <div><p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#99c0ff", paddingBottom:"2%", paddingTop:"5%", margin:"0% 10%" }}>EVENT SCHEDULE WILL BE DISPLAYED HERE SHORTLY...</p></div>
+
+            <p style={{ fontSize: "xx-large", fontWeight: "bold", fontFamily: "Montserrat",  paddingTop:"3%"}}>Tentative Schedule of the Program</p>
+            <div style={{display:"flex", justifyContent: "center"}}>
+            
+            <TableContainer component={Paper} style={{ margin:"0% 8%",backgroundColor:"lightgrey", fontFamily:"Montserrat"}}>
+                <Table aria-label="simple table">
+                    <TableBody>
+                    {                 
+                    // var i=1;
+                    Schedule.map((row) => (
+                        <TableRow key={row.index}>
+                        {/* <TableCell align="right">{row.sr}</TableCell> */}
+                        <TableCell align="left"  style={{fontFamily: 'Montserrat', fontSize:'large', paddingRight:"0px"}}>{row.time}</TableCell>
+                        <TableCell align="left"  style={{fontFamily: 'Montserrat', fontSize:'large', paddingRight:"0px"}}>{row.desc}</TableCell>
+                        </TableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+                </TableContainer>
+            </div>
+
             {/* <div style={{height:"70vh"}}>
                 <DevPlanTable/>
             </div> */}
@@ -165,6 +207,23 @@ export default function EventPage() {
                     </TableBody>
                 </Table>
                 </TableContainer>
+            </div>
+            <div style={{ fontFamily: "Montserrat", paddingTop:"3%" }}>
+                <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Platinum Jubilee Meet (2021-22) Registration</p>                
+                <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration:"none" }}>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        style={{ background: 'lightgrey' }}
+                    >
+                        <div style={{ color: "blue", fontSize:"medium" }}>
+                            REGISTER NOW
+                        </div>
+                    </Button>
+                </a>
+                <p style={{ color:"grey", fontFamily: "Montserrat", fontSize: "20px"}}>
+                        Considering pandemic situation, prior registration is necessary.<br/> On the spot registration can not be permitted.
+                </p>
             </div>
             <div style={{ fontFamily: "Montserrat",  }}>
                 <p style={{ fontSize: "x-large", fontWeight: "bold", paddingTop:"3%" }}>Nearby Hotels</p>

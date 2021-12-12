@@ -14,6 +14,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormGroup from '@material-ui/core/FormGroup';
 import Checkbox from '@material-ui/core/Checkbox';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
   },
   paper: {
-    margin: theme.spacing(8, 4),
+    marginTop:"7%",
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -64,6 +65,7 @@ export default function ActivityForm() {
   // const {isRegistered, setIsSubmitted} = props;
   const classes = useStyles();
   const history = useHistory();
+  const [isLoading, setIsLoading] = useState(false);
   const [helperText, setHelperText] = useState('');
   const [programme, setProgramme] = useState('');
   const [branch, setBranch] = useState('');
@@ -157,17 +159,24 @@ export default function ActivityForm() {
 
     if (post === true) {
       post = false;
-      console.log(userData)
-      axios.post('http://localhost:5000/auth/register', userData)
+      setIsLoading(true);
+      axios.post('https://restapi.wce.ac.in/register', userData)
       .then(res => { 
         // console.log(res.data.message);
-        if(res.status === 202)
+        if(res.status === 200)
         {
+          setIsLoading(false);
           swal("Submitted Successfully");
         }
       }).catch(err => {
-          console.log(err.response);
-          swal("Error while submitting...\n"+err.response.data)
+          setIsLoading(false);
+          if(err.response && err.response.data)
+          {
+            swal("Error while submitting...\n"+err.response.data)
+          }
+          else{
+            swal("Error while submitting...")
+          }
       });
     }
   }
@@ -445,7 +454,9 @@ export default function ActivityForm() {
             style={{ background: 'black' }}
             className={classes.submit}
             >
-            <div style={{ color: "white" }}>Submit</div>
+            <div style={{color:"white"}}>
+              {isLoading? <CircularProgress color="inherit" size="25px"/> : "Submit"} 
+            </div>
           </Button>
           <Button
             style={{ margin:"24px 10px 16px", background: 'black'}}
