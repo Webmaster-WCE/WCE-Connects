@@ -1,71 +1,92 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {GridList, GridListTile} from '@material-ui/core/';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
+
+import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles({
   root: {
     flexGrow:1,
-    padding: "2%",
+    //padding: "2%",
     // maxWidth: 345,
   },
 });
+
+
 
 export default function Events() {
   const classes = useStyles();
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [eventCount, setEventCount] = useState(1);
+  const [screenWidth, setScreenWidth] = useState();
+  const [flexState, setFlexState] = useState(12);
   const events = [
     {
       eventid: 1,
+      banner: `${PF}Closing_ceremony.webp`,
+      title: "Platinum Jubilee Meet 2021-22",
+      description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus."
+    },
+    {
+      eventid: 2,
+      banner: `${PF}event_banner.jpg`,
+      title: "Hackathon 2021",
+      description: "WCE Hackathon'21 will be a 48-hours long developing venture where participants will innovate, strategize, code, and beat the odds with some ingenious solutions to the most sought real-life problems."
+    },
+    {
+      eventid: 3,
       banner: `${PF}event_banner.jpg`,
       title: "Platinum Jubilee Meet 2021-22",
       description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus."
     },
-    // {
-    //   eventid: 2,
-    //   banner: `${PF}event_banner.jpg`,
-    //   title: "Hackathon 2021",
-    //   description: "WCE Hackathon'21 will be a 48-hours long developing venture where participants will innovate, strategize, code, and beat the odds with some ingenious solutions to the most sought real-life problems."
-    // },
-    // {
-    //   eventid: 3,
-    //   banner: `${PF}event_banner.jpg`,
-    //   title: "Platinum Jubilee Meet 2021-22",
-    //   description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus."
-    // },
-    // {
-    //   eventid: 4,
-    //   banner: `${PF}event_banner.jpg`,
-    //   title: "Hackathon 2021",
-    //   description: "WCE Hackathon'21 will be a 48-hours long developing venture where participants will innovate, strategize, code, and beat the odds with some ingenious solutions to the most sought real-life problems."
-    // },
-    // {
-    //   eventid: 2,
-    //   banner: `${PF}event_banner.jpg`,
-    //   title: "Hackathon 2021",
-    //   description: "WCE Hackathon'21 will be a 48-hours long developing venture where participants will innovate, strategize, code, and beat the odds with some ingenious solutions to the most sought real-life problems."
-    // },
-    // {
-    //   eventid: 3,
-    //   banner: `${PF}event_banner.jpg`,
-    //   title: "Platinum Jubilee Meet 2021-22",
-    //   description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus."
-    // },
-    // {
-    //   eventid: 4,
-    //   banner: `${PF}event_banner.jpg`,
-    //   title: "Hackathon 2021",
-    //   description: "WCE Hackathon'21 will be a 48-hours long developing venture where participants will innovate, strategize, code, and beat the odds with some ingenious solutions to the most sought real-life problems."
-    // }
+    {
+      eventid: 4,
+      banner: `${PF}event_banner.jpg`,
+      title: "Hackathon 2021",
+      description: "WCE Hackathon'21 will be a 48-hours long developing venture where participants will innovate, strategize, code, and beat the odds with some ingenious solutions to the most sought real-life problems."
+    },
+    {
+      eventid: 2,
+      banner: `${PF}event_banner.jpg`,
+      title: "Hackathon 2021",
+      description: "WCE Hackathon'21 will be a 48-hours long developing venture where participants will innovate, strategize, code, and beat the odds with some ingenious solutions to the most sought real-life problems."
+    },
+    {
+      eventid: 3,
+      banner: `${PF}event_banner.jpg`,
+      title: "Platinum Jubilee Meet 2021-22",
+      description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus."
+    },
+    {
+      eventid: 4,
+      banner: `${PF}event_banner.jpg`,
+      title: "Hackathon 2021",
+      description: "WCE Hackathon'21 will be a 48-hours long developing venture where participants will innovate, strategize, code, and beat the odds with some ingenious solutions to the most sought real-life problems."
+    }
   ];
   useEffect(() => {
     setEventCount(1);
+     console.log(screen.availWidth,screen.width)
+     setScreenWidth(screen.width);
   }, [eventCount]);
+
+  const handleResize = ()=> {
+    setScreenWidth(screen.width);
+  }
+  useEffect(() => {
+    if(screen.width > 900)
+      setFlexState(4);
+    else if(screen.width > 600)
+      setFlexState(6);
+    else
+      setFlexState(12);
+    window.addEventListener('resize', handleResize)
+  }, [screenWidth])
+  
   
   return (
     <>
@@ -74,10 +95,10 @@ export default function Events() {
                  EVENTS WILL BE DISPLAYED HERE...
           </div> :
            <div className={classes.root}> 
-           <GridList cols={3} style={{padding: '2%', margin:"5% 6% 2% 6%"}}>
+           <Grid container  style={{padding: '2%', margin:"5% 6% 2% 0%"}} spacing={3}>
           {events.map((event) => {
-          return <GridListTile  key={event.eventid} style={{ height:"100%",padding: "2%"}}>
-              <Card style={{height:"300px",}}>
+          return <Grid item key={event.eventid} style={{ height:"100%"}} xs={flexState} >
+              <Card style={{height:"300px"}}>
               <Link to="/events/eventid" style={{textDecoration:"none"}}>
               <CardActionArea>
                   <CardMedia
@@ -99,8 +120,8 @@ export default function Events() {
               </CardActionArea>
               </Link>
               </Card>
-          </GridListTile>})}
-          </GridList>
+          </Grid>})}
+          </Grid>
           </div>
       }
     </>
