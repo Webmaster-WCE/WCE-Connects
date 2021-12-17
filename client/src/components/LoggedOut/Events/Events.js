@@ -32,45 +32,45 @@ export default function Events() {
   const events = [
     {
       eventid: 1,
-      banner: `${PF}Conference.png`,
+      banner: `${PF}event_banner.jpg`,
       title: "Platinum Jubilee Meet 2021-22",
       description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus."
     },
     {
       eventid: 2,
-      banner: `${PF}event_banner.jpg`,
-      title: "Hackathon 2021",
-      description: "WCE Hackathon'21 will be a 48-hours long developing venture where participants will innovate, strategize, code, and beat the odds with some ingenious solutions to the most sought real-life problems."
+      banner: `${PF}Conference.png`,
+      title: "Conference",
+      description: "Information will be diplayed soon.."
     },
     {
       eventid: 3,
       banner: `${PF}OpenHouse.png`,
-      title: "Platinum Jubilee Meet 2021-22",
-      description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus."
+      title: "Open House",
+      description: "Information will be diplayed soon.."
     },
     {
       eventid: 4,
       banner: `${PF}Industry_meet.png`,
-      title: "Hackathon 2021",
-      description: "WCE Hackathon'21 will be a 48-hours long developing venture where participants will innovate, strategize, code, and beat the odds with some ingenious solutions to the most sought real-life problems."
+      title: "Industry meet",
+      description: "Information will be diplayed soon.."
     },
     {
       eventid: 5,
       banner: `${PF}Graduation.png`,
-      title: "Hackathon 2021",
-      description: "WCE Hackathon'21 will be a 48-hours long developing venture where participants will innovate, strategize, code, and beat the odds with some ingenious solutions to the most sought real-life problems."
+      title: "Graduation",
+      description: "Information will be diplayed soon.."
     },
     {
       eventid: 6,
       banner: `${PF}Gathering_n_Sports.png`,
-      title: "Platinum Jubilee Meet 2021-22",
-      description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus."
+      title: "Gathering and Sports",
+      description: "Information will be diplayed soon.."
     },
     {
       eventid: 7,
       banner: `${PF}Closing_ceremony.png`,
-      title: "Hackathon 2021",
-      description: "WCE Hackathon'21 will be a 48-hours long developing venture where participants will innovate, strategize, code, and beat the odds with some ingenious solutions to the most sought real-life problems."
+      title: "Closing ceremony",
+      description: "Information will be diplayed soon.."
     }
   ];
   useEffect(() => {
@@ -107,26 +107,52 @@ export default function Events() {
           {events.map((event) => {
           return <Grid item key={event.eventid} style={{ height:"100%"}} xs={flexState} >
               <Card style={{height:"350px"}}>
-              <Link to="/events/eventid" style={{textDecoration:"none"}}>
-              <CardActionArea>
-                  <CardMedia
-                  component="img"
-                  alt="EVENT_BANNER"
-                  height="100%"
-                  width="100%"
-                  image={event.banner}
-                  title={event.title}
-                  />
-                  <CardContent style={{backgroundColor:"lightgrey", height:"30vh"}}>
-                  <Typography gutterBottom variant="h5" component="h2"  style={{color:"black"}}>
-                  {event.title}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p" style={{textAlign:"justify", padding:"5px"}}>
-                  {event.description} 
-                  </Typography>
-                  </CardContent>
-              </CardActionArea>
-              </Link>
+                {
+                  event.eventid ==1 ? (
+                    <Link to="/events/eventid" style={{textDecoration:"none"}} >
+                      <CardActionArea>
+                          <CardMedia
+                          component="img"
+                          alt="EVENT_BANNER"
+                          height="100%"
+                          width="100%"
+                          image={event.banner}
+                          title={event.title}
+                          />
+                          <CardContent style={{backgroundColor:"lightgrey", height:"30vh"}}>
+                          <Typography gutterBottom variant="h5" component="h2"  style={{color:"black"}}>
+                          {event.title}
+                          </Typography>
+                          <Typography variant="body2" color="textSecondary" component="p" style={{textAlign:"justify", padding:"5px"}}>
+                          {event.description} 
+                          </Typography>
+                          </CardContent>
+                      </CardActionArea>
+                    </Link>
+                  ) : (
+                     <Link to="/events/eventid" style={{textDecoration:"none"}} style={{pointerEvents: "none",textDecoration:"none"}}>
+                      <CardActionArea>
+                          <CardMedia
+                          component="img"
+                          alt="EVENT_BANNER"
+                          height="100%"
+                          width="100%"
+                          image={event.banner}
+                          title={event.title}
+                          />
+                          <CardContent style={{backgroundColor:"lightgrey", height:"30vh"}}>
+                          <Typography gutterBottom variant="h5" component="h2"  style={{color:"black"}}>
+                          {event.title}
+                          </Typography>
+                          <Typography variant="body2" color="textSecondary" component="p" style={{textAlign:"justify", padding:"5px"}}>
+                          {event.description} 
+                          </Typography>
+                          </CardContent>
+                      </CardActionArea>
+                      </Link>
+                  )
+                }
+             
               </Card>
           </Grid>})}
           </Grid>
