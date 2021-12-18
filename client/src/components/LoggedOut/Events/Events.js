@@ -32,52 +32,52 @@ export default function Events() {
   const events = [
     {
       eventid: 0,
-      banner: `${PF}Data_centre.png`,
+      banner: `${PF}events/Data_centre.webp`,
       title: "Inauguration of Data Centre",
-      description: "Information will be diplayed soon.."
+      description: "Coming up in Dec 2021..."
     },
     {
       eventid: 1,
-      banner: `${PF}event_banner.jpg`,
+      banner: `${PF}events/Platinum_Jublee_Meet.webp`,
       title: "Platinum Jubilee Meet 2021-22",
-      description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus."
+      description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus.\nComing up in Jan 2022..."
     },
     {
       eventid: 2,
-      banner: `${PF}Graduation.png`,
+      banner: `${PF}events/Graduation.webp`,
       title: "Graduation",
-      description: "Information will be diplayed soon.."
+      description: "Coming up in March 2022.."
     },
     {
       eventid: 3,
-      banner: `${PF}Conference.png`,
+      banner: `${PF}events/Conference.webp`,
       title: "Conference",
-      description: "Information will be diplayed soon.."
+      description: "Coming up in March 2022.."
     },
     {
       eventid: 4,
-      banner: `${PF}Industry_meet.png`,
+      banner: `${PF}events/Industry_meet.webp`,
       title: "Industry meet",
-      description: "Information will be diplayed soon.."
+      description: "Coming up in April 2022.."
     },
     
     {
       eventid: 5,
-      banner: `${PF}Gathering_n_Sports.png`,
+      banner: `${PF}events/Gathering_n_Sports.webp`,
       title: "Gathering and Sports",
-      description: "Information will be diplayed soon.."
+      description: "Coming up in April 2022.."
     },
     {
       eventid: 6,
-      banner: `${PF}OpenHouse.png`,
+      banner: `${PF}events/OpenHouse.webp`,
       title: "Open House",
-      description: "Information will be diplayed soon.."
+      description: "Coming up in May 2022.."
     },
     {
       eventid: 7,
-      banner: `${PF}Closing_ceremony.png`,
+      banner: `${PF}events/Closing_ceremony.webp`,
       title: "Closing ceremony",
-      description: "Information will be diplayed soon.."
+      description: "Coming up in June 2022.."
     }
   ];
   useEffect(() => {
@@ -109,11 +109,11 @@ export default function Events() {
           <div style={{ fontFamily:"Montserrat", fontSize:"Bold", height:"70vh", textAlign:"center", padding:"70px 0",marginTop:"3%"}}>
                  EVENTS WILL BE DISPLAYED HERE...
           </div> :
-           <div className={classes.root} style={{width:"100%"}}> 
-           <Grid container  style={{padding: '2%', margin:"5% 6% 2% 0%"}} spacing={3}>
+           <div className={classes.root} style={{width:"98%"}}> 
+           <Grid container  style={{padding: '2%', margin:"5% 6% 2% 0%"}} spacing={4}>
           {events.map((event) => {
           return <Grid item key={event.eventid} style={{ height:"100%"}} xs={flexState} >
-              <Card style={{height:"350px"}}>
+              <Card style={{height:"325px"}}>
                 {
                   event.eventid ===1 ? (
                     <Link to="/events/eventid" style={{textDecoration:"none"}} >

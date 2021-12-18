@@ -68,7 +68,7 @@ export default function EventPage() {
     return (
         <div style={{ marginTop: '4rem' }}>
             <div style={{ backgroundColor: "#011940", color: "white" }}>
-                <img src={PF + "/event_banner.jpg"} alt="EVENT_BANNER" style={{ maxWidth: "-webkit-fill-available", maxHeight: "400px" }} />
+                <img src={`${PF}events/Platinum_Jublee_Meet.webp`} alt="EVENT_BANNER" style={{ maxWidth: "-webkit-fill-available", maxHeight: "400px" }} />
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "#011940", color: "white" }}>
                 <div style={{ textAlign: "left", marginLeft: "45px" }}>
