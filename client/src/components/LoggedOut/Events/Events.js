@@ -31,6 +31,12 @@ export default function Events() {
   const [PF, setPublichFolderPath] = useState(process.env.REACT_APP_PUBLIC_FOLDER);
   const events = [
     {
+      eventid: 0,
+      banner: `${PF}Data_centre.png`,
+      title: "Inauguration of Data Centre",
+      description: "Information will be diplayed soon.."
+    },
+    {
       eventid: 1,
       banner: `${PF}event_banner.jpg`,
       title: "Platinum Jubilee Meet 2021-22",
@@ -38,14 +44,14 @@ export default function Events() {
     },
     {
       eventid: 2,
-      banner: `${PF}Conference.png`,
-      title: "Conference",
+      banner: `${PF}Graduation.png`,
+      title: "Graduation",
       description: "Information will be diplayed soon.."
     },
     {
       eventid: 3,
-      banner: `${PF}OpenHouse.png`,
-      title: "Open House",
+      banner: `${PF}Conference.png`,
+      title: "Conference",
       description: "Information will be diplayed soon.."
     },
     {
@@ -54,16 +60,17 @@ export default function Events() {
       title: "Industry meet",
       description: "Information will be diplayed soon.."
     },
+    
     {
       eventid: 5,
-      banner: `${PF}Graduation.png`,
-      title: "Graduation",
+      banner: `${PF}Gathering_n_Sports.png`,
+      title: "Gathering and Sports",
       description: "Information will be diplayed soon.."
     },
     {
       eventid: 6,
-      banner: `${PF}Gathering_n_Sports.png`,
-      title: "Gathering and Sports",
+      banner: `${PF}OpenHouse.png`,
+      title: "Open House",
       description: "Information will be diplayed soon.."
     },
     {
@@ -80,7 +87,7 @@ export default function Events() {
       if(process.env.NODE_ENV ==='development'){
         setPublichFolderPath(process.env.REACT_APP_LOCAL_HOST_PUBLIC_FOLDER);
       }
-  }, [eventCount]);
+  }, []);
 
   const handleResize = ()=> {
     setScreenWidth(window.screen.width);
@@ -108,7 +115,7 @@ export default function Events() {
           return <Grid item key={event.eventid} style={{ height:"100%"}} xs={flexState} >
               <Card style={{height:"350px"}}>
                 {
-                  event.eventid ==1 ? (
+                  event.eventid ===1 ? (
                     <Link to="/events/eventid" style={{textDecoration:"none"}} >
                       <CardActionArea>
                           <CardMedia
@@ -130,7 +137,7 @@ export default function Events() {
                       </CardActionArea>
                     </Link>
                   ) : (
-                     <Link to="/events/eventid" style={{textDecoration:"none"}} style={{pointerEvents: "none",textDecoration:"none"}}>
+                     <Link to="/events/eventid" style={{pointerEvents: "none",textDecoration:"none"}}>
                       <CardActionArea>
                           <CardMedia
                           component="img"
