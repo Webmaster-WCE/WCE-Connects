@@ -1,0 +1,11 @@
+# The node modules forlder
+node_modules
+configurations
+
+yarn.lock
+
+.env
+
+personalTokens.json
+
+uploads
