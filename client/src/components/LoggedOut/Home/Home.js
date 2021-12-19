@@ -14,7 +14,7 @@ export default function Home(){
         <div style={{marginTop:"3%"}}>
             {/* {PF+"wce_pic.jpg"} */}
             <div style={{backgroundColor:"#011940", color:"white"}}>
-                <img src={PF+"/wce_pic.webp"} alt="WCE_IMAGE" style={{minWidth:"-webkit-fill-available",maxWidth:"-webkit-fill-available", maxHeight:"525px"}}/>
+                <img src={PF+"wce_pic.webp"} alt="WCE_IMAGE" style={{minWidth:"-webkit-fill-available",maxWidth:"-webkit-fill-available", maxHeight:"525px"}}/>
             </div>
             <WaveBorder
                 upperColor="#011940"
@@ -26,7 +26,7 @@ export default function Home(){
                 <div>   
                     <div style={{position:"relative"}}>
                         <Link to="/events/eventid" style={{backgroundColor:"white", textDecoration: "none"}}>
-                            <img src={PF+"/event_banner.webp"} alt="EVENT_BANNER" style={{ maxHeight:"250px", padding:"1.5%", border:"2px solid black"}}/>
+                            <img src={PF+"events/Platinum_Jublee_Meet.webp"} alt="EVENT_BANNER" style={{ maxHeight:"250px", padding:"1.5%", border:"2px solid black"}}/>
                             <Button
                                 style={{ position: "absolute",top: "50px",right: "25%",background: 'black'}}
                                 variant="contained"
