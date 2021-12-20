@@ -114,7 +114,7 @@ export default function Events() {
            <Grid container  style={{padding: '2%', margin:"5% 6% 2% 0%"}} spacing={4}>
           {events.map((event) => {
           return <Grid item key={event.eventid} style={{ height:"100%"}} xs={flexState} >
-              <Card style={{height:"325px"}}>
+              <Card>
                     <Link to={activeEventID.includes(event.eventid)?"/events/eventid":"/events"} style={{textDecoration:"none"}} >
                       <CardActionArea>
                           <CardMedia
@@ -125,7 +125,7 @@ export default function Events() {
                           image={event.banner}
                           title={event.title}
                           />
-                          <CardContent style={{backgroundColor:"lightgrey", height:"30vh"}}>
+                          <CardContent style={{backgroundColor:"lightgrey", height:"7rem"}}>
                           <Typography gutterBottom variant="h5" component="h2"  style={{color:"black"}}>
                           {event.title}
                           </Typography>
