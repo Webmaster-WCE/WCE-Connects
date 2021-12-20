@@ -29,6 +29,7 @@ export default function Events() {
   const [flexState, setFlexState] = useState(12);
   //const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [PF, setPublichFolderPath] = useState(process.env.REACT_APP_PUBLIC_FOLDER);
+  const activeEventID = [1];
   const events = [
     {
       eventid: 0,
@@ -114,9 +115,7 @@ export default function Events() {
           {events.map((event) => {
           return <Grid item key={event.eventid} style={{ height:"100%"}} xs={flexState} >
               <Card style={{height:"325px"}}>
-                {
-                  event.eventid ===1 ? (
-                    <Link to="/events/eventid" style={{textDecoration:"none"}} >
+                    <Link to={activeEventID.includes(event.eventid)?"/events/eventid":"/events"} style={{textDecoration:"none"}} >
                       <CardActionArea>
                           <CardMedia
                           component="img"
@@ -136,30 +135,6 @@ export default function Events() {
                           </CardContent>
                       </CardActionArea>
                     </Link>
-                  ) : (
-                     <Link to="/events/eventid" style={{pointerEvents: "none",textDecoration:"none"}}>
-                      <CardActionArea>
-                          <CardMedia
-                          component="img"
-                          alt="EVENT_BANNER"
-                          height="100%"
-                          width="100%"
-                          image={event.banner}
-                          title={event.title}
-                          />
-                          <CardContent style={{backgroundColor:"lightgrey", height:"30vh"}}>
-                          <Typography gutterBottom variant="h5" component="h2"  style={{color:"black"}}>
-                          {event.title}
-                          </Typography>
-                          <Typography variant="body2" color="textSecondary" component="p" style={{textAlign:"justify", padding:"5px"}}>
-                          {event.description} 
-                          </Typography>
-                          </CardContent>
-                      </CardActionArea>
-                      </Link>
-                  )
-                }
-             
               </Card>
           </Grid>})}
           </Grid>
