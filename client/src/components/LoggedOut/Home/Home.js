@@ -2,11 +2,69 @@ import React, {useEffect} from 'react';
 import WaveBorder from "./WaveBorder";
 import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import Carousel from 'react-material-ui-carousel'
 // import { useHistory } from 'react-router-dom';
 
 export default function Home(){
     // const history = useHistory();
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const carouselProps = {
+        autoPlay: false,
+        navButtonsAlwaysVisible: true,
+        duration: 2000,
+        index:1
+    }
+    const events = [
+        {
+          eventid: 0,
+          banner: `${PF}events/Data_centre.webp`,
+          title: "Inauguration of Data Centre",
+          description: "Coming up in Dec 2021..."
+        },
+        {
+          eventid: 1,
+          banner: `${PF}events/Platinum_Jublee_Meet.webp`,
+          title: "Platinum Jubilee Meet 2021-22",
+          description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus.\nComing up in Jan 2022..."
+        },
+        {
+          eventid: 2,
+          banner: `${PF}events/Graduation.webp`,
+          title: "Graduation",
+          description: "Coming up in March 2022.."
+        },
+        {
+          eventid: 3,
+          banner: `${PF}events/Conference.webp`,
+          title: "Conference",
+          description: "Coming up in March 2022.."
+        },
+        {
+          eventid: 4,
+          banner: `${PF}events/Industry_meet.webp`,
+          title: "Industry meet",
+          description: "Coming up in April 2022.."
+        },
+        
+        {
+          eventid: 5,
+          banner: `${PF}events/Gathering_n_Sports.webp`,
+          title: "Gathering and Sports",
+          description: "Coming up in April 2022.."
+        },
+        {
+          eventid: 6,
+          banner: `${PF}events/OpenHouse.webp`,
+          title: "Open House",
+          description: "Coming up in May 2022.."
+        },
+        {
+          eventid: 7,
+          banner: `${PF}events/Closing_ceremony.webp`,
+          title: "Closing ceremony",
+          description: "Coming up in June 2022.."
+        }
+      ];
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -22,21 +80,11 @@ export default function Home(){
                 // className={classes.waveBorder}
                 animationNegativeDelay={3}
             />
-            <div style={{ marginTop:"2%"}}>
-                <div>   
-                    <div style={{position:"relative"}}>
-                        <Link to="/events/eventid" style={{backgroundColor:"white", textDecoration: "none"}}>
-                            <img src={PF+"events/Platinum_Jublee_Meet.webp"} alt="EVENT_BANNER" style={{ maxHeight:"250px", padding:"1.5%", border:"2px solid black"}}/>
-                            <Button
-                                style={{ position: "absolute",top: "50px",right: "25%",background: 'black'}}
-                                variant="contained"
-                            >
-                                <div style={{ color: "white" }}>CLICK HERE TO REGISTER</div>
-                            </Button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
+            <Carousel index={carouselProps.index} autoPlay={carouselProps.autoPlay} animation="slide" navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} duration={carouselProps.duration}>
+                {
+                    events.map( (event, i) => <Event key={i} event={event} duration='2000' interval='20000'/>)
+                }
+            </Carousel>
             <div style={{ padding: '5%' }}></div>
 
             <div style={{margin:"1rem 15rem", backgroundColor:"#ede8e8", border: "2px solid black"}}>
@@ -51,4 +99,26 @@ export default function Home(){
             <div style={{ padding: '5%' }}></div>
         </div>
     );
+}
+
+function Event(props)
+{
+    return (
+        <div style={{ marginTop:"2%"}}>
+                        <div>   
+                            <div style={{position:"relative"}}>
+                                <img src={props.event.banner} alt="EVENT_BANNER" style={{ maxHeight:"250px", padding:"1.5%", border:"2px solid black"}}/>
+                                    {props.event.eventid===1 && <Link to="/events/eventid" style={{backgroundColor:"white", textDecoration: "none"}}>
+                                            <Button
+                                                style={{ position: "absolute",top: "50px",right: "25%",background: 'black'}}
+                                                variant="contained"
+                                            >
+                                                <div style={{ color: "white" }}>CLICK HERE TO REGISTER</div>
+                                            </Button>
+                                        </Link>
+                                    }
+                            </div>
+                        </div>
+                    </div>
+    )
 }
