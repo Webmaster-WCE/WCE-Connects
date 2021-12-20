@@ -31,6 +31,9 @@ export default function EventPage() {
         createECData(5, "Dr. S. G. Tamhankar", "PG Coordinator", "9822345672", "finance@walchandsangli.ac.in"),
         createECData(6, "Mr. A. V. Kamble", "Vice-Principal (Polytechnic Wing)", "9765165390", "ashok.kamble@walchandsangli.ac.in"),
         createECData(7, "Dr. M. M. Khot", "Chairman Student Welfare Committee", "7588842269", "maruti.khot@walchandsangli.ac.in"),
+        createECData(8, "Smit Deshmukh", "Student, CSE", "7387201101", "smit.deshmukh@walchandsangli.ac.in"),
+        createECData(9, "Atharvi Mali","Student, IT", "7249764504", "atharvi.mali@walchandsangli.ac.in"),
+        createECData(10, "Prathamesh Kerkar","Student, Mech", "9096975233", "prathamesh.kerkar@walchandsangli.ac.in"),
     ]
     const acCommittee = [
         createACData(1, "Dr. S. N. Tande", "HOD", "Civil", "9422613886", "hod.civil@walchandsangli.ac.in"),
