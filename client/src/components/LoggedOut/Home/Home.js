@@ -19,50 +19,58 @@ export default function Home(){
           eventid: 0,
           banner: `${PF}events/Data_centre.webp`,
           title: "Inauguration of Data Centre",
-          description: "Coming up in Dec 2021..."
+          description: "Coming up in Dec 2021...",
+        link: "#"
         },
         {
           eventid: 1,
           banner: `${PF}events/Platinum_Jublee_Meet.webp`,
           title: "Platinum Jubilee Meet 2021-22",
-          description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus.\nComing up in Jan 2022..."
+          description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus.\nComing up in Jan 2022...",
+        link: "https://www.alumni.wce.ac.in/#/events/eventid"
         },
         {
           eventid: 2,
           banner: `${PF}events/Graduation.webp`,
           title: "Graduation",
-          description: "Coming up in March 2022.."
+          description: "Coming up in March 2022..",
+        link: "#"
         },
         {
           eventid: 3,
           banner: `${PF}events/Conference.webp`,
           title: "Conference",
-          description: "Coming up in March 2022.."
+          description: "Coming up in March 2022..",
+        link: "https://rsc.wce.ac.in/"
         },
         {
           eventid: 4,
           banner: `${PF}events/Industry_meet.webp`,
           title: "Industry meet",
-          description: "Coming up in April 2022.."
+          description: "Coming up in April 2022..",
+        link: "#"
         },
         
         {
           eventid: 5,
           banner: `${PF}events/Gathering_n_Sports.webp`,
           title: "Gathering and Sports",
-          description: "Coming up in April 2022.."
+          description: "Coming up in April 2022..",
+        link: "#"
         },
         {
           eventid: 6,
           banner: `${PF}events/OpenHouse.webp`,
           title: "Open House",
-          description: "Coming up in May 2022.."
+          description: "Coming up in May 2022..",
+        link: "#"
         },
         {
           eventid: 7,
           banner: `${PF}events/Closing_ceremony.webp`,
           title: "Closing ceremony",
-          description: "Coming up in June 2022.."
+          description: "Coming up in June 2022..",
+        link: "#"
         }
       ];
     useEffect(() => {
@@ -107,7 +115,7 @@ function Event(props)
         <div style={{ marginTop:"2%"}}>
                         <div>   
                             <div style={{position:"relative"}}>
-                                <img src={props.event.banner} alt="EVENT_BANNER" style={{ maxHeight:"250px", padding:"1.5%", border:"2px solid black"}}/>
+                                <a href={props.event.link}><img src={props.event.banner} alt="EVENT_BANNER" style={{ maxHeight:"250px", padding:"1.5%", border:"2px solid black"}}/></a>
                                     {props.event.eventid===1 && <Link to="/events/eventid" style={{backgroundColor:"white", textDecoration: "none"}}>
                                             <Button
                                                 style={{ position: "absolute",top: "50px",right: "25%",background: 'black'}}
