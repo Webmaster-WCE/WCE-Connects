@@ -87,9 +87,9 @@ export default function Home(){
             </Carousel>
             <div style={{ padding: '5%' }}></div>
 
-            <div style={{margin:"1rem 15rem", backgroundColor:"#ede8e8", border: "2px solid black"}}>
+            <div style={{margin:"1% 15%", backgroundColor:"#ede8e8", border: "2px solid black", borderRadius:"30px"}}>
                 <img src={PF+"Leena_Nair_IMG.jpg"} alt="leena_nair_img" style={{float:"left", padding:"1.5rem", marginTop:"2%"}} width="300" height="310"/>
-                <div style={{ textAlign: "justify", padding:"1rem"}}>
+                <div style={{ textAlign: "justify", padding:"1rem", fontSize: "large"}}>
                     <h1 style={{textAlign: "left"}}>French fashion giant Chanel has named our WCE Alumni Leena Nair as its global CEO</h1>
                     <p>Heartiest Congratulations to every walchandites huge inspiration Ms. Leena Nair on her great success. </p>
                     <p>Ms. Leena Nair, grew up in Kolhapur and graduated from the WCE's 1990 batch as an Electronics Engineer. After doing an MBA, she started her career at Unilever in 1992 and became the first woman as well as Asian and the youngest-ever CHRO of Unilever in 2016. And now she has become an Indian-origin woman to take over as CEO of a large global company like Chanel.  </p>

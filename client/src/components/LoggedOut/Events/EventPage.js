@@ -42,7 +42,7 @@ export default function EventPage() {
         createACData(4, "Dr. A. A. Agashe", "HOD", "Electronics", "9423270340", "hod.electronics@walchandsangli.ac.in"),
         createACData(5, "Dr. M. A. Shah", "HOD", "CSE", "9423872296", "hod.cse@walchandsangli.ac.in"),
         createACData(6, "Dr. S. G. Tamhankar", "PG Coordinator", "Electronics", "9822345672", "finance@walchandsangli.ac.in"),
-        createACData(7, "Dr. A. J. Umbarkar", "HOD", "Information & Technology", "9850644060", "hod.it@walchandsangli.ac.in"),
+        createACData(7, "Dr. A. J. Umbarkar", "HOD", "Information Technology", "9850644060", "hod.it@walchandsangli.ac.in"),
         createACData(8, "Dr. R. P. Hasabe", "HOD", "Electrical", "9422614878", "hod.electrical@walchandsangli.ac.in"),
         createACData(9, "Dr. A. K. Kokane", "Coordinator, Industry Institute Interaction", "Civil", "9822964111", "iiic@walchandsangli.ac.in"),
         createACData(10, "Dr. Anil .A. Agashe", "Coordinator (Polytechnic Wing)", "Industrial Electronics", "9822026036", "anil.agashe@walchandsangli.ac.in"),
