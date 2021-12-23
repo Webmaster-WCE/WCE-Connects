@@ -115,7 +115,7 @@ function Event(props)
         <div style={{ marginTop:"2%"}}>
                         <div>   
                             <div style={{position:"relative"}}>
-                                <a href={props.event.link}><img src={props.event.banner} alt="EVENT_BANNER" style={{ maxHeight:"250px", padding:"1.5%", border:"2px solid black"}}/></a>
+                                <a href={props.event.link} rel='noreferrer'><img src={props.event.banner} alt="EVENT_BANNER" style={{ maxHeight:"250px", padding:"1.5%", border:"2px solid black"}}/></a>
                                     {props.event.eventid===1 && <Link to="/events/eventid" style={{backgroundColor:"white", textDecoration: "none"}}>
                                             <Button
                                                 style={{ position: "absolute",top: "50px",right: "25%",background: 'black'}}
