@@ -25,8 +25,6 @@ export default function Events() {
   
   
   const [eventCount, setEventCount] = useState(1);
-  const [screenWidth, setScreenWidth] = useState();
-  const [flexState, setFlexState] = useState(12);
   //const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [PF, setPublichFolderPath] = useState(process.env.REACT_APP_PUBLIC_FOLDER);
   const activeEventID = [1];
@@ -83,25 +81,12 @@ export default function Events() {
   ];
   useEffect(() => {
     setEventCount(1);
-     //console.log(screen.availWidth,screen.width)
-     setScreenWidth(window.screen.width);
       if(process.env.NODE_ENV ==='development'){
         setPublichFolderPath(process.env.REACT_APP_LOCAL_HOST_PUBLIC_FOLDER);
       }
   }, []);
 
-  const handleResize = ()=> {
-    setScreenWidth(window.screen.width);
-  }
-  useEffect(() => {
-    if(window.screen.width > 900)
-      setFlexState(4);
-    else if(window.screen.width > 600)
-      setFlexState(6);
-    else
-      setFlexState(12);
-    window.addEventListener('resize', handleResize)
-  }, [screenWidth])
+  
   
   
   return (
@@ -113,7 +98,7 @@ export default function Events() {
            <div className={classes.root} style={{width:"98%"}}> 
            <Grid container  style={{padding: '2%', margin:"5% 6% 2% 0%"}} spacing={4}>
           {events.map((event) => {
-          return <Grid item key={event.eventid} style={{ height:"100%"}} xs={flexState} >
+          return <Grid item key={event.eventid} style={{ height:"100%"}} xs={12}  sm={6} lg={4} >
               <Card>
                     <Link to={activeEventID.includes(event.eventid)?"/events/eventid":"/events"} style={{textDecoration:"none"}} >
                       <CardActionArea>
@@ -125,7 +110,7 @@ export default function Events() {
                           image={event.banner}
                           title={event.title}
                           />
-                          <CardContent style={{backgroundColor:"lightgrey", height:"7rem"}}>
+                          <CardContent style={{backgroundColor:"lightgrey", height:"30%", minHeight:"30%"}}>
                           <Typography gutterBottom variant="h5" component="h2"  style={{color:"black"}}>
                           {event.title}
                           </Typography>
