@@ -110,7 +110,7 @@ export default function Events() {
                           image={event.banner}
                           title={event.title}
                           />
-                          <CardContent style={{backgroundColor:"lightgrey", height:"7rem"}}>
+                          <CardContent style={{backgroundColor:"lightgrey", height:"30%", minHeight:"30%"}}>
                           <Typography gutterBottom variant="h5" component="h2"  style={{color:"black"}}>
                           {event.title}
                           </Typography>

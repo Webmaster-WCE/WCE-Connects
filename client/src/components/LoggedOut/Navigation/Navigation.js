@@ -71,7 +71,7 @@ export default function Navigation() {
     setAnchor(event.currentTarget);
   };
   return (
-    <div className={classes.root}>
+    <div className={classes.root} >
       <AppBar position="fixed" style={{backgroundColor:"#011940", color:"white"}}>
         <Toolbar>
           <Box display="flex" width="100%">

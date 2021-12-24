@@ -65,7 +65,7 @@ function App() {
         {/* <Route path="/u"> 
           <LoggedIn/>
         </Route> */}
-        {/* <Footer/> */}
+        <Footer/>
       </HashRouter>
     </div>
   );
