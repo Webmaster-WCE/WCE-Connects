@@ -2,9 +2,13 @@ const express   = require('express'),
     app         = express(),
     mongoose    = require('mongoose'),
     bcrypt      = require('bcrypt'),
+    cors        = require('cors'),
     {User}      = require('./models/User'),
     {userProfile} = require('./models/userProfile'),
-    cors        = require('cors');
+    adminRoutes = require('./routes/admin');
+
+// Using environment variables
+require('dotenv').config();
 
 // ## To be moved to middlewares
 const corsOptions = {
@@ -39,13 +43,14 @@ app.use(function (req, res, next) {
 // ## To be moved to controllers
 const connectDB = async () => {
     try {
-        await mongoose.connect(`mongodb+srv://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@cluster0.3vlbl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
+        await mongoose.connect(process.env.DB_CONN, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
         console.log('MongoDB connected!!');
     } catch (err) {
         console.log('Failed to connect to MongoDB', err);
+        process.exit(1);
     }
 };
 
@@ -152,5 +157,11 @@ app.post('/register' , async (req, res ) => {
 app.get('/', function (req, res) {
   res.send('Hello World');
 });
+
+// Importing routing modules
+// Without authentication
+
+// With authentication
+app.use('/admin', adminRoutes);
 
 app.listen(3000);
