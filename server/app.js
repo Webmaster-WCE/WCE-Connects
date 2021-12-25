@@ -1,12 +1,13 @@
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose'),
+const express   = require('express'),
+    app         = express(),
+    mongoose    = require('mongoose'),
     bcrypt      = require('bcrypt'),
-    {User}    = require('./models/User'),
+    {User}      = require('./models/User'),
     {userProfile} = require('./models/userProfile'),
-    cors = require('cors');
+    cors        = require('cors');
 
-const corsOptions ={
+// ## To be moved to middlewares
+const corsOptions = {
     origin:'*', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
@@ -15,6 +16,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Quick fix for: No 'Access-Control-Allow-Origin' header is present on the requested resource error
+//## To be moved to middlewares
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -34,6 +36,7 @@ app.use(function (req, res, next) {
     next();
 });
 
+// ## To be moved to controllers
 const connectDB = async () => {
     try {
         await mongoose.connect(`mongodb+srv://alumni_site_dev:webmasteralumni@cluster0.3vlbl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
@@ -49,6 +52,7 @@ const connectDB = async () => {
 connectDB();
 
 // Route to register a new user
+// ## To be moved to routes/user.js
 app.post('/register' , async (req, res ) => { 
     // Check for existing email.
     let newUser = await User.findOne( { "credentials.email": req.body.email });
@@ -144,8 +148,9 @@ app.post('/register' , async (req, res ) => {
     }catch(e){ res.status(500).send("Error while creating user " + e);}
 });
 
+// ## To be moved to routes/index.js
 app.get('/', function (req, res) {
   res.send('Hello World');
 });
 
-app.listen(3000)
+app.listen(3000);
