@@ -95,8 +95,8 @@ export default function Events() {
           <div style={{ fontFamily:"Montserrat", fontSize:"Bold", height:"70vh", textAlign:"center", padding:"70px 0",marginTop:"3%"}}>
                  EVENTS WILL BE DISPLAYED HERE...
           </div> :
-           <div className={classes.root} style={{width:"98%"}}> 
-           <Grid container  style={{padding: '2%', margin:"5% 6% 2% 0%"}} spacing={4}>
+           <div className={classes.root} className="container"> 
+           <Grid container spacing={2}>
           {events.map((event) => {
           return <Grid item key={event.eventid} style={{ height:"100%"}} xs={12}  sm={6} lg={4} >
               <Card>

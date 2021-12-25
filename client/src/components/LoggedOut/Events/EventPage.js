@@ -18,9 +18,20 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+  },
+  xyz :{
+    textAlign: "center",
+    [theme.breakpoints.up('sm')]: {
+      textAlign: "right",
+    },
+  },
+  abc :{
+    textAlign: "center",
+    [theme.breakpoints.up('sm')]: {
+      textAlign: "left",
+    },
   },
 }));
 
@@ -90,15 +101,15 @@ export default function EventPage() {
                 <img src={`${PF}events/Platinum_Jublee_Meet.webp`} alt="EVENT_BANNER" style={{ maxWidth: "-webkit-fill-available", maxHeight: "400px" }} />
             </div>
             <div className={classes.root}  style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "#011940", color: "white" }}>
-                <Grid container spacing={3}>
+                <Grid container style={{padding:"3%"}}>
                     <Grid item xs={12} sm={6}>
-                        <div style={{ textAlign: "left", marginLeft: "45px" }}>
+                        <div style={{  }} className={classes.abc}>
                             <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT DAY: 8th Jan 2022</p>
                             <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT TIME: 10:00 AM</p>
                         </div>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <div style={{ marginTop: "2%", marginRight: "5%", textAlign: "right" }}>
+                        <div style={{  }} className={classes.xyz} >
                             <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
                                 <Button
                                     type="submit"
@@ -273,7 +284,7 @@ export default function EventPage() {
                 <div style={{ backgroundColor: "lightgrey", padding: "1%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
                     <p style={{ fontSize: "medium", fontWeight: "normal", fontStyle: "italic", color: "red", marginLeft: "3%" }}>(Click on the name for details...)</p>
                     <div style={{ listStyleType: "none"}}>
-                        <Grid container spacing={3}>
+                        <Grid container spacing={2}>
                             <Grid item xs={12} sm={6} md={4} >   
                                 <a href="https://goo.gl/maps/iwH2p8CwFBcHNFDc9" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4e009c", fontSize: "large" }}><li>Hotel Season 4 </li></a>
                             </Grid>
