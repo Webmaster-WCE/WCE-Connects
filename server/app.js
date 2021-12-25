@@ -1,97 +1,156 @@
-// var createError = require('http-errors');
-const express = require('express'),
-  path        = require('path'),
-  mongoose    = require('mongoose'),
-  cors        = require('cors'),
-  indexRouter = require('./routes/index'),
-  usersRouter = require('./routes/users'),
-  authRouter  = require('./routes/auth'),
-  adminRouter = require('./routes/admin'),
-  consversationRouter = require('./routes/conversations'),
-  messageRouter       = require('./routes/messages'),
-  userProfileRoutes   = require('./routes/user-profile'),
-  feedsRouter = require('./routes/feed'),
-  auth        = require('./middleware/auth');
-// var cookieParser = require('cookie-parser');
-// var logger = require('morgan');
+const express   = require('express'),
+    app         = express(),
+    mongoose    = require('mongoose'),
+    bcrypt      = require('bcrypt'),
+    {User}      = require('./models/User'),
+    {userProfile} = require('./models/userProfile'),
+    cors        = require('cors');
 
-// For importing credentials and private keys
-require('dotenv').config();
-
-// Creating express app
-const app = express();
-
-// Using json object readability
+// ## To be moved to middlewares
+const corsOptions = {
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
-// Ensuring jwt private key in the system.
-// if(!process.env.WC_jwtPrivateKey){
-//   console.error('FATAL ERROR: jwtPrivateKey is not defined');
-//   process.exit(1);
-// }
+// Quick fix for: No 'Access-Control-Allow-Origin' header is present on the requested resource error
+//## To be moved to middlewares
+app.use(function (req, res, next) {
 
-//databases connection
-const uri          = `mongodb+srv://${process.env.Database_Username}:${process.env.Database_Password}@cluster0.jg9l3.mongodb.net/WC-Storage?retryWrites=true&w=majority`;
-// `mongodb+srv://${process.env.Database_Username}:${process.env.Database_Password}@cluster0.3vlbl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'https://www.alumni.wce.ac.in');
 
-const connectDB = async () => {
-  await mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB...'))
-  .catch(err => console.error('Failed to connect...' + err));
-};
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-// use as a function        
-connectDB();
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-// app.use(logger('dev'));
-// app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
 
-// Allowing cross origin requests
-app.use(cors());
-
-// Contains route to get token from login credentials
-app.use('/auth', authRouter);
-
-// Using jwt auth for every route below
-// app.use(auth);
-
-// Contains search query routes
-app.use('/', indexRouter);
-// Contains single and multi user CRUD & mail verification.
-app.use('/users', usersRouter);
-// I don't know what it contains
-app.use('/conversations', consversationRouter);
-// And this on too
-app.use('/messages', messageRouter);
-// Routes for feeds CRUD
-app.use('/feeds', feedsRouter);
-// Routes for user profile CRUD
-app.use('/userProfile', userProfileRoutes);
-// Routes for admin
-app.use('/admin', adminRouter);
-
-// catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   next(createError(404));
-// });
-
-// error handler
-// app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  // res.locals.message = err.message;
-  // res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
-
-// Listening on server port OR port no 5000
-const port = process.env.PORT || 5000;
-app.listen(port, ()=> {
-    console.log(`Server is running on ${port}`);
+    // Pass to next layer of middleware
+    next();
 });
 
-// Developed with ❤ by Rushikesh, Saurabh, Aryan
+// ## To be moved to controllers
+const connectDB = async () => {
+    try {
+        await mongoose.connect(`mongodb+srv://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@cluster0.3vlbl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log('MongoDB connected!!');
+    } catch (err) {
+        console.log('Failed to connect to MongoDB', err);
+    }
+};
+
+connectDB();
+
+// Route to register a new user
+// ## To be moved to routes/user.js
+app.post('/register' , async (req, res ) => { 
+    // Check for existing email.
+    let newUser = await User.findOne( { "credentials.email": req.body.email });
+    if(newUser) return res.status(400).send("Form already filled with this Email-ID");
+
+    // Create user object with hashed password and store it to databaseō.
+    const UserObj = {
+        credentials : {
+            email : req.body.email
+        },
+        info : {
+            first_name:req.body.first_name, 
+            last_name:req.body.last_name, 
+            user_role: req.body.user_role, 
+            current_post:req.body.current_post, 
+            current_organization: req.body.current_organization
+        },
+        activities : {
+            spoc                    : req.body.spoc,
+            talks_and_meets         : req.body.talks_and_meets,
+            employability_assesment : req.body.employability_assesment,
+            mentorship              : req.body.mentorship,
+            portal_for_career_opportunities: req.body.portal_for_career_opportunities,
+            curriculum_revamping    : req.body.curriculum_revamping,
+            faculty_alumni_workshops: req.body.faculty_alumni_workshops,
+            annual_alumni_meet      : req.body.annual_alumni_meet,
+            sponsored_projects      : req.body.sponsored_projects,
+            awards                  : req.body.awards,
+            modernization_of_labs   : req.body.modernization_of_labs,
+            industrial_visits       : req.body.industrial_visits,
+            internships             : req.body.internships,
+            testing_and_consultancy : req.body.testing_and_consultancy,
+            involvement_in_evolution_process: req.body.involvement_in_evolution_process,
+            icc                     : req.body.icc,
+            industry_institute_interaction: req.body.industry_institute_interaction,
+            soft_skill_training     : req.body.soft_skill_training,
+            member_academic_board   : req.body.member_academic_board,
+            helping_student_activities: req.body.helping_student_activities,
+            felicitations_of_distinguished_alumni: req.body.felicitations_of_distinguished_alumni,
+            description             : req.body.idea_description
+        }
+    };
+
+    try{
+        newUser = new User(UserObj);
+        const salt = await bcrypt.genSalt(5);
+        newUser.credentials.password = await bcrypt.hash(req.body.password || req.body.email, salt);
+        newUser = await newUser.save();
+
+        // Create User Profile.
+        const userProfileObj = {
+            user_id: newUser._id,
+            professional_info: [
+                {
+                    post : req.body.current_post,
+                    organization : req.body.current_organization,
+                    start_date : new Date(),
+                    end_date : new Date()
+                }
+            ],
+            educational_info:[],
+            personal_info: {
+                about_me    : null,
+                birthdate   : null
+            },
+            contact_info: {
+                mobile_no   : req.body.mobile_no,
+                alt_mobile_no: req.body.alt_mobile_no || null,
+                email       : req.body.email,
+                alt_email   : req.body.alt_email || null,
+                address     : req.body.address || null,
+                city        : req.body.city || null,
+                state       : req.body.state || null,
+                country     : req.body.country || null,
+                pincode     : req.body.pincode || null
+            },
+            profiles: {
+                linkedin    : null,
+                github      : null,
+                twitter     : null,
+                facebook    : null,
+                youtube     : null,
+                instagram   : null
+            },
+            area_of_expertise: req.body.area_of_expertise
+        };
+
+        try{
+            const newUserProfile = new userProfile(userProfileObj);
+            await newUserProfile.save();
+            res.status(200).send("Registration Successful");
+        }catch(err){res.status(500).send("User created successfully. Error while creating profile" + err);}
+    }catch(e){ res.status(500).send("Error while creating user " + e);}
+});
+
+// ## To be moved to routes/index.js
+app.get('/', function (req, res) {
+  res.send('Hello World');
+});
+
+app.listen(3000);
