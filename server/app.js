@@ -3,14 +3,14 @@ const app = express();
 const mongoose = require('mongoose'),
     bcrypt      = require('bcrypt'),
     {User}    = require('./models/User'),
-    {userProfile} = require('./models/userProfile');
-const cors = require('cors')
+    {userProfile} = require('./models/userProfile'),
+    cors = require('cors');
 
 const corsOptions ={
     origin:'*', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
-}
+};
 app.use(cors(corsOptions));
 app.use(express.json());
 
@@ -145,7 +145,7 @@ app.post('/register' , async (req, res ) => {
 });
 
 app.get('/', function (req, res) {
-  res.send('Hello World')
-})
+  res.send('Hello World');
+});
 
 app.listen(3000)
