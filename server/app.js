@@ -39,7 +39,7 @@ app.use(function (req, res, next) {
 // ## To be moved to controllers
 const connectDB = async () => {
     try {
-        await mongoose.connect(`mongodb+srv://alumni_site_dev:webmasteralumni@cluster0.3vlbl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
+        await mongoose.connect(`mongodb+srv://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@cluster0.3vlbl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
