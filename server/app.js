@@ -2,9 +2,10 @@ const express   = require('express'),
     app         = express(),
     mongoose    = require('mongoose'),
     bcrypt      = require('bcrypt'),
+    cors        = require('cors'),
     {User}      = require('./models/User'),
     {userProfile} = require('./models/userProfile'),
-    cors        = require('cors');
+    adminRoutes = require('./routes/admin');
 
 // Using environment variables
 require('dotenv').config();
@@ -156,5 +157,11 @@ app.post('/register' , async (req, res ) => {
 app.get('/', function (req, res) {
   res.send('Hello World');
 });
+
+// Importing routing modules
+// Without authentication
+
+// With authentication
+app.use('/admin', adminRoutes);
 
 app.listen(3000);
