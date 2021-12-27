@@ -8,9 +8,36 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Grid, makeStyles } from '@material-ui/core';
 // import DevPlanTable from './DevPlanTable';
 
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+  xyz :{
+    textAlign: "center",
+    [theme.breakpoints.up('sm')]: {
+      textAlign: "right",
+    },
+  },
+  abc :{
+    textAlign: "center",
+    [theme.breakpoints.up('sm')]: {
+      textAlign: "left",
+    },
+  },
+}));
+
 export default function EventPage() {
+
+    const classes = useStyles();
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     function createECData(sr, name, designation, mobile, email) {
         return { sr, name, designation, mobile, email };
@@ -42,7 +69,7 @@ export default function EventPage() {
         createACData(4, "Dr. A. A. Agashe", "HOD", "Electronics", "9423270340", "hod.electronics@walchandsangli.ac.in"),
         createACData(5, "Dr. M. A. Shah", "HOD", "CSE", "9423872296", "hod.cse@walchandsangli.ac.in"),
         createACData(6, "Dr. S. G. Tamhankar", "PG Coordinator", "Electronics", "9822345672", "finance@walchandsangli.ac.in"),
-        createACData(7, "Dr. A. J. Umbarkar", "HOD", "Information & Technology", "9850644060", "hod.it@walchandsangli.ac.in"),
+        createACData(7, "Dr. A. J. Umbarkar", "HOD", "Information Technology", "9850644060", "hod.it@walchandsangli.ac.in"),
         createACData(8, "Dr. R. P. Hasabe", "HOD", "Electrical", "9422614878", "hod.electrical@walchandsangli.ac.in"),
         createACData(9, "Dr. A. K. Kokane", "Coordinator, Industry Institute Interaction", "Civil", "9822964111", "iiic@walchandsangli.ac.in"),
         createACData(10, "Dr. Anil .A. Agashe", "Coordinator (Polytechnic Wing)", "Industrial Electronics", "9822026036", "anil.agashe@walchandsangli.ac.in"),
@@ -69,43 +96,49 @@ export default function EventPage() {
     }, [])
 
     return (
-        <div style={{ marginTop: '4rem' }}>
+        <div style={{ marginTop: '4rem' }} >
             <div style={{ backgroundColor: "#011940", color: "white" }}>
                 <img src={`${PF}events/Platinum_Jublee_Meet.webp`} alt="EVENT_BANNER" style={{ maxWidth: "-webkit-fill-available", maxHeight: "400px" }} />
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "#011940", color: "white" }}>
-                <div style={{ textAlign: "left", marginLeft: "45px" }}>
-                    <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT DAY: 8th Jan 2022</p>
-                    <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT TIME: 10:00 AM</p>
-                </div>
-                <div style={{ marginTop: "2%", marginRight: "5%", textAlign: "right" }}>
-                    <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            style={{ background: 'lightgrey' }}
-                        >
-                            <div style={{ color: "blue", fontSize: "medium" }}>
-                                REGISTER NOW
-                            </div>
-                        </Button>
-                    </a>
-                    <p style={{ color: "white", fontFamily: "Montserrat", fontSize: "20px" }}>
-                        Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
-                    </p>
-                </div>
+            <div className={classes.root}  style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "#011940", color: "white" }}>
+                <Grid container style={{padding:"3%"}}>
+                    <Grid item xs={12} sm={6}>
+                        <div style={{  }} className={classes.abc}>
+                            <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT DAY: 8th Jan 2022</p>
+                            <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT TIME: 10:00 AM</p>
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <div style={{  }} className={classes.xyz} >
+                            <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    style={{ background: 'lightgrey' }}
+                                >
+                                    <div style={{ color: "blue", fontSize: "medium" }}>
+                                        REGISTER NOW
+                                    </div>
+                                </Button>
+                            </a>
+                            <p style={{ color: "white", fontFamily: "Montserrat", fontSize: "20px" }}>
+                                Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
+                            </p>
+                        </div>
+                    </Grid>
+                </Grid>
             </div>
             {/* <svg style={{ marginBottom: "-200px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000000" fill-opacity="1" d="M0,0L120,10.7C240,21,480,43,720,48C960,53,1200,43,1320,37.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg> */}
-            <div style={{ fontFamily: "Montserrat", }}>
+            <div style={{ fontFamily: "Montserrat" }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Platinum Jubilee Meet (2021-22)</p>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "1%" }}>Invocation</p>
                 <p style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "5%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
                     Every alumni meet has been a significant event for all the stakeholders associated with our institute. The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus on the <strong>8th day of January 2022</strong>. As intended every year, this meet also ensures strengthening a strong bond between the alumni and current stakeholders of the institute. Please spare your time to witness progress of alma matter, meet and felicitate your teachers, be a role model for young students and extend yourself by giving back to the institute what it deserves !</p>
             </div>
-            <div style={{ fontFamily: "Montserrat", }}>
+            <div style={{ fontFamily: "Montserrat" }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "3%" }}>Event Purpose</p>
-                <p style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "5%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
-                    This alumni meet aims to: <br />
+                <div style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "5%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
+                    <p>This alumni meet aims to:  </p>
                     <ul>
                         <li>Celebrate alumni meet of Platinum Jubilee Year 2021-22</li>
                         <li>Establish a lifelong relationship with the alumni</li>
@@ -113,17 +146,17 @@ export default function EventPage() {
                         <li>Provide the alumni rewarding opportunities to serve the institute, its faculty, and students</li>
                         <li>Help the stakeholders to establish and to rejuvenate professional relations</li>
                     </ul>
-                </p>
+               </div>
             </div>
             <div style={{ fontFamily: "Montserrat", }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "3%" }}>Specific Objectives</p>
-                <p style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "3%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
+                <div style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "3%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}> 
                     <ul>
                         <li>To tap the collective wisdom and creativity of the alumni to assist the institute to enhance academics, research, training, and infrastructure creating the impact over the coming decade.</li>
                         <li>To prepare a development plan for the transformation Sangli into a smart city.</li>
                         <li>To create endowment fund for research, awards, merit scholarships, infrastructure development, prizes and incentives for students and faculties and also awards to stakeholders for outstanding societal or technical contribution.</li>
                     </ul>
-                </p>
+               </div>
             </div>
 
             <p style={{ fontSize: "xx-large", fontWeight: "bold", fontFamily: "Montserrat", paddingTop: "3%" }}>Tentative Schedule of the Program</p>
@@ -135,7 +168,7 @@ export default function EventPage() {
                             {
                                 // var i=1;
                                 Schedule.map((row, index) => (
-                                    <TableRow style={index % 2 ? { background: "lightgrey" } : { background: "#e6e6e6" }}>
+                                    <TableRow style={index % 2 ? { background: "lightgrey" } : { background: "#e6e6e6" }} key={index}>
                                         {/* <TableCell align="right">{row.sr}</TableCell> */}
                                         <TableCell align="center" style={{ width: 500, fontFamily: 'Montserrat', fontSize: 'large', paddingRight: "0px" }}>{row.time}</TableCell>
                                         <TableCell align="left" style={{ fontFamily: 'Montserrat', fontSize: 'large', paddingRight: "0px" }}>{row.desc}</TableCell>
@@ -146,7 +179,7 @@ export default function EventPage() {
                                     <div style={{ marginLeft: "4%", fontFamily: 'Montserrat', fontSize: 'large' }}>
 
                                         <p><i>Detailed schedule will be displayed soon...</i></p>
-                                        <p>Please Note –</p>
+                                        <p>Please Note – </p>
                                         <ul>
                                             <li>The spot registration & money transaction is not permitted.<br /> The details of
                                                 accompanying members should<br /> also be communicated at the time of online
@@ -248,16 +281,28 @@ export default function EventPage() {
             </div>
             <div style={{ fontFamily: "Montserrat", }}>
                 <p style={{ fontSize: "x-large", fontWeight: "bold", paddingTop: "3%" }}>Nearby Hotels</p>
-                <p style={{ backgroundColor: "lightgrey", padding: "1%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
+                <div style={{ backgroundColor: "lightgrey", padding: "1%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
                     <p style={{ fontSize: "medium", fontWeight: "normal", fontStyle: "italic", color: "red", marginLeft: "3%" }}>(Click on the name for details...)</p>
-                    <ul style={{ listStyleType: "none", display: "flex", justifyContent: "space-around", paddingLeft: "0px" }}>
-                        <a href="https://goo.gl/maps/iwH2p8CwFBcHNFDc9" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4e009c", fontSize: "large" }}><li>Hotel Season 4 </li></a>
-                        <a href="https://goo.gl/maps/WWe9V6qAEZMJmAGm7" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4e009c", fontSize: "large" }}><li>Hotel Icon INN</li></a>
-                        <a href="https://goo.gl/maps/EA6cZ9xbsPrcCpz98" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4e009c", fontSize: "large" }}><li>Hotel White House Executive </li></a>
-                        <a href="https://goo.gl/maps/md5zsXE9ZmR1roik9" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4e009c", fontSize: "large" }}><li>Hotel Ambassador</li></a>
-                        <a href="https://goo.gl/maps/KduQ5DzV5dnrh4HPA" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4e009c", fontSize: "large" }}><li>Hotel Pearl</li></a>
-                    </ul>
-                </p>
+                    <div style={{ listStyleType: "none"}}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6} md={4} >   
+                                <a href="https://goo.gl/maps/iwH2p8CwFBcHNFDc9" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4e009c", fontSize: "large" }}><li>Hotel Season 4 </li></a>
+                            </Grid>
+                            <Grid item xs={12} sm={6} md={4}>
+                                <a href="https://goo.gl/maps/WWe9V6qAEZMJmAGm7" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4e009c", fontSize: "large" }}><li>Hotel Icon INN</li></a>
+                            </Grid>
+                            <Grid item xs={12} sm={6} md={4}> 
+                                <a href="https://goo.gl/maps/EA6cZ9xbsPrcCpz98" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4e009c", fontSize: "large" }}><li>Hotel White House Executive </li></a>
+                            </Grid>
+                            <Grid item xs={12} sm={6} md={4}>
+                                <a href="https://goo.gl/maps/md5zsXE9ZmR1roik9" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4e009c", fontSize: "large" }}><li>Hotel Ambassador</li></a>
+                            </Grid>
+                            <Grid item xs={12} sm={6} md={4}>
+                                <a href="https://goo.gl/maps/KduQ5DzV5dnrh4HPA" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4e009c", fontSize: "large" }}><li>Hotel Pearl</li></a>
+                            </Grid >
+                        </Grid>
+                    </div>
+                </div>
             </div>
             <div style={{ padding: '5%' }}></div>
         </div>
