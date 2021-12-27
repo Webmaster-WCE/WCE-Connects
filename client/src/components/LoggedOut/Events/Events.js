@@ -8,13 +8,15 @@ import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) =>({
   root: {
     flexGrow:1,
-    //padding: "2%",
-    // maxWidth: 345,
+    marginTop: "15%",
+    [theme.breakpoints.up('sm')]: {
+      marginTop: "5%",
+    },
   },
-});
+}));
 
 
 
@@ -84,10 +86,9 @@ export default function Events() {
       if(process.env.NODE_ENV ==='development'){
         setPublichFolderPath(process.env.REACT_APP_LOCAL_HOST_PUBLIC_FOLDER);
       }
+      window.scrollTo(0, 0)
   }, []);
 
-  
-  
   
   return (
     <>
@@ -95,7 +96,7 @@ export default function Events() {
           <div style={{ fontFamily:"Montserrat", fontSize:"Bold", height:"70vh", textAlign:"center", padding:"70px 0",marginTop:"3%"}}>
                  EVENTS WILL BE DISPLAYED HERE...
           </div> :
-           <div className={classes.root} className="container"> 
+           <div className={`${classes.root} container`} > 
            <Grid container spacing={2}>
           {events.map((event) => {
           return <Grid item key={event.eventid} style={{ height:"100%"}} xs={12}  sm={6} lg={4} >

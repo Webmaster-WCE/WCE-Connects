@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { makeStyles,useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -54,6 +54,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const useOutsideAlerter = (ref,setAnchor) =>  {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          //alert("You clicked outside of me!");
+          setAnchor(null)
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+
 export default function Navigation() {
   const classes = useStyles();
   // const history = useHistory();
@@ -70,6 +90,11 @@ export default function Navigation() {
   const handleMenu = (event) => {
     setAnchor(event.currentTarget);
   };
+
+
+  
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef,setAnchor);
   return (
     <div className={classes.root} >
       <AppBar position="fixed" style={{backgroundColor:"#011940", color:"white"}}>
@@ -92,6 +117,7 @@ export default function Navigation() {
                   edge="start"
                   aria-label="menu"
                   onClick={handleMenu}
+                  ref={wrapperRef}
                 >
                   <MenuIcon />
                 </IconButton>
