@@ -96,7 +96,7 @@ export default function EventPage() {
     }, [])
 
     return (
-        <div style={{ marginTop: '4rem' }} >
+        <div className='eventpage_root' >
             <div style={{ backgroundColor: "#011940", color: "white" }}>
                 <img src={`${PF}events/Platinum_Jublee_Meet.webp`} alt="EVENT_BANNER" style={{ maxWidth: "-webkit-fill-available", maxHeight: "400px" }} />
             </div>
