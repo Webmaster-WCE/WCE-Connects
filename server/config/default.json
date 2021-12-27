@@ -1,0 +1,9 @@
+{
+  "AWS": {
+    "accessKeyId":"AKIA2NTR6I5L6YFH5IGR",
+    "secretAccessKey":"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",
+    "region":"ap-south-1",
+    "SenderEmailId":"<abhishek.kamble@walchandsangli.ac.in>"
+  },
+  "port": 3500
+}
