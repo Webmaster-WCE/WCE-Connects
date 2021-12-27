@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function AdminPanel() {
   const { register, handleSubmit } = useForm()
+  
   const onSubmit = async (data) => {
   const formData = new FormData()
   formData.append("file", data.uploadedFile[0])
@@ -27,7 +28,7 @@ function AdminPanel() {
   }
   return (
     //   <div>hello</div>
-    <div style={{paddingTop:"70px"}}>
+    <div style={{paddingTop:"70px", height: "70vh"}}>
         <form onSubmit={handleSubmit(onSubmit)}>
         <label>
             <p>Upload Excel File to Create Accounts</p>

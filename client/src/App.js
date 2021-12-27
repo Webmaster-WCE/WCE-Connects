@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 import { HashRouter, Route, Switch } from "react-router-dom";
-// import { LoggedIn } from './components/LoggedIn/LoggedIn';
+import { LoggedIn } from './components/LoggedIn/LoggedIn';
 // import { VerifyEmail } from './components/LoggedOut/Register/VerifyEmail';
 // import EmailVerified from './components/LoggedOut/Register/EmailVerified';
 import Home from './components/LoggedOut/Home/Home';
-// import Login from './components/LoggedOut/Login/Login';
+import Login from './components/LoggedOut/Login/Login';
 // import Register from './components/LoggedOut/Register/Register';
 import Navigation from './components/LoggedOut/Navigation/Navigation';
 import Events from './components/LoggedOut/Events/Events';
@@ -49,10 +49,10 @@ function App() {
             <Route exact path="/events/eventid/register">
               <EventRegister/>
             </Route>
-            {/* <Route exact path='/login'>
+             <Route exact path='/login'>
               <Login/>
             </Route>
-            <Route exact path="/register">
+            {/*<Route exact path="/register">
               <Register/>
             </Route> */}
             {/* <Route exact path="/verify">
@@ -62,9 +62,9 @@ function App() {
               <EmailVerified/>
             </Route> */}
         </Switch>
-        {/* <Route path="/u"> 
+        <Route path="/u"> 
           <LoggedIn/>
-        </Route> */}
+        </Route>
         <Footer/>
       </HashRouter>
     </div>

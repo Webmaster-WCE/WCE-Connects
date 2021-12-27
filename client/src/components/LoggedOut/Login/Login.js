@@ -68,7 +68,7 @@ export default function Login(){
   
   useEffect(() => {
     if(token !== null){
-      history.push("/u/landing");
+      history.push("/u/adminpanel");
     }
     else{
       history.push("/login");
@@ -77,31 +77,32 @@ export default function Login(){
 
   const onSubmit= async (e) => {
     e.preventDefault();
-    var form = document.getElementById('signup_form');
-    var data = new FormData(form);
-    const entries = data.entries();
-    const userData = Object.fromEntries(entries);
-    dispatch({ type: "LOGIN_START" });
-    try {
-      const res = await axios.post('http://localhost:5000/auth/', userData);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
-    } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: err });
-      swal("Invalid Email/Password")
-      .then((value) => {
-        if(value)
-        {
-          history.push("/login");
-          return;
-        }
-      });
-    }
-    finally {
-      if(token)
-      {
-          history.push("/u/landing")
-      }
-    }
+    history.push("/u/adminpanel");
+    // var form = document.getElementById('signup_form');
+    // var data = new FormData(form);
+    // const entries = data.entries();
+    // const userData = Object.fromEntries(entries);
+    // dispatch({ type: "LOGIN_START" });
+    // try {
+    //   const res = await axios.post('http://localhost:5000/auth/', userData);
+    //   dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+    // } catch (err) {
+    //   dispatch({ type: "LOGIN_FAILURE", payload: err });
+    //   swal("Invalid Email/Password")
+    //   .then((value) => {
+    //     if(value)
+    //     {
+    //       history.push("/login");
+    //       return;
+    //     }
+    //   });
+    // }
+    // finally {
+    //   if(token)
+    //   {
+    //       history.push("/u/adminpanel")
+    //   }
+    // }
 }
 
   return (
@@ -149,12 +150,12 @@ export default function Login(){
               </div>
             </Button>
             </form>
-            <Link to="/register" variant="body2" style={{textDecoration: 'none', fontSize:'15px'}}>
+            {/* <Link to="/register" variant="body2" style={{textDecoration: 'none', fontSize:'15px'}}>
                 Don't have an account? Register
-            </Link>
-            <Box mt={5}>
+            </Link> */}
+            {/* <Box mt={5}>
               <Copyright />
-            </Box>
+            </Box> */}
         </div>
       </Grid>
     </Grid>
