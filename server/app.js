@@ -31,9 +31,9 @@ app.use(express.json());
 // }
 
 //databases connection
-// const uri  = `mongodb+srv://${process.env.Database_Username}:${process.env.Database_Password}@cluster0.jg9l3.mongodb.net/WC-Storage?retryWrites=true&w=majority`;
+const uri          = `mongodb+srv://${process.env.Database_Username}:${process.env.Database_Password}@cluster0.jg9l3.mongodb.net/WC-Storage?retryWrites=true&w=majority`;
 // `mongodb+srv://${process.env.Database_Username}:${process.env.Database_Password}@cluster0.3vlbl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
-const uri = process.env.new_db;
+
 const connectDB = async () => {
   await mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB...'))

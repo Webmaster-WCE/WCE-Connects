@@ -5,7 +5,7 @@ configurations
 yarn.lock
 
 .env
-.config
+
 personalTokens.json
 
 uploads
