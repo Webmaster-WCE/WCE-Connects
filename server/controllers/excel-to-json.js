@@ -42,4 +42,6 @@ const data=function excelFileTojson (FileName) {
     return data;                  //return the json array
   });
 };
+
+module.exports = excelFileTojson; 
   
