@@ -10,7 +10,7 @@ export default function Home(){
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const carouselProps = {
         autoPlay: false,
-        navButtonsAlwaysVisible: true,
+        navButtonsAlwaysVisible: false,
         duration: 2000,
         index:1
     }
@@ -88,7 +88,7 @@ export default function Home(){
                 // className={classes.waveBorder}
                 animationNegativeDelay={3}
             />
-            <Carousel index={carouselProps.index} autoPlay={carouselProps.autoPlay} animation="slide" navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} duration={carouselProps.duration}>
+            <Carousel index={carouselProps.index} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
                 {
                     events.map( (event, i) => <Event key={i} event={event} duration='2000' interval='20000'/>)
                 }
@@ -96,7 +96,7 @@ export default function Home(){
             <div style={{ padding: '5%' }}></div>
 
             <div style={{margin:"1% 15%", backgroundColor:"#ede8e8", border: "2px solid black", borderRadius:"30px"}}>
-                <img src={PF+"Leena_Nair_IMG.jpg"} alt="leena_nair_img" style={{float:"left", padding:"1.5rem", marginTop:"2%"}} width="300" height="310"/>
+                <img src={PF+"Leena_Nair_IMG.jpg"} alt="leena_nair_img" style={{float:"left", padding:"1.5rem", marginTop:"2%",minWidth:"180px" }} width="20%" />
                 <div style={{ textAlign: "justify", padding:"1rem", fontSize: "large"}}>
                     <h1 style={{textAlign: "left"}}>French fashion giant Chanel has named our WCE Alumni Leena Nair as its global CEO</h1>
                     <p>Heartiest Congratulations to every walchandites huge inspiration Ms. Leena Nair on her great success. </p>
@@ -112,21 +112,26 @@ export default function Home(){
 function Event(props)
 {
     return (
-        <div style={{ marginTop:"2%"}}>
-                        <div>   
-                            <div style={{position:"relative"}}>
-                                <a href={props.event.link} rel='noreferrer'><img src={props.event.banner} alt="EVENT_BANNER" style={{ maxHeight:"250px", padding:"1.5%", border:"2px solid black"}}/></a>
-                                    {props.event.eventid===1 && <Link to="/events/eventid" style={{backgroundColor:"white", textDecoration: "none"}}>
-                                            <Button
-                                                style={{ position: "absolute",top: "50px",right: "25%",background: 'black'}}
-                                                variant="contained"
-                                            >
-                                                <div style={{ color: "white" }}>CLICK HERE TO REGISTER</div>
-                                            </Button>
-                                        </Link>
-                                    }
-                            </div>
-                        </div>
-                    </div>
+        <div style={{ marginTop:"2%"}}>           
+            <div style={{position:"relative"}}>
+                <a href={props.event.link} rel='noreferrer'>
+                    <img src={props.event.banner} alt="EVENT_BANNER" style={{ maxHeight:"250px", padding:"1.5%", border:"2px solid black",maxWidth:"900px", width: "90%"}}/>
+                </a>
+                <div style={{justifyContent:'center'}}>
+                {
+                    props.event.eventid===1 && <Link to="/events/eventid" style={{backgroundColor:"white", textDecoration: "none"}}>
+                        <Button
+                            style={{background: 'black'}}
+                            variant="contained"
+                        >
+                            <div style={{ color: "white" }}>CLICK HERE TO REGISTER</div>
+                        </Button>
+                    </Link>
+                }
+
+                </div>
+                
+            </div>
+        </div>
     )
 }
