@@ -87,6 +87,8 @@ export default function Home(){
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+    // const [isAutoPlay, setIsAutoPlay] = useState(false);
+
     return(
         <div style={{marginTop:"3%"}}>
             {/* {PF+"wce_pic.jpg"} */}
@@ -105,9 +107,11 @@ export default function Home(){
                 }
             </Carousel>
             <div style={{ padding: '4%' }}></div>
-            <video controls style={{maxWidth:"-webkit-fill-available", maxHeight:"525px", padding:"2%"}}>
-                <source src={`${PF}wce_promo_720p.mp4`} type="video/mp4" />
-            </video>
+            {/* <div onMouseEnter={()=>setIsAutoPlay(true)} onMouseLeave={()=>setIsAutoPlay(false)}> */}
+                <video controls autoPlay={"autoplay"}  loop muted style={{maxWidth:"-webkit-fill-available", maxHeight:"525px", padding:"2%"}}>
+                    <source src={`${PF}wce_promo_720p.mp4`} type="video/mp4" />
+                </video>
+            {/* </div> */}
             <div style={{ padding: '4%' }}></div>
             <div style={{margin:"1% 15%", backgroundColor:"#ede8e8", border: "2px solid black", borderRadius:"30px"}}>
                 <img src={PF+"Leena_Nair_IMG.jpg"} alt="leena_nair_img" style={{float:"left", padding:"1.5rem", marginTop:"2%",minWidth:"180px" }} width="20%" />
