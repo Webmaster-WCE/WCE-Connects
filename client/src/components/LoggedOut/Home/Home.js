@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import WaveBorder from "./WaveBorder";
 import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
@@ -8,12 +8,23 @@ import Carousel from 'react-material-ui-carousel'
 export default function Home(){
     // const history = useHistory();
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    const carouselProps = {
+    const [carouselProps, setCarouselProps] = useState({
         autoPlay: false,
-        navButtonsAlwaysVisible: false,
+        navButtonsAlwaysVisible: true,
         duration: 2000,
         index:1
-    }
+    });
+    useEffect(() =>{
+       if(window.screen.width < 1000){
+           setCarouselProps({
+            autoPlay: false,
+            navButtonsAlwaysVisible: false,
+            duration: 2000,
+            index:1
+        }); 
+        }
+    },[window.screen.width]);
+
     const events = [
         {
           eventid: 0,
@@ -76,6 +87,8 @@ export default function Home(){
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+    // const [isAutoPlay, setIsAutoPlay] = useState(false);
+
     return(
         <div style={{marginTop:"3%"}}>
             {/* {PF+"wce_pic.jpg"} */}
@@ -88,13 +101,18 @@ export default function Home(){
                 // className={classes.waveBorder}
                 animationNegativeDelay={3}
             />
-            <Carousel index={carouselProps.index} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
+            <Carousel index={carouselProps.index} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
                 {
                     events.map( (event, i) => <Event key={i} event={event} duration='2000' interval='20000'/>)
                 }
             </Carousel>
-            <div style={{ padding: '5%' }}></div>
-
+            <div style={{ padding: '4%' }}></div>
+            {/* <div onMouseEnter={()=>setIsAutoPlay(true)} onMouseLeave={()=>setIsAutoPlay(false)}> */}
+                <video controls autoPlay={"autoplay"}  loop muted style={{maxWidth:"-webkit-fill-available", maxHeight:"525px", padding:"2%"}}>
+                    <source src={`${PF}wce_promo_720p.mp4`} type="video/mp4" />
+                </video>
+            {/* </div> */}
+            <div style={{ padding: '4%' }}></div>
             <div style={{margin:"1% 15%", backgroundColor:"#ede8e8", border: "2px solid black", borderRadius:"30px"}}>
                 <img src={PF+"Leena_Nair_IMG.jpg"} alt="leena_nair_img" style={{float:"left", padding:"1.5rem", marginTop:"2%",minWidth:"180px" }} width="20%" />
                 <div style={{ textAlign: "justify", padding:"1rem", fontSize: "large"}}>

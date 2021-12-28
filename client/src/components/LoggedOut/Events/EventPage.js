@@ -111,7 +111,7 @@ export default function EventPage() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <div style={{  }} className={classes.xyz} >
-                            <Link to="/events/eventid/preregitration" style={{ textDecoration: "none" }}>
+                            <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
                                 <Button
                                     type="submit"
                                     variant="contained"
@@ -265,8 +265,8 @@ export default function EventPage() {
             </div>
             <div style={{ fontFamily: "Montserrat", paddingTop: "3%" }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Platinum Jubilee Meet (2021-22) Registration</p>
-                <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
-                    <Button
+                <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
+                                <Button
                         type="submit"
                         variant="contained"
                         style={{ background: 'lightgrey' }}
@@ -275,7 +275,7 @@ export default function EventPage() {
                             REGISTER NOW
                         </div>
                     </Button>
-                </a>
+                </Link>
                 <p style={{ color: "grey", fontFamily: "Montserrat", fontSize: "20px" }}>
                     Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
                 </p>
