@@ -64,9 +64,9 @@ export const EventPreRegistration = () => {
                 <p><small>(You can do registration with any one method)</small></p>
             </div>
             <div style={{ fontFamily: "Montserrat" }}>
-                <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "1%" }}>Bank Transfer and UPI</p>
+                <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "1%" }}>Bank Transfer or UPI <small>(Method No. 1)</small></p>
                 <div style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "5%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
-                    <p >
+                    <p>
                         Please Register for the Platinum Jubilee Meet by paying the registration fee. 
                     </p>
                      <ul style={{textAlign:"left"}}>
@@ -101,31 +101,9 @@ export const EventPreRegistration = () => {
                 <p style={{ fontSize: "x-large", fontWeight: "bold", paddingTop: "1%" }}>Scan QR Code (UPI)</p>
                 <div style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "5%", margin: "1% 10%", textAlign: "center", lineHeight: "1.5", borderRadius: "30px" }}>
                     <div>
-                        {/* <img src={`${PF}events/Platinum_Jublee_Meet.webp`} alt="EVENT_BANNER" style={{ maxWidth: "-webkit-fill-available", maxHeight: "400px" }} /> */}
-                        <img src={`http://localhost:3000/assets/PaymentQRCode.jpeg`} alt="UPI QR CODE" style={{ maxWidth: "-webkit-fill-available", maxHeight: "500px" }} />
+                        <img src={`${PF}PaymentQRCode.jpeg`} alt="UPI QR CODE" style={{ maxWidth: "-webkit-fill-available", maxHeight: "500px" }} />
+                        
                     </div>
-                </div>
-            </div>
-            <hr/>
-            <div style={{ fontFamily: "Montserrat" }}>
-                <div style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "5%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
-                    <p >
-                        If above menthods didnt work then try using this link
-                    </p>
-                    <div>
-                        <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    style={{ background: 'lightgrey' }}
-                                >
-                                    <div style={{ color: "blue", fontSize: "medium" }}>
-                                        REGISTER HERE
-                                    </div>
-                                </Button>
-                            </a>
-                    </div>
-                    
                 </div>
             </div>
             <div style={{ fontFamily: "Montserrat" }}>
@@ -144,6 +122,32 @@ export const EventPreRegistration = () => {
                     
                 </div>
             </div>
+            <hr/>
+            <p style={{ fontSize: "x-large", paddingTop: "1%",fontFamily: "Montserrat" }}>OR</p>
+            <hr/>
+            <div style={{ fontFamily: "Montserrat" }}>
+                <div style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "5%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
+                     <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "1%" }}>Method No. 2</p>
+                    <p >
+                        Fill the complete registration form and proceed with payment
+                    </p>
+                    <div>
+                        <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    style={{ background: 'white' }}
+                                >
+                                    <div style={{ color: "blue", fontSize: "medium" }}>
+                                        Proceed to the Form
+                                    </div>
+                                </Button>
+                            </a>
+                    </div>
+                    
+                </div>
+            </div>
+            
            
 
         </div>

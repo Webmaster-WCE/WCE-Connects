@@ -53,7 +53,7 @@ function App() {
              <Route exact path='/login'>
               <Login/>
             </Route>
-            <Route exact path="/events/eventid/preregitration">
+            <Route exact path="/events/eventid/preregistration">
               <EventPreRegistration/>
             </Route>
             {/*<Route exact path="/register">
