@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Grid, makeStyles } from '@material-ui/core';
 // import DevPlanTable from './DevPlanTable';
+import { Link } from "react-router-dom";
 
 
 
@@ -110,7 +111,7 @@ export default function EventPage() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <div style={{  }} className={classes.xyz} >
-                            <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
+                            <Link to="/events/eventid/preregitration" style={{ textDecoration: "none" }}>
                                 <Button
                                     type="submit"
                                     variant="contained"
@@ -120,7 +121,7 @@ export default function EventPage() {
                                         REGISTER NOW
                                     </div>
                                 </Button>
-                            </a>
+                            </Link>
                             <p style={{ color: "white", fontFamily: "Montserrat", fontSize: "20px" }}>
                                 Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
                             </p>
