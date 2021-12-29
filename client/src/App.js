@@ -17,7 +17,7 @@ import ActivityForm from './components/LoggedOut/Activities/ActivityForm';
 import GalleryPage from './components/LoggedOut/Gallery/GalleryPage';
 import Footer from './components/LoggedOut/Footer/Footer'
 import { EventPreRegistration } from './components/LoggedOut/Events/EventPreRegistration';
-
+import PrivacyPolicy from './components/LoggedOut/Footer/PrivacyPolicy'
 function App() {
   // const {token} = useContext(AuthContext);
 
@@ -55,6 +55,9 @@ function App() {
             </Route>
             <Route exact path="/events/eventid/preregistration">
               <EventPreRegistration/>
+            </Route>
+            <Route exact path="/policy">
+              <PrivacyPolicy/>
             </Route>
             {/*<Route exact path="/register">
               <Register/>
