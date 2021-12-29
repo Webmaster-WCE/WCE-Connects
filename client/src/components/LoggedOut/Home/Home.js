@@ -107,6 +107,10 @@ export default function Home(){
                 }
             </Carousel>
             <div style={{ padding: '4%' }}></div>
+            <div style={{width:'100%'}}>
+                <img src="http://localhost:3000/assets/Advertisement.jpeg" alt="WCE_IMAGE" style={{maxWidth: "50%"}}/>
+            </div>
+            <div style={{ padding: '4%' }}></div>
             {/* <div onMouseEnter={()=>setIsAutoPlay(true)} onMouseLeave={()=>setIsAutoPlay(false)}> */}
                 <video controls autoPlay={"autoplay"}  loop muted style={{maxWidth:"-webkit-fill-available", maxHeight:"525px", padding:"2%"}}>
                     <source src={`${PF}wce_promo_720p.mp4`} type="video/mp4" />
