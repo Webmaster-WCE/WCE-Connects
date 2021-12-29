@@ -108,7 +108,7 @@ export default function Home(){
             </Carousel>
             <div style={{ padding: '4%' }}></div>
             <div style={{width:'100%'}}>
-                <img src="http://localhost:3000/assets/Advertisement.jpeg" alt="WCE_IMAGE" style={{maxWidth: "50%"}}/>
+                <img src={PF+"Advertisement.jpeg"}  alt="WCE_IMAGE" style={{maxWidth: "50%"}}/>
             </div>
             <div style={{ padding: '4%' }}></div>
             {/* <div onMouseEnter={()=>setIsAutoPlay(true)} onMouseLeave={()=>setIsAutoPlay(false)}> */}
