@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 function auth(req, res, next) {
-    console.log('auth middleware ' + req.body);
     const token = req.header('x-auth-token');
     if(!token) return res.status(401).send('Access Denied.No Token Provided.');
 
