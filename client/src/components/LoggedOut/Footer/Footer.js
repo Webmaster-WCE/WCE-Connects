@@ -1,5 +1,6 @@
 import { Grid, makeStyles } from '@material-ui/core';
 import React from 'react';
+import {Link} from 'react-router-dom'
 
  const useStyles = makeStyles((theme) => ({
     root: {
@@ -61,6 +62,14 @@ export default function Footer(){
                                     <a href="https://www.linkedin.com/in/atharav-patil-2931b921a" target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"grey", marginLeft:"10px"}}>Atharav Patil</a>
                                 </div>
                             </div>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <div style={{float: "left"}}>
+                                <Link to="/policy" style={{ color: "#fff", textDecoration:"none",cursor:"pointer" }}>
+                                    <p><u>Privacy Policy</u></p>
+                                </Link>
+                            </div>
+                            <div style={{padding:"1%"}}></div>
                         </Grid>
                     </Grid>               
                 </div>
