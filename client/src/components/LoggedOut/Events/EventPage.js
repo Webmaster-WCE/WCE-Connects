@@ -280,6 +280,9 @@ export default function EventPage() {
                     Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
                 </p>
             </div>
+            <div style={{width:'100%'}}>
+                <img src={PF+"Advertisement.jpeg"}  alt="WCE_IMAGE" style={{maxWidth: "50%"}}/>
+            </div>
             <div style={{ fontFamily: "Montserrat", }}>
                 <p style={{ fontSize: "x-large", fontWeight: "bold", paddingTop: "3%" }}>Nearby Hotels</p>
                 <div style={{ backgroundColor: "lightgrey", padding: "1%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
