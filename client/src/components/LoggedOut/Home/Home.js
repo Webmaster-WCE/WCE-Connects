@@ -3,6 +3,7 @@ import WaveBorder from "./WaveBorder";
 import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Carousel from 'react-material-ui-carousel'
+import { NewsArticleBlock } from './NewsArticleBlock';
 // import { useHistory } from 'react-router-dom';
 
 export default function Home(){
@@ -106,10 +107,7 @@ export default function Home(){
                     events.map( (event, i) => <Event key={i} event={event} duration='2000' interval='20000'/>)
                 }
             </Carousel>
-            <div style={{ padding: '4%' }}></div>
-            <div style={{width:'100%'}}>
-                <img src={PF+"Advertisement.jpeg"}  alt="WCE_IMAGE" style={{maxWidth: "50%"}}/>
-            </div>
+           
             <div style={{ padding: '4%' }}></div>
             {/* <div onMouseEnter={()=>setIsAutoPlay(true)} onMouseLeave={()=>setIsAutoPlay(false)}> */}
                 <video controls autoPlay={"autoplay"}  loop muted style={{maxWidth:"-webkit-fill-available", maxHeight:"525px", padding:"2%"}}>
@@ -126,7 +124,8 @@ export default function Home(){
                     <p>Walchand College of Engineering, Sangli sends lots of best wishes to Ms. Leena for the next chapter !!!</p>
                 </div>
             </div>
-            <div style={{ padding: '5%' }}></div>
+            {/* <div style={{ padding: '5%' }}></div>
+            <NewsArticleBlock/> */}
         </div>
     );
 }
