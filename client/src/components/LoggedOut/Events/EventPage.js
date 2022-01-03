@@ -111,23 +111,34 @@ export default function EventPage() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <div style={{  }} className={classes.xyz} >
-                            <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    style={{ background: 'lightgrey' }}
-                                >
-                                    <div style={{ color: "blue", fontSize: "medium" }}>
-                                        REGISTER NOW
-                                    </div>
-                                </Button>
-                            </Link>
+                            <div>
+                                <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        style={{ background: 'lightgrey' }}
+                                    >
+                                        <div style={{ color: "blue", fontSize: "medium" }}>
+                                            REGISTER NOW
+                                        </div>
+                                    </Button>
+                                </Link>
+                                <p><small style={{color:'red'}}>Registration link will be closed by 4th January 2022, 5.00 pm IST</small></p>
+                            </div>
+                            
                             <p style={{ color: "white", fontFamily: "Montserrat", fontSize: "20px" }}>
                                 Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
                             </p>
                         </div>
                     </Grid>
                 </Grid>
+            </div>
+            <div style={{ fontFamily: "Montserrat" }}>
+                <p style={{ fontSize: "x-large", fontWeight: "bold", paddingTop: "2%" }}>Important Notice </p>
+                <div style={{ fontSize: "20px",  padding: "2%", backgroundColor: "#011940",margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px",border:"5px red solid" ,color:"white"}}>
+                    <p style={{whiteSpace:'pre-line'}}>{"Dear Alumnus,\n\nThe celebrations of the event ‘Platinum Jubilee Meet’ on 8th January 2022 shall be in the restricted presence because of norms issued by the Government of Maharashtra. In the current COVID related situation everyone has to observe the norms being published from time to time.\n\nIn order to observe the norms for attendance of 50 numbers per department function, the registration link will be closed by 4th January 2022, 5.00 pm. Entry will be restricted to only registered participants.\nLooking forward to meet you all\n\nFor any further assistance,\nContact person email: - ajeet.patil@walchandsangli.ac.in \nMobile no: - 7588920388"}</p>
+                   
+               </div>
             </div>
             {/* <svg style={{ marginBottom: "-200px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000000" fill-opacity="1" d="M0,0L120,10.7C240,21,480,43,720,48C960,53,1200,43,1320,37.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg> */}
             <div style={{ fontFamily: "Montserrat" }}>
@@ -276,6 +287,8 @@ export default function EventPage() {
                         </div>
                     </Button>
                 </Link>
+                 <p><small style={{color:'red'}}>Registration link will be closed by 4th January 2022, 5.00 pm IST</small></p>
+                         
                 <p style={{ color: "grey", fontFamily: "Montserrat", fontSize: "20px" }}>
                     Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
                 </p>
