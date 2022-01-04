@@ -112,7 +112,7 @@ export default function EventPage() {
                     <Grid item xs={12} sm={6}>
                         <div style={{  }} className={classes.xyz} >
                             <div>
-                                <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
+                                {/* <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
                                     <Button
                                         type="submit"
                                         variant="contained"
@@ -122,7 +122,22 @@ export default function EventPage() {
                                             REGISTER NOW
                                         </div>
                                     </Button>
-                                </Link>
+                                </Link> */}
+
+                                {/* link is disabled */}
+                                
+                                <Button
+                                    type="button"
+                                    variant="contained"
+                                    style={{ background: 'lightgrey' }}
+                                    onClick={()=> alert("The Registration has been closed")}
+                                >
+                                    <div style={{ color: "blue", fontSize: "medium" }}>
+                                        REGISTER NOW
+                                    </div>
+                                </Button>
+                                
+
                                 <p><small style={{color:'red'}}>Registration link will be closed by 4th January 2022, 5.00 pm IST</small></p>
                             </div>
                             
@@ -276,17 +291,29 @@ export default function EventPage() {
             </div>
             <div style={{ fontFamily: "Montserrat", paddingTop: "3%" }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Platinum Jubilee Meet (2021-22) Registration</p>
-                <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
-                                <Button
+                {/* <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
+                    <Button
                         type="submit"
                         variant="contained"
                         style={{ background: 'lightgrey' }}
                     >
-                        <div style={{ color: "blue", fontSize: "medium" }}>
-                            REGISTER NOW
-                        </div>
+                    <div style={{ color: "blue", fontSize: "medium" }}>
+                        REGISTER NOW
+                    </div>
                     </Button>
-                </Link>
+                </Link> */}
+                
+                    <Button
+                        type="button"
+                        variant="contained"
+                        style={{ background: 'lightgrey' }}
+                        onClick={()=> alert("The Registration has been closed")}
+                    >
+                    <div style={{ color: "blue", fontSize: "medium" }}>
+                        REGISTER NOW
+                    </div>
+                    </Button>
+                
                  <p><small style={{color:'red'}}>Registration link will be closed by 4th January 2022, 5.00 pm IST</small></p>
                          
                 <p style={{ color: "grey", fontFamily: "Montserrat", fontSize: "20px" }}>
