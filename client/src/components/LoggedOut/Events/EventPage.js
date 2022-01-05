@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 // import {Link} from 'react-router-dom';
 import Table from '@material-ui/core/Table';
@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import { Grid, makeStyles } from '@material-ui/core';
 // import DevPlanTable from './DevPlanTable';
 import { Link } from "react-router-dom";
+import Carousel from 'react-material-ui-carousel';
 
 
 
@@ -40,6 +41,12 @@ export default function EventPage() {
 
     const classes = useStyles();
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const [carouselProps, setCarouselProps] = useState({
+        autoPlay: false,
+        navButtonsAlwaysVisible: false,
+        duration: 2000,
+        index:1
+    });
     function createECData(sr, name, designation, mobile, email) {
         return { sr, name, designation, mobile, email };
     }
@@ -92,9 +99,39 @@ export default function EventPage() {
         createSceduleData("03.15 pm to 05.00 pm", "Visit and Interaction at Respective Department"),
         createSceduleData("05.00 pm", "Farewell & Go ahead"),
     ];
+
+
+    const videos = [
+        {
+            videoLink:`${PF}Promo2R.mp4`,
+            thumbnail:`${PF}TripToWalchand1.jpeg`
+        },
+        {
+            videoLink:`${PF}Promo4R.mp4`,
+            thumbnail:`${PF}TripToWalchand2.jpeg`
+        },
+        {
+            videoLink:`${PF}Promo3R.mp4`,
+            thumbnail:`${PF}TripToWalchand3.jpeg`
+        }
+    ];
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+
+    useEffect(() =>{
+       if(window.screen.width < 1000){
+           setCarouselProps({
+            autoPlay: false,
+            navButtonsAlwaysVisible: false,
+            duration: 2000,
+            index:0
+        }); 
+        }
+    },[window.screen.width]);
+
+
 
     return (
         <div className='eventpage_root' >
@@ -322,6 +359,17 @@ export default function EventPage() {
             </div>
             <div style={{width:'100%'}}>
                 <img src={PF+"Advertisement.jpeg"}  alt="WCE_IMAGE" style={{maxWidth: "50%"}}/>
+            </div>
+
+            <div>
+                <Carousel index={carouselProps.index} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
+                    {
+                        videos.map(video => (<video controls loop muted poster={video.thumbnail} style={{maxWidth:'60%', maxHeight:"525px", padding:"2%"}}>
+                                <source src={video.videoLink} type="video/mp4" />
+                            </video>
+                        )) 
+                    }
+                </Carousel>
             </div>
             <div style={{ fontFamily: "Montserrat", }}>
                 <p style={{ fontSize: "x-large", fontWeight: "bold", paddingTop: "3%" }}>Nearby Hotels</p>
