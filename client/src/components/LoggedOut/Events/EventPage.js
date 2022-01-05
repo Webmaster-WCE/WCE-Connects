@@ -102,6 +102,11 @@ export default function EventPage() {
 
 
     const videos = [
+        
+        {
+            videoLink:`${PF}wce_promo_720p.mp4`,
+            thumbnail:`${PF}TripToWalchand0.jpeg`
+        },
         {
             videoLink:`${PF}Promo2R.mp4`,
             thumbnail:`${PF}TripToWalchand1.jpeg`
@@ -113,6 +118,10 @@ export default function EventPage() {
         {
             videoLink:`${PF}Promo3R.mp4`,
             thumbnail:`${PF}TripToWalchand3.jpeg`
+        },
+        {
+            videoLink:`${PF}Promo5Final.mp4`,
+            thumbnail:`${PF}TripToWalchand4.jpeg`
         }
     ];
 
@@ -364,7 +373,7 @@ export default function EventPage() {
             <div>
                 <Carousel index={carouselProps.index} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
                     {
-                        videos.map(video => (<video controls loop muted poster={video.thumbnail} style={{maxWidth:'60%', maxHeight:"525px", padding:"2%"}}>
+                        videos.map((video,i) => (<video key={i} controls loop muted poster={video.thumbnail} style={{maxWidth:'60%', maxHeight:"525px", padding:"2%"}}>
                                 <source src={video.videoLink} type="video/mp4" />
                             </video>
                         )) 
