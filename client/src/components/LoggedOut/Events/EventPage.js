@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 // import {Link} from 'react-router-dom';
 import Table from '@material-ui/core/Table';
@@ -10,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Grid, makeStyles } from '@material-ui/core';
 // import DevPlanTable from './DevPlanTable';
+import { Link } from "react-router-dom";
+import Carousel from 'react-material-ui-carousel';
 
 
 
@@ -39,6 +41,12 @@ export default function EventPage() {
 
     const classes = useStyles();
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const [carouselProps, setCarouselProps] = useState({
+        autoPlay: false,
+        navButtonsAlwaysVisible: false,
+        duration: 2000,
+        index:1
+    });
     function createECData(sr, name, designation, mobile, email) {
         return { sr, name, designation, mobile, email };
     }
@@ -91,9 +99,48 @@ export default function EventPage() {
         createSceduleData("03.15 pm to 05.00 pm", "Visit and Interaction at Respective Department"),
         createSceduleData("05.00 pm", "Farewell & Go ahead"),
     ];
+
+
+    const videos = [
+        
+        {
+            videoLink:`${PF}wce_promo_720p.mp4`,
+            thumbnail:`${PF}TripToWalchand0.jpeg`
+        },
+        {
+            videoLink:`${PF}Promo2R.mp4`,
+            thumbnail:`${PF}TripToWalchand1.jpeg`
+        },
+        {
+            videoLink:`${PF}Promo4R.mp4`,
+            thumbnail:`${PF}TripToWalchand2.jpeg`
+        },
+        {
+            videoLink:`${PF}Promo3R.mp4`,
+            thumbnail:`${PF}TripToWalchand3.jpeg`
+        },
+        {
+            videoLink:`${PF}Promo5Final.mp4`,
+            thumbnail:`${PF}TripToWalchand4.jpeg`
+        }
+    ];
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+
+    useEffect(() =>{
+       if(window.screen.width < 1000){
+           setCarouselProps({
+            autoPlay: false,
+            navButtonsAlwaysVisible: false,
+            duration: 2000,
+            index:0
+        }); 
+        }
+    },[window.screen.width]);
+
+
 
     return (
         <div className='eventpage_root' >
@@ -110,23 +157,49 @@ export default function EventPage() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <div style={{  }} className={classes.xyz} >
-                            <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
+                            <div>
+                                {/* <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        style={{ background: 'lightgrey' }}
+                                    >
+                                        <div style={{ color: "blue", fontSize: "medium" }}>
+                                            REGISTER NOW
+                                        </div>
+                                    </Button>
+                                </Link> */}
+
+                                {/* link is disabled */}
+                                
                                 <Button
-                                    type="submit"
+                                    type="button"
                                     variant="contained"
                                     style={{ background: 'lightgrey' }}
+                                    onClick={()=> alert("The Registration has been closed")}
                                 >
                                     <div style={{ color: "blue", fontSize: "medium" }}>
                                         REGISTER NOW
                                     </div>
                                 </Button>
-                            </a>
+                                
+
+                                <p><small style={{color:'red'}}>Registration link will be closed by 4th January 2022, 5.00 pm IST</small></p>
+                            </div>
+                            
                             <p style={{ color: "white", fontFamily: "Montserrat", fontSize: "20px" }}>
                                 Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
                             </p>
                         </div>
                     </Grid>
                 </Grid>
+            </div>
+            <div style={{ fontFamily: "Montserrat" }}>
+                <p style={{ fontSize: "x-large", fontWeight: "bold", paddingTop: "2%" }}>Important Notice </p>
+                <div style={{ fontSize: "20px",  padding: "2%", backgroundColor: "#011940",margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px",border:"5px red solid" ,color:"white"}}>
+                    <p style={{whiteSpace:'pre-line'}}>{"Dear Alumnus,\n\nThe celebrations of the event ‘Platinum Jubilee Meet’ on 8th January 2022 shall be in the restricted presence because of norms issued by the Government of Maharashtra. In the current COVID related situation everyone has to observe the norms being published from time to time.\n\nIn order to observe the norms for attendance of 50 numbers per department function, the registration link will be closed by 4th January 2022, 5.00 pm. Entry will be restricted to only registered participants.\nLooking forward to meet you all\n\nFor any further assistance,\nContact person email: - ajeet.patil@walchandsangli.ac.in \nMobile no: - 7588920388"}</p>
+                   
+               </div>
             </div>
             {/* <svg style={{ marginBottom: "-200px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000000" fill-opacity="1" d="M0,0L120,10.7C240,21,480,43,720,48C960,53,1200,43,1320,37.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg> */}
             <div style={{ fontFamily: "Montserrat" }}>
@@ -264,20 +337,48 @@ export default function EventPage() {
             </div>
             <div style={{ fontFamily: "Montserrat", paddingTop: "3%" }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Platinum Jubilee Meet (2021-22) Registration</p>
-                <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
+                {/* <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
                     <Button
                         type="submit"
                         variant="contained"
                         style={{ background: 'lightgrey' }}
                     >
-                        <div style={{ color: "blue", fontSize: "medium" }}>
-                            REGISTER NOW
-                        </div>
+                    <div style={{ color: "blue", fontSize: "medium" }}>
+                        REGISTER NOW
+                    </div>
                     </Button>
-                </a>
+                </Link> */}
+                
+                    <Button
+                        type="button"
+                        variant="contained"
+                        style={{ background: 'lightgrey' }}
+                        onClick={()=> alert("The Registration has been closed")}
+                    >
+                    <div style={{ color: "blue", fontSize: "medium" }}>
+                        REGISTER NOW
+                    </div>
+                    </Button>
+                
+                 <p><small style={{color:'red'}}>Registration link will be closed by 4th January 2022, 5.00 pm IST</small></p>
+                         
                 <p style={{ color: "grey", fontFamily: "Montserrat", fontSize: "20px" }}>
                     Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
                 </p>
+            </div>
+            <div style={{width:'100%'}}>
+                <img src={PF+"Advertisement.jpeg"}  alt="WCE_IMAGE" style={{maxWidth: "50%"}}/>
+            </div>
+
+            <div>
+                <Carousel index={carouselProps.index} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
+                    {
+                        videos.map((video,i) => (<video key={i} controls loop muted poster={video.thumbnail} style={{maxWidth:'60%', maxHeight:"525px", padding:"2%"}}>
+                                <source src={video.videoLink} type="video/mp4" />
+                            </video>
+                        )) 
+                    }
+                </Carousel>
             </div>
             <div style={{ fontFamily: "Montserrat", }}>
                 <p style={{ fontSize: "x-large", fontWeight: "bold", paddingTop: "3%" }}>Nearby Hotels</p>

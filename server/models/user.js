@@ -59,6 +59,18 @@ const userSchema = new mongoose.Schema({
             minlength:1,
             maxlength:100
         },
+        branch:{
+            type: String,
+            // required: true,
+            minlength:1,
+            maxlength:100
+        },
+        passout_year:{
+            type: String,
+            // required: true,
+            minlength:1,
+            maxlength:100
+        }
     },
     activities :{
         spoc: {

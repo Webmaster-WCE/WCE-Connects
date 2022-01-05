@@ -16,13 +16,11 @@ import {
  import swal from 'sweetalert';
 import { Link, useLocation } from 'react-router-dom';
 // import {  } from 'react-router-dom';
-
-
+import ImageIcon from '@material-ui/icons/Image';
+import EventIcon from '@material-ui/icons/Event';
 
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
-import SchoolIcon from "@material-ui/icons/School";
-import PersonIcon from "@material-ui/icons/Person";
 import BookmarksIcon from "@material-ui/icons/Bookmarks";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
@@ -151,7 +149,7 @@ export default function Navigation() {
                     to="/gallery"
                   >
                     <ListItemIcon>
-                      <SchoolIcon />
+                      <ImageIcon />
                     </ListItemIcon>
                     <Typography variant="h6"> Gallery </Typography>
                   </MenuItem>
@@ -161,7 +159,7 @@ export default function Navigation() {
                     to="/events"
                   >
                     <ListItemIcon>
-                      <PersonIcon />
+                      <EventIcon />
                     </ListItemIcon>
                     <Typography variant="h6"> Events</Typography>
                   </MenuItem>
@@ -193,7 +191,7 @@ export default function Navigation() {
                     to="/login"
                   >
                     <ListItemIcon>
-                      <PersonIcon />
+                      <EventIcon />
                     </ListItemIcon>
                     <Typography variant="h6"> Login </Typography>
                   </MenuItem> */}
