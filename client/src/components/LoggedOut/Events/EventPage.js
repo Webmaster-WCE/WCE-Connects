@@ -45,7 +45,7 @@ export default function EventPage() {
         autoPlay: false,
         navButtonsAlwaysVisible: false,
         duration: 2000,
-        index:1
+        index:0
     });
     function createECData(sr, name, designation, mobile, email) {
         return { sr, name, designation, mobile, email };
@@ -207,6 +207,16 @@ export default function EventPage() {
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "1%" }}>Invocation</p>
                 <p style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "5%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
                     Every alumni meet has been a significant event for all the stakeholders associated with our institute. The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus on the <strong>8th day of January 2022</strong>. As intended every year, this meet also ensures strengthening a strong bond between the alumni and current stakeholders of the institute. Please spare your time to witness progress of alma matter, meet and felicitate your teachers, be a role model for young students and extend yourself by giving back to the institute what it deserves !</p>
+            </div>
+             <div>
+                <Carousel index={carouselProps.index} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
+                    {
+                        videos.map((video,i) => (<video key={i} controls loop muted poster={video.thumbnail} style={{maxWidth:'60%', maxHeight:"525px", padding:"2%"}}>
+                                <source src={video.videoLink} type="video/mp4" />
+                            </video>
+                        )) 
+                    }
+                </Carousel>
             </div>
             <div style={{ fontFamily: "Montserrat" }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "3%" }}>Event Purpose</p>
@@ -370,16 +380,7 @@ export default function EventPage() {
                 <img src={PF+"Advertisement.jpeg"}  alt="WCE_IMAGE" style={{maxWidth: "50%"}}/>
             </div>
 
-            <div>
-                <Carousel index={carouselProps.index} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
-                    {
-                        videos.map((video,i) => (<video key={i} controls loop muted poster={video.thumbnail} style={{maxWidth:'60%', maxHeight:"525px", padding:"2%"}}>
-                                <source src={video.videoLink} type="video/mp4" />
-                            </video>
-                        )) 
-                    }
-                </Carousel>
-            </div>
+           
             <div style={{ fontFamily: "Montserrat", }}>
                 <p style={{ fontSize: "x-large", fontWeight: "bold", paddingTop: "3%" }}>Nearby Hotels</p>
                 <div style={{ backgroundColor: "lightgrey", padding: "1%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
