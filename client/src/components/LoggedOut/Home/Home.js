@@ -133,7 +133,7 @@ export default function Home(){
                 }
             </Carousel>
            
-            <div style={{ padding: '4%' }}></div>
+            <div style={{ padding: '1%' }}></div>
             <div>
                 <Carousel index={0} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
                     {
@@ -150,18 +150,18 @@ export default function Home(){
                     <source src={`${PF}wce_promo_720p.mp4`} type="video/mp4" />
                 </video> */}
             {/* </div> */}
-            <div style={{ padding: '2%' }}>
+            <div style={{ padding: '1%' }}>
                 <div style={{ fontFamily: "Montserrat" }}>
-                    <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>All Events</p>
+                    <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96",marginBottom:'-5%' }}>All Events</p>
                 </div>
                 <Events/>
             </div>
 
-            <div style={{ padding: '2%' }}>
+            <div style={{ padding: '1%' }}>
                <div style={{ fontFamily: "Montserrat" }}>
-                    <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Wants to Contribute in College Activities ?</p>
+                    <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Wants to Contribute as Alumni ?</p>
                     <div style={{  backgroundColor: "lightgrey", padding: "5%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
-                         <p style={{ whiteSpace:'pre-line',fontSize: "x-large" }}>{"Throughout the year college and students participate in various activities that help students to develop professional as well as personal life. Your contribution to these activities is very helpful for students future.\n\nBe a part of Alumni Activities. \n\nFor more information" }</p>
+                         <p style={{ whiteSpace:'pre-line',fontSize: "x-large" }}>{"As Alumni you can contribute to college in various ways. Your contribution to these activities is very helpful for students future.\nBe a part of Alumni Activities.\nFor more information" }</p>
                         <div style={{display:'flex',justifyContent:'space-between'}}>
                             <Link to="/activities" style={{backgroundColor:"white", textDecoration: "none" ,margin:'1%'}}>
                                 <Button

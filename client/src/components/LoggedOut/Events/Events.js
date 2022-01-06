@@ -27,8 +27,8 @@ export default function Events() {
   
   
   const [eventCount, setEventCount] = useState(1);
-  //const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [PF, setPublichFolderPath] = useState(process.env.REACT_APP_PUBLIC_FOLDER);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  //const [PF, setPublichFolderPath] = useState(process.env.REACT_APP_PUBLIC_FOLDER);
   const activeEventID = [1];
   const events = [
     {
@@ -83,47 +83,48 @@ export default function Events() {
   ];
   useEffect(() => {
     setEventCount(1);
-      if(process.env.NODE_ENV ==='development'){
-        setPublichFolderPath(process.env.REACT_APP_LOCAL_HOST_PUBLIC_FOLDER);
-      }
+      
       window.scrollTo(0, 0)
   }, []);
 
   
   return (
     <>
-      { eventCount===0 ? 
+      { 
+        eventCount===0 ? 
           <div style={{ fontFamily:"Montserrat", fontSize:"Bold", height:"70vh", textAlign:"center", padding:"70px 0",marginTop:"3%"}}>
                  EVENTS WILL BE DISPLAYED HERE...
           </div> :
-           <div className={`${classes.root} container`} > 
-           <Grid container spacing={2}>
-          {events.map((event) => {
-          return <Grid item key={event.eventid} style={{ height:"100%"}} xs={12}  sm={6} lg={4} >
-              <Card>
+          <div className={`${classes.root} container`} > 
+            <Grid container spacing={2}>
+            {
+              events.map((event) => {
+                return <Grid item key={event.eventid} style={{ height:"100%"}} xs={12}  sm={6} lg={4} >
+                  <Card>
                     <Link to={activeEventID.includes(event.eventid)?"/events/eventid":"/events"} style={{textDecoration:"none"}} >
                       <CardActionArea>
-                          <CardMedia
+                        <CardMedia
                           component="img"
                           alt="EVENT_BANNER"
                           height="100%"
                           width="100%"
                           image={event.banner}
                           title={event.title}
-                          />
-                          <CardContent style={{backgroundColor:"lightgrey", height:"30%", minHeight:"30%"}}>
+                        />
+                        <CardContent style={{backgroundColor:"lightgrey", height:"30%", minHeight:"30%"}}>
                           <Typography gutterBottom variant="h5" component="h2"  style={{color:"black"}}>
-                          {event.title}
+                            {event.title}
                           </Typography>
                           <Typography variant="body2" color="textSecondary" component="p" style={{textAlign:"justify", padding:"5px"}}>
-                          {event.description} 
+                            {event.description} 
                           </Typography>
-                          </CardContent>
+                        </CardContent>
                       </CardActionArea>
                     </Link>
-              </Card>
-          </Grid>})}
-          </Grid>
+                  </Card>
+                </Grid>
+              })}
+            </Grid>
           </div>
       }
     </>
