@@ -127,6 +127,24 @@ export default function Home(){
                 // className={classes.waveBorder}
                 animationNegativeDelay={3}
             />
+            <div style={{ fontFamily: "Montserrat" }}>
+                <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "1%",color:'red' }}>Important Notice about Platinum Jubilee Meet 2021-22</p>
+                <div style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "3%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px",border:'3px solid red' }}>
+                    <p>Every alumni meet has been a significant event for all the stakeholders associated with our institute. As intended every year, this platinum year the meet was scheduled on 8th January 22.However due to unfortunate pandemic situation Hon. Collector as well as Hon. Commissioner, Sangli has ordered (circular 341/2021-22 dated 6th January 2022) to not to conduct any gathering till further notice. The institute appreciates zeal shown by the alumni and all the stakeholders of the institute so far. Please note that due to the announcements made by government representatives we are compelled to postpone the program till further directives.</p>
+                    <div>
+                        <a href={`${PF}CircularAlumniMeetPostponed.pdf`} target="_blank">
+                            <Button
+                                    style={{background: 'black'}}
+                                    variant="contained"
+                                >
+                                    <div style={{ color: "white" }}>College Notice</div>
+                                </Button>
+                        </a>
+                    </div>
+                    
+               </div>
+               
+            </div>
             <Carousel index={carouselProps.index} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
                 {
                     events.map( (event, i) => <Event key={i} event={event} duration='2000' interval='20000'/>)
