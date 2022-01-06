@@ -150,7 +150,7 @@ export default function Home(){
                     <source src={`${PF}wce_promo_720p.mp4`} type="video/mp4" />
                 </video> */}
             {/* </div> */}
-            <div style={{ padding: '1%' }}>
+            <div style={{ padding: '1%' ,marginBottom:'-3%'}}>
                 <div style={{ fontFamily: "Montserrat" }}>
                     <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96",marginBottom:'-5%' }}>All Events</p>
                 </div>
@@ -160,8 +160,8 @@ export default function Home(){
             <div style={{ padding: '1%' }}>
                <div style={{ fontFamily: "Montserrat" }}>
                     <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Wants to Contribute as Alumni ?</p>
-                    <div style={{  backgroundColor: "lightgrey", padding: "5%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
-                         <p style={{ whiteSpace:'pre-line',fontSize: "x-large" }}>{"As Alumni you can contribute to college in various ways. Your contribution to these activities is very helpful for students future.\nBe a part of Alumni Activities.\nFor more information" }</p>
+                    <div style={{  backgroundColor: "lightgrey", padding: "3%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
+                         <p style={{ whiteSpace:'pre-line',fontSize: "x-large" }}>{"As alumni you can contribute to the college in various ways. Your contribution to these activities is very helpful for students' future.\nBe a part of Alumni Activities.\nFor more information" }</p>
                         <div style={{display:'flex',justifyContent:'space-between'}}>
                             <Link to="/activities" style={{backgroundColor:"white", textDecoration: "none" ,margin:'1%'}}>
                                 <Button
