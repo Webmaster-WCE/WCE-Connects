@@ -204,6 +204,25 @@ export default function Home(){
 
                 </div>
             </div>
+
+             <div style={{ padding: '1%' }}>
+               <div style={{ fontFamily: "Montserrat" }}>
+                    <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>A Framework for Donor Package</p>
+                    <div style={{  backgroundColor: "lightgrey", padding: "3%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
+                        <p style={{ whiteSpace:'pre-line',fontSize: "x-large" }}>{"Year 2021-22 marks a major milestone in the history of Walchand College of Engineering as it has turned into in 75 years along with the nation’s independence in 1947.\n\nBeing an old institution WCE has an urgent need to re-build its infrastructure to meet present and future needs, i.e. replacement of almost all buildings, hostels, most of labs, rebuilding and expanding internal roads, creating a proper sewage network, basic gardening and landscaping, et al.\n\nOn operational side, reliable and sustainable fund provision is required for basic needs like, faculty and staff, books and journals in the library, research and development fund etc.\n\nFunds are needed for transformation of Walchand College of Engineering (WCE) in to a world-class institution on a sustainable basis. Various funding modes could be grants, donations, loans, and so on. Donations from alumni, industry or other philanthropists could be one of the options. Typically, benefactors have some expectations while providing major donations. These could be naming a building or a facility or supporting an activity as per the donor’s wish. Considering such expectations, an outline of a scheme of donor packages is proposed here in relation to major needs of the institute." }</p>
+                        <div >
+                            <Link to="/donorpackage" style={{backgroundColor:"white", textDecoration: "none" ,margin:'1%'}}>
+                                <Button
+                                    style={{background: 'black'}}
+                                    variant="contained"
+                                >
+                                    <div style={{ color: "white" }}>See Details</div>
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div style={{margin:"1% 15%", backgroundColor:"#ede8e8", border: "2px solid black", borderRadius:"30px"}}>
                 <img src={PF+"Leena_Nair_IMG.jpg"} alt="leena_nair_img" style={{float:"left", padding:"1.5rem", marginTop:"2%",minWidth:"180px" }} width="20%" />
                 <div style={{ textAlign: "justify", padding:"1rem", fontSize: "large"}}>

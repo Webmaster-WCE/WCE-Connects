@@ -163,6 +163,18 @@ export default function Navigation() {
                     </ListItemIcon>
                     <Typography variant="h6"> Events</Typography>
                   </MenuItem>
+
+                   <MenuItem
+                    onClick={() => setAnchor(null)}
+                    component={Link}
+                    to="/donorpackage"
+                  >
+                    <ListItemIcon>
+                      <BookmarksIcon />
+                    </ListItemIcon>
+                    <Typography variant="h6"> Donor Package </Typography>
+                  </MenuItem>
+
                   <MenuItem
                     onClick={() => setAnchor(null)}
                     component={Link}
@@ -215,10 +227,18 @@ export default function Navigation() {
                     </Button>
                   </Link>
                 </div>
-                 <div>
+                <div>
                   <Link to="/events" style={{textDecoration:"none"}}>
                     <Button  className={activeNav.startsWith('/events') ? classes.active : classes.navitem}>
                       <Typography variant="subtitle2" className={classes.navitem}>Events</Typography>
+                    </Button>
+                  </Link>
+                </div>
+
+                <div>
+                  <Link to="/donorpackage" style={{textDecoration:"none"}}>
+                    <Button  className={activeNav.startsWith('/donorpackage') ? classes.active : classes.navitem}>
+                      <Typography variant="subtitle2" className={classes.navitem}>Donor Packages</Typography>
                     </Button>
                   </Link>
                 </div>

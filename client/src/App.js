@@ -18,6 +18,7 @@ import GalleryPage from './components/LoggedOut/Gallery/GalleryPage';
 import Footer from './components/LoggedOut/Footer/Footer'
 import { EventPreRegistration } from './components/LoggedOut/Events/EventPreRegistration';
 import PrivacyPolicy from './components/LoggedOut/Footer/PrivacyPolicy'
+import { DonorPackage } from './components/LoggedOut/DonarPackage/DonarPackage';
 function App() {
   // const {token} = useContext(AuthContext);
 
@@ -55,6 +56,9 @@ function App() {
             </Route>
             <Route exact path="/events/eventid/preregistration">
               <EventPreRegistration/>
+            </Route>
+            <Route exact path="/donorpackage">
+                <DonorPackage/>
             </Route>
             <Route exact path="/policy">
               <PrivacyPolicy/>
