@@ -1,6 +1,6 @@
 const XLSX=require('xlsx');
 
-const data=function excelFileTojson (FileName) {
+const data = function excelFileTojson (FileName) {
   const workbook=XLSX.readFile(FileName);
   const sheet_name_list = workbook.SheetNames;
   console.log(sheet_name_list); // getting as Sheet1
@@ -43,5 +43,5 @@ const data=function excelFileTojson (FileName) {
   });
 };
 
-module.exports = excelFileTojson; 
+module.exports = data; 
   
