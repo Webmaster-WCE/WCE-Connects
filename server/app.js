@@ -1,11 +1,13 @@
 const express   = require('express'),
     app         = express(),
     bodyParser = require('body-parser')
-    mongoose    = require('mongoose'),
-    bcrypt      = require('bcrypt'),    
-    {User}      = require('./models/User'),
+    mongoose    = require('mongoose'),    
+    bcrypt      = require('bcrypt'),
     cors        = require('cors'),
+    auth        = require('./middleware/jwt-auth'),
+    {User}      = require('./models/User'),
     {userProfile} = require('./models/userProfile'),
+    authRoutes  = require('./routes/auth'),
     adminRoutes = require('./routes/admin');
 
 
@@ -174,8 +176,10 @@ app.get('/', function (req, res) {
 
 // Importing routing modules
 // Without authentication
-
+app.use('/auth', authRoutes);   
+ 
 // With authentication
+app.use(auth);
 app.use('/admin', adminRoutes);
 
 app.listen(3000);
