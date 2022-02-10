@@ -1,6 +1,7 @@
 const express   = require('express'),
     app         = express(),
-    mongoose    = require('mongoose'),
+    bodyParser = require('body-parser')
+    mongoose    = require('mongoose'),    
     bcrypt      = require('bcrypt'),
     cors        = require('cors'),
     auth        = require('./middleware/jwt-auth'),
@@ -9,8 +10,19 @@ const express   = require('express'),
     authRoutes  = require('./routes/auth'),
     adminRoutes = require('./routes/admin');
 
-// Using environment variables
+
+//Departmental news section
+const departmentalNews = require('./routes/departmentalNews');
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+//Route for departmental news
+app.use('/news', departmentalNews);
+
+
+// Using environment variables (Config) for AWS SES Credentials...
 require('dotenv').config();
+
 
 // ## To be moved to middlewares
 const corsOptions = {
@@ -41,6 +53,8 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+
+
 
 // ## To be moved to controllers
 const connectDB = async () => {
