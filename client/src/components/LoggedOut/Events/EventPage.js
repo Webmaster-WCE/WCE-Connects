@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 // import {Link} from 'react-router-dom';
 import Table from '@material-ui/core/Table';
@@ -10,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Grid, makeStyles } from '@material-ui/core';
 // import DevPlanTable from './DevPlanTable';
+import { Link } from "react-router-dom";
+import Carousel from 'react-material-ui-carousel';
 
 
 
@@ -39,6 +41,12 @@ export default function EventPage() {
 
     const classes = useStyles();
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const [carouselProps, setCarouselProps] = useState({
+        autoPlay: false,
+        navButtonsAlwaysVisible: false,
+        duration: 2000,
+        index:0
+    });
     function createECData(sr, name, designation, mobile, email) {
         return { sr, name, designation, mobile, email };
     }
@@ -91,12 +99,51 @@ export default function EventPage() {
         createSceduleData("03.15 pm to 05.00 pm", "Visit and Interaction at Respective Department"),
         createSceduleData("05.00 pm", "Farewell & Go ahead"),
     ];
+
+
+    const videos = [
+        
+        {
+            videoLink:`${PF}wce_promo_720p.mp4`,
+            thumbnail:`${PF}TripToWalchand0.jpeg`
+        },
+        {
+            videoLink:`${PF}Promo2R.mp4`,
+            thumbnail:`${PF}TripToWalchand1.jpeg`
+        },
+        {
+            videoLink:`${PF}Promo4R.mp4`,
+            thumbnail:`${PF}TripToWalchand2.jpeg`
+        },
+        {
+            videoLink:`${PF}Promo3R.mp4`,
+            thumbnail:`${PF}TripToWalchand3.jpeg`
+        },
+        {
+            videoLink:`${PF}Promo5Final.mp4`,
+            thumbnail:`${PF}TripToWalchand4.jpeg`
+        }
+    ];
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 
+    useEffect(() =>{
+       if(window.screen.width < 1000){
+           setCarouselProps({
+            autoPlay: false,
+            navButtonsAlwaysVisible: false,
+            duration: 2000,
+            index:0
+        }); 
+        }
+    },[window.screen.width]);
+
+
+
     return (
-        <div style={{ marginTop: '4rem' }} >
+        <div className='eventpage_root' >
             <div style={{ backgroundColor: "#011940", color: "white" }}>
                 <img src={`${PF}events/Platinum_Jublee_Meet.webp`} alt="EVENT_BANNER" style={{ maxWidth: "-webkit-fill-available", maxHeight: "400px" }} />
             </div>
@@ -104,23 +151,44 @@ export default function EventPage() {
                 <Grid container style={{padding:"3%"}}>
                     <Grid item xs={12} sm={6}>
                         <div style={{  }} className={classes.abc}>
-                            <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT DAY: 8th Jan 2022</p>
-                            <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT TIME: 10:00 AM</p>
+                            {/* <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT DAY: 8th Jan 2022</p>
+                            <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT TIME: 10:00 AM</p> */}
+                            <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT DAY: <span style={{color:'red'}}>Date will be updated</span> </p>
+                            <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT TIME: </p>
                         </div>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <div style={{  }} className={classes.xyz} >
-                            <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
+                            <div>
+                                {/* <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        style={{ background: 'lightgrey' }}
+                                    >
+                                        <div style={{ color: "blue", fontSize: "medium" }}>
+                                            REGISTER NOW
+                                        </div>
+                                    </Button>
+                                </Link> */}
+
+                                {/* link is disabled */}
+                                
                                 <Button
-                                    type="submit"
+                                    type="button"
                                     variant="contained"
                                     style={{ background: 'lightgrey' }}
+                                    onClick={()=> alert("The Registration has been closed")}
                                 >
                                     <div style={{ color: "blue", fontSize: "medium" }}>
                                         REGISTER NOW
                                     </div>
                                 </Button>
-                            </a>
+                                
+
+                                <p><small style={{color:'red'}}>Registration link will be closed by 4th January 2022, 5.00 pm IST</small></p>
+                            </div>
+                            
                             <p style={{ color: "white", fontFamily: "Montserrat", fontSize: "20px" }}>
                                 Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
                             </p>
@@ -128,12 +196,46 @@ export default function EventPage() {
                     </Grid>
                 </Grid>
             </div>
+
+            <div style={{ fontFamily: "Montserrat" }}>
+                <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "1%",color:'red' }}>Important Notice about Platinum Jubilee Meet 2021-22</p>
+                <div style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "3%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px",border:'3px solid red' }}>
+                    <p>Every alumni meet has been a significant event for all the stakeholders associated with our institute. As intended every year, this platinum year the meet was scheduled on 8th January 22.However due to unfortunate pandemic situation Hon. Collector as well as Hon. Commissioner, Sangli has ordered (circular 341/2021-22 dated 6th January 2022) to not to conduct any gathering till further notice. The institute appreciates zeal shown by the alumni and all the stakeholders of the institute so far. Please note that due to the announcements made by government representatives we are compelled to postpone the program till further directives.</p>
+                    <div>
+                        <a href={`${PF}CircularAlumniMeetPostponed.pdf`} target="_blank">
+                            <Button
+                                style={{background: 'black'}}
+                                variant="contained"
+                            >
+                                <div style={{ color: "white" }}>College Notice</div>
+                            </Button>
+                        </a>
+                    </div>
+               </div>
+            </div>
+            {/* <div style={{ fontFamily: "Montserrat" }}>
+                <p style={{ fontSize: "x-large", fontWeight: "bold", paddingTop: "2%" }}>Important Notice </p>
+                <div style={{ fontSize: "20px",  padding: "2%", backgroundColor: "#011940",margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px",border:"5px red solid" ,color:"white"}}>
+                    <p style={{whiteSpace:'pre-line'}}>{"Dear Alumnus,\n\nThe celebrations of the event ‘Platinum Jubilee Meet’ on 8th January 2022 shall be in the restricted presence because of norms issued by the Government of Maharashtra. In the current COVID related situation everyone has to observe the norms being published from time to time.\n\nIn order to observe the norms for attendance of 50 numbers per department function, the registration link will be closed by 4th January 2022, 5.00 pm. Entry will be restricted to only registered participants.\nLooking forward to meet you all\n\nFor any further assistance,\nContact person email: - ajeet.patil@walchandsangli.ac.in \nMobile no: - 7588920388"}</p>
+                   
+               </div>
+            </div> */}
             {/* <svg style={{ marginBottom: "-200px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000000" fill-opacity="1" d="M0,0L120,10.7C240,21,480,43,720,48C960,53,1200,43,1320,37.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg> */}
             <div style={{ fontFamily: "Montserrat" }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Platinum Jubilee Meet (2021-22)</p>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "1%" }}>Invocation</p>
                 <p style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "5%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
                     Every alumni meet has been a significant event for all the stakeholders associated with our institute. The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus on the <strong>8th day of January 2022</strong>. As intended every year, this meet also ensures strengthening a strong bond between the alumni and current stakeholders of the institute. Please spare your time to witness progress of alma matter, meet and felicitate your teachers, be a role model for young students and extend yourself by giving back to the institute what it deserves !</p>
+            </div>
+             <div>
+                <Carousel index={carouselProps.index} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
+                    {
+                        videos.map((video,i) => (<video key={i} controls loop muted poster={video.thumbnail} style={{maxWidth:'60%', maxHeight:"525px", padding:"2%"}}>
+                                <source src={video.videoLink} type="video/mp4" />
+                            </video>
+                        )) 
+                    }
+                </Carousel>
             </div>
             <div style={{ fontFamily: "Montserrat" }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "3%" }}>Event Purpose</p>
@@ -264,21 +366,40 @@ export default function EventPage() {
             </div>
             <div style={{ fontFamily: "Montserrat", paddingTop: "3%" }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Platinum Jubilee Meet (2021-22) Registration</p>
-                <a href="https://services.sabpaisa.in/pages/walchandcollegeofengineeringsangli.html" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
+                {/* <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
                     <Button
                         type="submit"
                         variant="contained"
                         style={{ background: 'lightgrey' }}
                     >
-                        <div style={{ color: "blue", fontSize: "medium" }}>
-                            REGISTER NOW
-                        </div>
+                    <div style={{ color: "blue", fontSize: "medium" }}>
+                        REGISTER NOW
+                    </div>
                     </Button>
-                </a>
+                </Link> */}
+                
+                    <Button
+                        type="button"
+                        variant="contained"
+                        style={{ background: 'lightgrey' }}
+                        onClick={()=> alert("The Registration has been closed")}
+                    >
+                    <div style={{ color: "blue", fontSize: "medium" }}>
+                        REGISTER NOW
+                    </div>
+                    </Button>
+                
+                 <p><small style={{color:'red'}}>Registration link will be closed by 4th January 2022, 5.00 pm IST</small></p>
+                         
                 <p style={{ color: "grey", fontFamily: "Montserrat", fontSize: "20px" }}>
                     Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
                 </p>
             </div>
+            <div style={{width:'100%'}}>
+                <img src={PF+"Advertisement.jpeg"}  alt="WCE_IMAGE" style={{maxWidth: "50%"}}/>
+            </div>
+
+           
             <div style={{ fontFamily: "Montserrat", }}>
                 <p style={{ fontSize: "x-large", fontWeight: "bold", paddingTop: "3%" }}>Nearby Hotels</p>
                 <div style={{ backgroundColor: "lightgrey", padding: "1%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>

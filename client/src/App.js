@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 import { HashRouter, Route, Switch } from "react-router-dom";
-// import { LoggedIn } from './components/LoggedIn/LoggedIn';
+import { LoggedIn } from './components/LoggedIn/LoggedIn';
 // import { VerifyEmail } from './components/LoggedOut/Register/VerifyEmail';
 // import EmailVerified from './components/LoggedOut/Register/EmailVerified';
 import Home from './components/LoggedOut/Home/Home';
-// import Login from './components/LoggedOut/Login/Login';
+import Login from './components/LoggedOut/Login/Login';
 // import Register from './components/LoggedOut/Register/Register';
 import Navigation from './components/LoggedOut/Navigation/Navigation';
 import Events from './components/LoggedOut/Events/Events';
@@ -16,7 +16,9 @@ import ActivityForm from './components/LoggedOut/Activities/ActivityForm';
 // import {AuthContext} from './context/AuthContext';
 import GalleryPage from './components/LoggedOut/Gallery/GalleryPage';
 import Footer from './components/LoggedOut/Footer/Footer'
-
+import { EventPreRegistration } from './components/LoggedOut/Events/EventPreRegistration';
+import PrivacyPolicy from './components/LoggedOut/Footer/PrivacyPolicy'
+import { DonorPackage } from './components/LoggedOut/DonarPackage/DonarPackage';
 function App() {
   // const {token} = useContext(AuthContext);
 
@@ -49,10 +51,19 @@ function App() {
             <Route exact path="/events/eventid/register">
               <EventRegister/>
             </Route>
-            {/* <Route exact path='/login'>
+             <Route exact path='/login'>
               <Login/>
             </Route>
-            <Route exact path="/register">
+            <Route exact path="/events/eventid/preregistration">
+              <EventPreRegistration/>
+            </Route>
+            <Route exact path="/donorpackage">
+                <DonorPackage/>
+            </Route>
+            <Route exact path="/policy">
+              <PrivacyPolicy/>
+            </Route>
+            {/*<Route exact path="/register">
               <Register/>
             </Route> */}
             {/* <Route exact path="/verify">
@@ -62,9 +73,9 @@ function App() {
               <EmailVerified/>
             </Route> */}
         </Switch>
-        {/* <Route path="/u"> 
+        <Route path="/u"> 
           <LoggedIn/>
-        </Route> */}
+        </Route>
         <Footer/>
       </HashRouter>
     </div>

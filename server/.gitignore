@@ -5,6 +5,8 @@ configurations
 yarn.lock
 
 .env
+dev.env
+prod.env
 
 personalTokens.json
 
