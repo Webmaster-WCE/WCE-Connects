@@ -1,42 +1,80 @@
 const jwt = require("jsonwebtoken");
 
-const secret = process.env.SECRET;
+const secret = `${process.env.SECRETE}`;
 
 const auth = async (req, res, next) => {
+
   try {
     const token = req.headers.authorization.split(" ")[1];
     const isCustomAuth = token.length < 500;
-
     let decodedData;
 
-    if (token && isCustomAuth) {      
+    if (token && isCustomAuth) {
       decodedData = jwt.verify(token, secret);
 
       req.userId = decodedData?.id;
-    } else {
-      decodedData = jwt.decode(token);
+    }
 
-      req.userId = decodedData?.sub;
-    }    
-
+    // console.log("Authenticated!!");
     next();
   } catch (error) {
     console.log(error);
+    res.status(401)
+    return res.send('Invalid Token!')
   }
 };
 
-const authRole = (role, dept) => {
-  return (req, res, next) => {
-    if (req.user.role !== role && req.user.role !== dept) {
-      res.status(401)
-      return res.send('Not allowed')
+const authRoleHod = (req, res, next) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const isCustomAuth = token.length < 500;
+    let decodedData;
+
+    if (token && isCustomAuth ) {
+      decodedData = jwt.verify(token, secret);
+
+      if (decodedData?.role !== 'hod') {
+        res.status(401)
+        return res.send('Invalid user priviledges!')
+      }
     }
 
-    next()
+    // console.log("Authenticated Role!!");
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(401)
+    return res.send('Invalid User Priviledges!')
   }
 }
 
+const authDept = (req, res, next) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const isCustomAuth = token.length < 500;
+    let decodedData;
+
+    if (token && isCustomAuth) {
+      decodedData = jwt.verify(token, secret);
+
+      if (decodedData?.role !== req.department) {
+        res.status(401)
+        return res.send('Invalid Departmental priviledges 1!')
+      }
+    }
+
+    console.log("Authenticated Department!!");
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(401)
+    return res.send('Invalid Departmental Priviledges 2!')
+  }
+}
+
+
 module.exports = {
   auth,
-  authRole
+  authRoleHod,
+  authDept
 }
