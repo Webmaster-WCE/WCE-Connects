@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    td,
+    p {
+      font-size: 13px;
+      color: #1e1e1e;
+    }
+
+    ul {
+      margin: 0 0 10px 25px;
+      padding: 0;
+    }
+
+    li {
+      margin: 0 0 3px 0;
+    }
+
+    h1,
+    h2 {
+      color: black;
+    }
+
+    h1 {
+      font-size: 25px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    a {
+      color: #2F82DE;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .entire-page {
+      background: #C7C7C7;
+      width: 100%;
+      padding: 20px 0;
+      font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+      line-height: 1.5;
+    }
+
+    .email-body {
+      max-width: 600px;
+      min-width: 320px;
+      margin: 0 auto;
+      background: white;
+      border-collapse: collapse;
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .email-header {
+      background: black;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .news-section {
+      padding: 20px 30px;
+    }
+
+    .footer {
+      background: #eee;
+      padding: 10px;
+      font-size: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <table class="entire-page">
+
+    <tr>
+
+      <td>
+
+        <table class="email-body">
+
+          <tr>
+            <td class="email-header">
+              <a href="http://alumni.wce.ac.in" target="_blank">
+                <img src="https://www.alumni.wce.ac.in/assets//logo/android-chrome-192x192.png" alt="CodePen News">
+              </a>
+              <a href="http://alumni.wce.ac.in" target="_blank">
+                <h1 style="color: white;">WCE-Connects</h1>
+              </a>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td class="news-section">
+
+              <h1> ${req.newnewsBody.title} </h1>
+
+              <h2>
+                Created by: ${req.newnewsBody.author}
+              </h2>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td class="news-section">
+
+              <h2>About todays newsletter:</h2>
+
+              <p> ${req.newnewsBody.description} </p>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td class="news-section">
+
+              <h2>More Details:</h2>
+
+              <p>Here are the further details related news. </p>
+
+              <ul>
+                <li>
+                  Contact Person: ${req.newnewsBody.contactPerson}
+                </li>
+                <li>
+                  Contact Number: ${req.newnewsBody.contactNumber}
+                </li>
+                <li>
+                  Email: ${req.newnewsBody.contactEmail}
+                </li>
+
+              </ul>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td class="news-section">
+
+              <!-- <h2> Thanks and Regards...</h2> -->
+
+              <h4>
+                Thanks and Regards,
+                <br>
+                ${req.newnewsBody.author},
+                <br>
+                ${req.newnewsBody.role}
+                <br>
+                Department of ${req.newnewsBody.department},
+                <br>
+                WCE, Sangli - 416415
+              </h4>
+
+            </td>
+
+          </tr>
+
+          <tr>
+            <td class="footer">
+              You're receiving this email because you are registered on <a href="http://alumni.wce.ac.in"
+                target="_blank">WCE-Connects</a>.
+              <br>
+              Designed and developed by Department of Computer Science and Engineering, WCE Sangli.
+            </td>
+          </tr>
+        </table>
+
+      </td>
+
+    </tr>
+
+  </table>
+</body>
+
+</html>

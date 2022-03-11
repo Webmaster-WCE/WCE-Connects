@@ -7,21 +7,32 @@ const express   = require('express'),
     auth        = require('./middleware/jwt-auth'),
     {User}      = require('./models/User'),
     {userProfile} = require('./models/userProfile'),
+    userLogin = require('./routes/userLogin'),
     authRoutes  = require('./routes/auth'),
     adminRoutes = require('./routes/admin');
 
 
 //Departmental news section
 const departmentalNews = require('./routes/departmentalNews');
+
+//Mailing section
+const sendMail = require('./routes/newsmailer');
+
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 //Route for departmental news
 app.use('/news', departmentalNews);
 
+//Routes created for user login  ---Hod Login
+app.use('/userlogin', userLogin);
+
 
 // Using environment variables (Config) for AWS SES Credentials...
 require('dotenv').config();
+
+//TODO Router for checking mails
+// app.use('/sendmail', sendMail);
 
 
 // ## To be moved to middlewares
@@ -59,7 +70,7 @@ app.use(function (req, res, next) {
 // ## To be moved to controllers
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.DB_CONN, {
+        await mongoose.connect(process.env.DB_CONN1, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
@@ -182,4 +193,4 @@ app.use('/auth', authRoutes);
 app.use(auth);
 app.use('/admin', adminRoutes);
 
-app.listen(3000);
+app.listen(5000);

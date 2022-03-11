@@ -1,0 +1,22 @@
+{
+  "Destination": {
+    "ToAddresses" : "abhishekk0358@gmail.com"
+  },
+
+  "Message": {
+    "Body": {
+      "Html": {
+        "Charset": "UTF-8",
+        "Data": "<h1>This is heading which is the part of body.<h1>"
+      },
+      "Text": {
+        "Charset": "UTF-8",
+        "Data": "All rights reserved!"
+      }
+    },
+    "Subject": {
+      "Charset": "UTF-8",
+      "Data": "Tester mail at 17:11 for testing json object"
+    }
+  }
+}
