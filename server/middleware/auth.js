@@ -1,21 +1,19 @@
 const jwt = require("jsonwebtoken");
 
-const secret = `${process.env.SECRETE}`;
+// const secret = `${process.env.SECRETE}`;
 
 const auth = async (req, res, next) => {
 
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const isCustomAuth = token.length < 500;
-    let decodedData;
+    // const isCustomAuth = token.length < 500;
 
-    if (token && isCustomAuth) {
-      decodedData = jwt.verify(token, secret);
+    if(!token)  return res.sendStatus(401)  
 
-      req.userId = decodedData?.id;
-    }
+    let decodedData = jwt.verify(token, process.env.SECRETE);
+    console.log("New Data ", decodedData);
 
-    // console.log("Authenticated!!");
+    console.log("Authenticated User!! ");
     next();
   } catch (error) {
     console.log(error);
@@ -31,7 +29,7 @@ const authRoleHod = (req, res, next) => {
     let decodedData;
 
     if (token && isCustomAuth ) {
-      decodedData = jwt.verify(token, secret);
+      decodedData = jwt.verify(token, process.env.SECRETE);
 
       if (decodedData?.role !== 'hod') {
         res.status(401)
@@ -55,7 +53,7 @@ const authDept = (req, res, next) => {
     let decodedData;
 
     if (token && isCustomAuth) {
-      decodedData = jwt.verify(token, secret);
+      decodedData = jwt.verify(token, process.env.SECRETE);
 
       if (decodedData?.role !== req.department) {
         res.status(401)
