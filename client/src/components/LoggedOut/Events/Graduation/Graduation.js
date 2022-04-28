@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EventPage() {
+export default function Graduation() {
 
     const classes = useStyles();
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;

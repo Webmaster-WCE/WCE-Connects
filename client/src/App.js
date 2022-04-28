@@ -19,6 +19,8 @@ import Footer from './components/LoggedOut/Footer/Footer'
 import { EventPreRegistration } from './components/LoggedOut/Events/EventPreRegistration';
 import PrivacyPolicy from './components/LoggedOut/Footer/PrivacyPolicy'
 import { DonorPackage } from './components/LoggedOut/DonarPackage/DonarPackage';
+import { DepartmentActivities } from './components/LoggedOut/DepartmentActivities/DepartmentActivities';
+import { EventsMap } from './components/LoggedOut/Events/EventsMap';
 function App() {
   // const {token} = useContext(AuthContext);
 
@@ -42,7 +44,10 @@ function App() {
             <Route exact path="/activities/form">
               <ActivityForm/>
             </Route>
-            <Route exact path="/events">
+            <Route exact path='/login'>
+              <Login/>
+            </Route>
+            {/* <Route path="/events">
               <Events/>
             </Route>
             <Route exact path="/events/eventid">
@@ -51,14 +56,18 @@ function App() {
             <Route exact path="/events/eventid/register">
               <EventRegister/>
             </Route>
-             <Route exact path='/login'>
-              <Login/>
-            </Route>
+             
             <Route exact path="/events/eventid/preregistration">
               <EventPreRegistration/>
+            </Route> */}
+             <Route path="/events">
+              <EventsMap/>
             </Route>
             <Route exact path="/donorpackage">
                 <DonorPackage/>
+            </Route>
+            <Route exact path="/departmentactivities">
+                <DepartmentActivities/>
             </Route>
             <Route exact path="/policy">
               <PrivacyPolicy/>

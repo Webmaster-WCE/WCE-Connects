@@ -11,15 +11,15 @@ export default function Home(){
     // const history = useHistory();
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const [carouselProps, setCarouselProps] = useState({
-        autoPlay: false,
+        autoPlay: true,
         navButtonsAlwaysVisible: true,
-        duration: 2000,
+        duration: 3000,
         index:1
     });
     useEffect(() =>{
        if(window.screen.width < 1000){
            setCarouselProps({
-            autoPlay: false,
+            autoPlay: true,
             navButtonsAlwaysVisible: false,
             duration: 2000,
             index:1
@@ -33,35 +33,40 @@ export default function Home(){
           banner: `${PF}events/Data_centre.webp`,
           title: "Inauguration of Data Centre",
           description: "Coming up in Dec 2021...",
-        link: "#"
+            link: "#",
+            text:""
         },
         {
           eventid: 1,
           banner: `${PF}events/Platinum_Jublee_Meet.webp`,
           title: "Platinum Jubilee Meet 2021-22",
           description: "The 75th anniversary of WCE, our Platinum Jubilee, is a very special event that we wish to celebrate together in our campus.\nComing up in Jan 2022...",
-        link: "https://www.alumni.wce.ac.in/#/events/eventid"
+        link: "/events/PlatinumJubileeMeet",
+        text:"Click here for Registration"
         },
         {
           eventid: 2,
           banner: `${PF}events/Graduation.webp`,
           title: "Graduation",
           description: "Coming up in March 2022..",
-        link: "#"
+        link: "/events/Graduation",
+        text:"For more details"
         },
         {
           eventid: 3,
           banner: `${PF}events/Conference.webp`,
           title: "Conference",
           description: "Coming up in March 2022..",
-        link: "https://rsc.wce.ac.in/"
+        link: "",
+        text:""
         },
         {
           eventid: 4,
           banner: `${PF}events/Industry_meet.webp`,
           title: "Industry meet",
           description: "Coming up in April 2022..",
-        link: "#"
+        link: "#",
+        text:""
         },
         
         {
@@ -69,21 +74,24 @@ export default function Home(){
           banner: `${PF}events/Gathering_n_Sports.webp`,
           title: "Gathering and Sports",
           description: "Coming up in April 2022..",
-        link: "#"
+        link: "#",
+        text:""
         },
         {
           eventid: 6,
           banner: `${PF}events/OpenHouse.webp`,
           title: "Open House",
           description: "Coming up in May 2022..",
-        link: "#"
+        link: "#",
+        text:""
         },
         {
           eventid: 7,
           banner: `${PF}events/Closing_ceremony.webp`,
           title: "Closing ceremony",
           description: "Coming up in June 2022..",
-        link: "#"
+        link: "#",
+        text:""
         }
       ];
 
@@ -127,10 +135,15 @@ export default function Home(){
                 // className={classes.waveBorder}
                 animationNegativeDelay={3}
             />
+            <div>
+                <marquee style={{ color: 'red', fontSize: '2em',scrollAmount:'100' }}>
+                <p style={{fontWeight: "bold", fontFamily: "Montserrat" }}><a href={"https://youtu.be/AlfKOvkegM4" }className="blink_me" target="_blank" style={{color:'blue'}}>Platinum Jublee Meet Live Streaming</a></p>
+                </marquee>
+            </div>
             <div style={{ fontFamily: "Montserrat" }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "1%",color:'red' }}>Important Notice about Platinum Jubilee Meet 2021-22</p>
                 {/* <div style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "3%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px",border:'3px solid red' }}>
-                    <p>Every alumni meet has been a significant event for all the stakeholders associated with our institute. As intended every year, this platinum year the meet was scheduled on 8th January 22.However due to unfortunate pandemic situation Hon. Collector as well as Hon. Commissioner, Sangli has ordered (circular 341/2021-22 dated 6th January 2022) to not to conduct any gathering till further notice. The institute appreciates zeal shown by the alumni and all the stakeholders of the institute so far. Please note that due to the announcements made by government representatives we are compelled to postpone the program till further directives.</p>
+                   
                     <div>
                         <a href={`${PF}CircularAlumniMeetPostponed.pdf`} target="_blank">
                             <Button
@@ -143,9 +156,10 @@ export default function Home(){
                     </div>
                     
                </div> */}
-               {/* <embed src={`${PF}CircularAlumniMeetPostponed.pdf#view=FitH`} type="application/pdf" width="80%" height="600px" /> */}
-               <iframe src={`${PF}CircularAlumniMeetPostponed.pdf#view=FitH`} width="80%" height="600px"/>
+               {/* <embed src={`${PF}UpdatedPlatinumJubileeMeet.pdf#view=FitH`} type="application/pdf" width="80%" height="600px" /> */}
+               <iframe src={`${PF}UpdatedPlatinumJubileeMeet.pdf#view=FitH`} width="80%" height="600px"/>
             </div>
+       
             <Carousel index={carouselProps.index} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
                 {
                     events.map( (event, i) => <Event key={i} event={event} duration='2000' interval='20000'/>)
@@ -154,7 +168,7 @@ export default function Home(){
            
             <div style={{ padding: '1%' }}></div>
             <div>
-                <Carousel index={0} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
+                <Carousel index={1} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={false} animation="slide"  duration={carouselProps.duration}>
                     {
                         videos.map((video,i) => (<video key={i} controls loop muted poster={video.thumbnail} style={{maxWidth:'60%', maxHeight:"525px", padding:"2%"}}>
                                 <source src={video.videoLink} type="video/mp4" />
@@ -169,12 +183,25 @@ export default function Home(){
                     <source src={`${PF}wce_promo_720p.mp4`} type="video/mp4" />
                 </video> */}
             {/* </div> */}
+
+            {/* <div style={{ padding: '1%',width:"100%" }}>
+                
+                <Link to="/events/eventid" style={{backgroundColor:"white", textDecoration: "none"}}>
+                  <div style={{ fontFamily: "Montserrat" }}>
+                    <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Graduation day ceremony 2019- 20 and 2020-21</p>
+                </div>
+                </Link>
+               <img src={`${PF}InvitationFin.webp`} style={{padding:"1%",width:"50%"}}/>
+            </div> */}
+
             <div style={{ padding: '1%' ,marginBottom:'-3%'}}>
                 <div style={{ fontFamily: "Montserrat" }}>
                     <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96",marginBottom:'-5%' }}>All Events</p>
                 </div>
                 <Events/>
             </div>
+
+            
 
             <div style={{ padding: '1%' }}>
                <div style={{ fontFamily: "Montserrat" }}>
@@ -200,12 +227,10 @@ export default function Home(){
                             </Link>
                         </div>
                     </div>
-                   
-
                 </div>
             </div>
 
-             <div style={{ padding: '1%' }}>
+             {/* <div style={{ padding: '1%' }}>
                <div style={{ fontFamily: "Montserrat" }}>
                     <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>A Framework for Donor Package</p>
                     <div style={{  backgroundColor: "lightgrey", padding: "3%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
@@ -222,7 +247,7 @@ export default function Home(){
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div style={{margin:"1% 15%", backgroundColor:"#ede8e8", border: "2px solid black", borderRadius:"30px"}}>
                 <img src={PF+"Leena_Nair_IMG.jpg"} alt="leena_nair_img" style={{float:"left", padding:"1.5rem", marginTop:"2%",minWidth:"180px" }} width="20%" />
                 <div style={{ textAlign: "justify", padding:"1rem", fontSize: "large"}}>
@@ -243,17 +268,17 @@ function Event(props)
     return (
         <div style={{ marginTop:"2%"}}>           
             <div style={{position:"relative"}}>
-                <a href={props.event.link} rel='noreferrer'>
+                <a href={"https://www.alumni.wce.ac.in/#"+props.event.link} rel='noreferrer'>
                     <img src={props.event.banner} alt="EVENT_BANNER" style={{ maxHeight:"250px", padding:"1.5%", border:"2px solid black",maxWidth:"900px", width: "90%"}}/>
                 </a>
                 <div style={{justifyContent:'center'}}>
                 {
-                    props.event.eventid===1 && <Link to="/events/eventid" style={{backgroundColor:"white", textDecoration: "none"}}>
+                    props.event.text.length>0 && <Link to={props.event.link} style={{backgroundColor:"white", textDecoration: "none"}}>
                         <Button
                             style={{background: 'black'}}
                             variant="contained"
                         >
-                            <div style={{ color: "white" }}>CLICK HERE TO REGISTER</div>
+                            <div style={{ color: "white" }}>{props.event.text}</div>
                         </Button>
                     </Link>
                 }

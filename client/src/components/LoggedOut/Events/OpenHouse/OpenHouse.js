@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EventPage() {
+export default function OpenHouse() {
 
     const classes = useStyles();
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -75,7 +75,7 @@ export default function EventPage() {
     return (
         <div className='eventpage_root' >
             <div style={{ backgroundColor: "#011940", color: "white" }}>
-                <img src={`${PF}events/Graduation.webp`} alt="EVENT_BANNER" style={{ maxWidth: "-webkit-fill-available", maxHeight: "400px" }} />
+                <img src={`${PF}events/OpenHouse.webp`} alt="EVENT_BANNER" style={{ maxWidth: "-webkit-fill-available", maxHeight: "400px" }} />
             </div>
             <div className={classes.root}  style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "#011940", color: "white" }}>
                 <Grid container style={{padding:"3%"}}>
@@ -83,46 +83,30 @@ export default function EventPage() {
                         <div style={{  }} className={classes.abc}>
                             {/* <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT DAY: 8th Jan 2022</p>
                             <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT TIME: 10:00 AM</p> */}
-                            <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>Date & Time : <span style={{color:"#8793ff"}}>Projection of the event is postponed</span>  </p>
-                            <p style={{fontWeight: "bold", fontFamily: "Montserrat" }}><a href={"https://youtu.be/9ZQUigvicBg"} target="_blank"> Glimpses of GDC</a></p>
-                           
+                           <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>Event Date: Thursday, 21th April 2022</p>
+                            <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>Event Time: 11:00 am to 4:00 pm</p>
+                             <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>Event Venue : Walchand College of Engineering, Sangli</p>                           
                         </div>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <div style={{  }} className={classes.xyz} >
                             <div>
-                                {/* <Link to="/events/eventid/preregistration" style={{ textDecoration: "none" }}>
+                                <a href="https://forms.gle/onnnVMbEDZoXVvEZ9" target="_blank" style={{ textDecoration: "none" }}>
                                     <Button
                                         type="submit"
                                         variant="contained"
                                         style={{ background: 'lightgrey' }}
                                     >
                                         <div style={{ color: "blue", fontSize: "medium" }}>
-                                            REGISTER NOW
+                                            Registration Link
                                         </div>
                                     </Button>
-                                </Link> */}
-
-                                {/* link is disabled */}
-                                
-                                {/* <Button
-                                    type="button"
-                                    variant="contained"
-                                    style={{ background: 'lightgrey' }}
-                                    onClick={()=> alert("The Registration has been closed")}
-                                >
-                                    <div style={{ color: "blue", fontSize: "medium" }}>
-                                        REGISTER NOW
-                                    </div>
-                                </Button>
-                                
-
-                                <p><small style={{color:'red'}}>Registration link will be closed by 4th January 2022, 5.00 pm IST</small></p> */}
+                                </a> 
+                                <p><small style={{color:'red'}}>Please make sure you register yourself by filling the following form</small></p>
+                            
                             </div>
                             
-                            {/* <p style={{ color: "white", fontFamily: "Montserrat", fontSize: "20px" }}>
-                                Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
-                            </p> */}
+                            
                         </div>
                     </Grid>
                 </Grid>
@@ -131,24 +115,30 @@ export default function EventPage() {
            
             
             <div style={{ fontFamily: "Montserrat" }}>
-                <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>10<sup>th</sup> Graduation Day Ceremony </p>
+                <p style={{ fontSize: "xx-large", fontWeight: "bold", color: "#093f96" }}>Open House </p>
             </div>
-             <div>
-                <Carousel index={carouselProps.index} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
-                    {
-                        videos.map((video,i) => (<video key={i} controls loop muted poster={video.thumbnail} style={{maxWidth:'60%', maxHeight:"525px", padding:"2%"}}>
-                                <source src={video.videoLink} type="video/mp4" />
-                            </video>
-                        )) 
-                    }
-                </Carousel>
+             <div style={{width:'100%'}}>
+                <img src={PF+"OpenHousePoster.jpeg"}  alt="WCE_IMAGE" style={{maxWidth: "50%"}}/>
             </div>
-            {/* old invitation image link */}
-            {/* <div style={{ fontFamily: "Montserrat" }}>
-                <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "3%" }}>Invitation</p>
-              
-                <img src={`${PF}InvitationFin.webp`} style={{padding:"1%",width:"50%"}}/>
-            </div> */}
+
+             <div style={{ fontFamily: "Montserrat",fontSize: "x-large", textAlign: "left", lineHeight: "1.5" ,backgroundColor: "lightgrey" ,  padding: "3%", margin: "1% 5%", borderRadius: "30px"}}>
+                <p >
+                    Walchand College of Engineering ,Sangli cordially invites you for an upcoming event Innovative Project Showcase and Campus tour for Students under Open House initiative</p>
+                <p>Highlights of the event :</p>
+                <ul>
+                    <li>Exhibition of Innovative technical projects made by students</li>
+                    <li>Informative session on How exactly internet works</li>
+                    <li>Tour throughout the campus, Ajit Gulabchand Central Library (One of the Asia's biggest libraries!),Walchand Informatics Centre,WCE Studio,Video Recording Rooms, walk through all the departments,and much more...</li>
+                </ul>
+                <p>
+                    For any queries, please contact
+                </p>
+                <ul>
+                    <li>Shreeshail Mahajan :+91 73876 49121</li>
+                    <li>Chetana Patil : +91 93596 65119</li>
+                </ul>
+            </div>
+            
             
 
             
