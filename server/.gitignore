@@ -11,3 +11,5 @@ prod.env
 personalTokens.json
 
 uploads
+
+config
