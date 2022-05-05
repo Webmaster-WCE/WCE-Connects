@@ -176,8 +176,6 @@ export default function Graduation() {
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "1%" }}>Invocation</p>
                 <p style={{ fontSize: "x-large", backgroundColor: "#e6e6e6", padding: "5%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px" }}>
                     The 10th Graduation Day Ceremony link projection and Award distribution function is scheduled on 17th May 2022 in the presence of Vice-chancellor, Shivaji University Kolhapur at the same time inauguration of New Exam Section facilities is planned. For this program Award winning students with max two family members and our faculties are invited. All invitees are requested to follow COVID government guidelines during the program.
-                    <br/><br/>Venue: Tilak Hall
-                    <br/>Time: 3:30 PM
                 </p>
                
             </div>
