@@ -14,7 +14,7 @@ export default function Home(){
         autoPlay: true,
         navButtonsAlwaysVisible: true,
         duration: 3000,
-        index:1
+        index:2
     });
     useEffect(() =>{
        if(window.screen.width < 1000){
@@ -22,7 +22,7 @@ export default function Home(){
             autoPlay: true,
             navButtonsAlwaysVisible: false,
             duration: 2000,
-            index:1
+            index:2
         }); 
         }
     },[window.screen.width]);
@@ -140,9 +140,9 @@ export default function Home(){
                 <p style={{fontWeight: "bold", fontFamily: "Montserrat" }}><a href={"https://youtu.be/AlfKOvkegM4" }className="blink_me" target="_blank" style={{color:'blue'}}>Platinum Jublee Meet Live Streaming</a></p>
                 </marquee>
             </div>
-            <div style={{ fontFamily: "Montserrat" }}>
+            {/* <div style={{ fontFamily: "Montserrat" }}>
                 <p style={{ fontSize: "xx-large", fontWeight: "bold", paddingTop: "1%",color:'red' }}>Important Notice about Platinum Jubilee Meet 2021-22</p>
-                {/* <div style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "3%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px",border:'3px solid red' }}>
+                <div style={{ fontSize: "x-large", backgroundColor: "lightgrey", padding: "3%", margin: "1% 10%", textAlign: "left", lineHeight: "1.5", borderRadius: "30px",border:'3px solid red' }}>
                    
                     <div>
                         <a href={`${PF}CircularAlumniMeetPostponed.pdf`} target="_blank">
@@ -155,10 +155,10 @@ export default function Home(){
                         </a>
                     </div>
                     
-               </div> */}
-               {/* <embed src={`${PF}UpdatedPlatinumJubileeMeet.pdf#view=FitH`} type="application/pdf" width="80%" height="600px" /> */}
+               </div>
+               <embed src={`${PF}UpdatedPlatinumJubileeMeet.pdf#view=FitH`} type="application/pdf" width="80%" height="600px" />
                <iframe src={`${PF}UpdatedPlatinumJubileeMeet.pdf#view=FitH`} width="80%" height="600px"/>
-            </div>
+            </div> */}
        
             <Carousel index={carouselProps.index} navButtonsAlwaysVisible={carouselProps.navButtonsAlwaysVisible} autoPlay={carouselProps.autoPlay} animation="slide"  duration={carouselProps.duration}>
                 {

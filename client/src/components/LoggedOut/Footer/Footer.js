@@ -53,9 +53,9 @@ export default function Footer(){
                                     Department of Computer Science and Engineering</p>
                                 <div style={{ fontSize:"1.05rem", color:"grey", marginTop:"-1%"}}>
                                     <p style={{ fontSize:"1.05rem", fontWeight:"bold", color:"white" }}>Developers</p>
-                                    <a href="http://www.linkedin.com/in/rushikesh-shelke" target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"grey", marginLeft:"10px"}}>Rushikesh Shelke</a><br/>
-                                    <a href="https://www.linkedin.com/in/saurabh-hirugade/" target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"grey", marginLeft:"10px"}}>Saurabh Hirugade</a><br/>
-                                    <a href="https://www.linkedin.com/in/aryan-mali-22a501172/" target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"grey", marginLeft:"10px"}}>Aryan Mali</a><br/><br/>
+                                    <a href="https://www.linkedin.com/in/onkar-gavali/" target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"grey", marginLeft:"10px"}}>Onkar Gavali</a><br/>
+                                    <a href="https://www.linkedin.com/in/abhi-kamble/" target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"grey", marginLeft:"10px"}}>Abhishek Kamble</a><br/>
+                                    <a href="https://www.linkedin.com/in/aniket-kankekar/" target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"grey", marginLeft:"10px"}}>Aniket kankekar</a><br/><br/>
                                 </div>
                                 <div style={{ fontSize:"medium", color:"grey", marginTop:"-5%"}}>
                                     <p style={{ fontSize:"medium", fontWeight:"bold", color:"white" }}>Poster Design</p>
