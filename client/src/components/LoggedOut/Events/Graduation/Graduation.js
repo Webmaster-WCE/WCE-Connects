@@ -147,11 +147,12 @@ export default function Graduation() {
                                 
 
                                 <p><small style={{color:'red'}}>Registration link will be closed by 4th January 2022, 5.00 pm IST</small></p> */}
+                                <p style={{fontWeight: "bold", fontFamily: "Montserrat" }}>Link to view Virtual GDC: <a href={"https://youtu.be/VXQqI9gtwrs" }className="blink_me" target="_blank">click here</a></p>
+                                 <p><small style={{color:'red'}}>Content under this link will be publicly available after 4pm on 17th May.</small></p>
+                            
                             </div>
                             
-                            {/* <p style={{ color: "white", fontFamily: "Montserrat", fontSize: "20px" }}>
-                                Considering pandemic situation, prior registration is necessary.<br /> On the spot registration can not be permitted.
-                            </p> */}
+                           
                         </div>
                     </Grid>
                 </Grid>
