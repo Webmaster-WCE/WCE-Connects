@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
-// import {Link} from 'react-router-dom';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import { Grid, makeStyles } from '@material-ui/core';
-import { Link } from "react-router-dom";
-import Carousel from 'react-material-ui-carousel';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,14 +38,6 @@ export default function OpenHouse() {
     });
   
 
-    const videos = [
-        
-        {
-            videoLink:`${PF}10thGraduationCeremonyTeaserVideo.mp4`,
-            thumbnail:""
-        }
-        
-    ];
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -81,8 +64,6 @@ export default function OpenHouse() {
                 <Grid container style={{padding:"3%"}}>
                     <Grid item xs={12} sm={6}>
                         <div style={{  }} className={classes.abc}>
-                            {/* <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT DAY: 8th Jan 2022</p>
-                            <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>EVENT TIME: 10:00 AM</p> */}
                            <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>Event Date: Thursday, 21th April 2022</p>
                             <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>Event Time: 11:00 am to 4:00 pm</p>
                              <p style={{ fontSize: "large", fontWeight: "bold", fontFamily: "Montserrat" }}>Event Venue : Walchand College of Engineering, Sangli</p>                           
@@ -103,10 +84,7 @@ export default function OpenHouse() {
                                     </Button>
                                 </a> 
                                 <p><small style={{color:'red'}}>Please make sure you register yourself by filling the following form</small></p>
-                            
                             </div>
-                            
-                            
                         </div>
                     </Grid>
                 </Grid>
@@ -138,15 +116,6 @@ export default function OpenHouse() {
                     <li>Chetana Patil : +91 93596 65119</li>
                 </ul>
             </div>
-            
-            
-
-            
-           
-            
-           
-            
-            
         </div>
     );
 }

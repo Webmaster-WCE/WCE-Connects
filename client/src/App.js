@@ -8,15 +8,11 @@ import Home from './components/LoggedOut/Home/Home';
 import Login from './components/LoggedOut/Login/Login';
 // import Register from './components/LoggedOut/Register/Register';
 import Navigation from './components/LoggedOut/Navigation/Navigation';
-import Events from './components/LoggedOut/Events/Events';
-import EventPage from './components/LoggedOut/Events/EventPage';
-import EventRegister from './components/LoggedOut/Events/EventRegister';
 import Activities from './components/LoggedOut/Activities/Activities';
 import ActivityForm from './components/LoggedOut/Activities/ActivityForm';
 // import {AuthContext} from './context/AuthContext';
 import GalleryPage from './components/LoggedOut/Gallery/GalleryPage';
 import Footer from './components/LoggedOut/Footer/Footer'
-import { EventPreRegistration } from './components/LoggedOut/Events/EventPreRegistration';
 import PrivacyPolicy from './components/LoggedOut/Footer/PrivacyPolicy'
 import { DonorPackage } from './components/LoggedOut/DonarPackage/DonarPackage';
 import { DepartmentActivities } from './components/LoggedOut/DepartmentActivities/DepartmentActivities';
@@ -47,19 +43,6 @@ function App() {
             <Route exact path='/login'>
               <Login/>
             </Route>
-            {/* <Route path="/events">
-              <Events/>
-            </Route>
-            <Route exact path="/events/eventid">
-              <EventPage/>
-            </Route>
-            <Route exact path="/events/eventid/register">
-              <EventRegister/>
-            </Route>
-             
-            <Route exact path="/events/eventid/preregistration">
-              <EventPreRegistration/>
-            </Route> */}
              <Route path="/events">
               <EventsMap/>
             </Route>

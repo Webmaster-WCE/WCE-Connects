@@ -45,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    textAlign:'center',
+    margin:'auto'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -64,7 +66,48 @@ const useStyles = makeStyles((theme) => ({
 export default function Login(){
   const classes = useStyles();
   const history= useHistory();
-  const {token,isFetching, dispatch} = useContext(AuthContext);
+//   const {token,isFetching, dispatch} = useContext(AuthContext);
+  
+//   useEffect(() => {
+//     if(token !== null){
+//       history.push("/u/adminpanel");
+//     }
+//     else{
+//       history.push("/login");
+//     }
+//   },[token, history]);
+
+//   const onSubmit= async (e) => {
+//     e.preventDefault();
+//     history.push("/u/adminpanel");
+//     var form = document.getElementById('signup_form');
+//     var data = new FormData(form);
+//     const entries = data.entries();
+//     const userData = Object.fromEntries(entries);
+//     dispatch({ type: "LOGIN_START" });
+//     try {
+//       const res = await axios.post('http://localhost:5000/auth/', userData);
+//       dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+//     } catch (err) {
+//       dispatch({ type: "LOGIN_FAILURE", payload: err });
+//       swal("Invalid Email/Password")
+//       .then((value) => {
+//         if(value)
+//         {
+//           history.push("/login");
+//           return;
+//         }
+//       });
+//     }
+//     finally {
+//       if(token)
+//       {
+//           history.push("/u/adminpanel")
+//       }
+//     }
+// }
+
+const {token,isFetching, dispatch} = useContext(AuthContext);
   
   useEffect(() => {
     if(token !== null){
@@ -78,39 +121,38 @@ export default function Login(){
   const onSubmit= async (e) => {
     e.preventDefault();
     history.push("/u/adminpanel");
-    // var form = document.getElementById('signup_form');
-    // var data = new FormData(form);
-    // const entries = data.entries();
-    // const userData = Object.fromEntries(entries);
-    // dispatch({ type: "LOGIN_START" });
-    // try {
-    //   const res = await axios.post('http://localhost:5000/auth/', userData);
-    //   dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
-    // } catch (err) {
-    //   dispatch({ type: "LOGIN_FAILURE", payload: err });
-    //   swal("Invalid Email/Password")
-    //   .then((value) => {
-    //     if(value)
-    //     {
-    //       history.push("/login");
-    //       return;
-    //     }
-    //   });
-    // }
-    // finally {
-    //   if(token)
-    //   {
-    //       history.push("/u/adminpanel")
-    //   }
-    // }
+    var form = document.getElementById('signup_form');
+    var data = new FormData(form);
+    const entries = data.entries();
+    const userData = Object.fromEntries(entries);
+    dispatch({ type: "LOGIN_START" });
+    try {
+      const res = await axios.post('http://localhost:5000/userlogin/signin', userData);
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+    } catch (err) {
+      dispatch({ type: "LOGIN_FAILURE", payload: err });
+      swal("Invalid Email/Password")
+      .then((value) => {
+        if(value)
+        {
+          history.push("/login");
+          return;
+        }
+      });
+    }
+    finally {
+      if(token)
+      {
+          history.push("/u/adminpanel")
+      }
+    }
 }
 
   return (
     <Route>
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+     
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">
             Log In
@@ -125,7 +167,6 @@ export default function Login(){
               label="Email Address"
               name="email"
               autoComplete="email"
-              
             />
             <TextField
               variant="outlined"
@@ -157,7 +198,7 @@ export default function Login(){
               <Copyright />
             </Box> */}
         </div>
-      </Grid>
+      
     </Grid>
     </Route>
   );
