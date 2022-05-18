@@ -15,10 +15,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormGroup from '@material-ui/core/FormGroup';
 import Checkbox from '@material-ui/core/Checkbox';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    flexGrow:1,
   },
   checkActivity: {
     display: 'flex',
@@ -32,10 +33,11 @@ const useStyles = makeStyles((theme) => ({
 
   },
   paper: {
-    marginTop:"7%",
-    display: 'flex',
-    flexDirection: 'column',
+    marginTop:"20%",
     alignItems: 'center',
+    [theme.breakpoints.up('sm')]: {
+      marginTop:"10%",
+    },
   },
   avatar: {
     margin: theme.spacing(1),
@@ -44,15 +46,10 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%',
     marginTop: theme.spacing(1),
-    display: 'flex',
-    flexDirection: 'column',
     alignItems: 'center',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-  },
-  formControl: {
-    margin: theme.spacing(3),
   },
   button: {
     margin: theme.spacing(1, 1, 0, 0),
@@ -187,286 +184,370 @@ export default function ActivityForm() {
         Activity Form
       </Typography>
       <form className={classes.form} name="signup_form" id="signup_form" onSubmit={handleSubmit}>
-        <div className={classes.checkActivity}>
-          <FormControl component="fieldset" className={classes.formControl}>
+        <div className={`${classes.root} container`}>
+          <FormControl component="fieldset">
             <FormLabel component="legend">Select all the activities that you want to contribute...</FormLabel>
-            <FormGroup style={{ display: 'flex', flexDirection: 'row', padding: "0px 80px 0px 160px" }}>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-
-                <FormControlLabel
-                  control={<Checkbox checked={spoc} onChange={handleChange} value="true" name="spoc" />}
-                  label={`Serve as the SPOC for Alumni & Institute`}
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={talks_and_meets} onChange={handleChange} value="true" name="talks_and_meets" />}
-                  label="Talks and Meets"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={employability_assistance} onChange={handleChange} value="true" name="employability_assistance" />}
-                  label="Employability Assistance"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={mentorship} onChange={handleChange} value="true" name="mentorship" />}
-                  label="Mentorship"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={portal_for_career_opportunities} onChange={handleChange} value="true" name="portal_for_career_opportunities" />}
-                  label="Portal for Career Opportunities"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={curriculum_revamping} onChange={handleChange} value="true" name="curriculum_revamping" />}
-                  label="Curriculum Revamping"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={faculty_alumni_workshops} onChange={handleChange} value="true" name="faculty_alumni_workshops" />}
-                  label="Faculty Alumni Workshops"
-                />
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <FormControlLabel
-                  control={<Checkbox checked={annual_alumni_meet} onChange={handleChange} value="true" name="annual_alumni_meet" />}
-                  label="Annual Alumni Meet"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={sponsored_projects} onChange={handleChange} value="true" name="sponsored_projects" />}
-                  label="Sponsored Projects"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={awards} onChange={handleChange} value="true" name="awards" />}
-                  label="Awards"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={modernization_of_labs} onChange={handleChange} value="true" name="modernization_of_labs" />}
-                  label="Modernization of Labs"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={industrial_visits} onChange={handleChange} value="true" name="industrial_visits" />}
-                  label="Industrial Visits"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={internships} onChange={handleChange} value="true" name="internships" />}
-                  label="Internships"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={testing_and_consultancy} onChange={handleChange} value="true" name="testing_and_consultancy" />}
-                  label="Testing and Consultancy"
-                />
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-
-                <FormControlLabel
-                  control={<Checkbox checked={involvement_in_evolution_process} onChange={handleChange} value="true" name="involvement_in_evolution_process" />}
-                  label=" Involvement in Evaluation Process"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={icc} onChange={handleChange} value="true" name="icc" />}
-                  label="Industrial Consultancy Committee (ICC)"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={industry_institute_interaction} onChange={handleChange} value="true" name="industry_institute_interaction" />}
-                  label="Industry Institute Interaction"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={soft_skill_training} onChange={handleChange} value="true" name="soft_skill_training" />}
-                  label="Soft Skill Training"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={member_academic_board} onChange={handleChange} value="true" name="member_academic_board" />}
-                  label="Member Academic Board / Board of Studies"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={helping_student_activities} onChange={handleChange} value="true" name="helping_student_activities" />}
-                  label="Helping Student Activities"
-                />
-                <FormControlLabel
-                  control={<Checkbox checked={felicitations_of_distinguished_alumni} onChange={handleChange} value="true" name="felicitations_of_distinguished_alumni" />}
-                  label="Felicitations of Distinguished Alumni"
-                />
-              </div>
+            <FormGroup > 
+                <Grid container spacing={2} style={{paddingLeft:'10%'}}>
+             
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={spoc} onChange={handleChange} value="true" name="spoc" />}
+                      label={`Serve as the SPOC for Alumni & Institute`}
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={talks_and_meets} onChange={handleChange} value="true" name="talks_and_meets" />}
+                      label="Talks and Meets"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={employability_assistance} onChange={handleChange} value="true" name="employability_assistance" />}
+                      label="Employability Assistance"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={mentorship} onChange={handleChange} value="true" name="mentorship" />}
+                      label="Mentorship"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={portal_for_career_opportunities} onChange={handleChange} value="true" name="portal_for_career_opportunities" />}
+                      label="Portal for Career Opportunities"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                      <FormControlLabel
+                      control={<Checkbox checked={curriculum_revamping} onChange={handleChange} value="true" name="curriculum_revamping" />}
+                      label="Curriculum Revamping"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={faculty_alumni_workshops} onChange={handleChange} value="true" name="faculty_alumni_workshops" />}
+                      label="Faculty Alumni Workshops"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={annual_alumni_meet} onChange={handleChange} value="true" name="annual_alumni_meet" />}
+                      label="Annual Alumni Meet"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={sponsored_projects} onChange={handleChange} value="true" name="sponsored_projects" />}
+                      label="Sponsored Projects"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={awards} onChange={handleChange} value="true" name="awards" />}
+                      label="Awards"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={modernization_of_labs} onChange={handleChange} value="true" name="modernization_of_labs" />}
+                      label="Modernization of Labs"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={industrial_visits} onChange={handleChange} value="true" name="industrial_visits" />}
+                      label="Industrial Visits"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>   
+                    <FormControlLabel
+                      control={<Checkbox checked={internships} onChange={handleChange} value="true" name="internships" />}
+                      label="Internships"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={testing_and_consultancy} onChange={handleChange} value="true" name="testing_and_consultancy" />}
+                      label="Testing and Consultancy"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={involvement_in_evolution_process} onChange={handleChange} value="true" name="involvement_in_evolution_process" />}
+                      label=" Involvement in Evaluation Process"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={icc} onChange={handleChange} value="true" name="icc" />}
+                      label="Industrial Consultancy Committee (ICC)"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={industry_institute_interaction} onChange={handleChange} value="true" name="industry_institute_interaction" />}
+                      label="Industry Institute Interaction"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={soft_skill_training} onChange={handleChange} value="true" name="soft_skill_training" />}
+                      label="Soft Skill Training"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={member_academic_board} onChange={handleChange} value="true" name="member_academic_board" />}
+                      label="Member Academic Board / Board of Studies"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={helping_student_activities} onChange={handleChange} value="true" name="helping_student_activities" />}
+                      label="Helping Student Activities"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <FormControlLabel
+                      control={<Checkbox checked={felicitations_of_distinguished_alumni} onChange={handleChange} value="true" name="felicitations_of_distinguished_alumni" />}
+                      label="Felicitations of Distinguished Alumni"
+                      style={{textAlign:"left",float:'left'}}
+                    />
+                  </Grid>
+                </Grid>
+              
             </FormGroup>
           </FormControl>
-        </div>
-        <div>
-        <div className="d-flex flex-row">
-          <div className="p-2 flex-fill">
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              autoFocus
-              name="first_name"
-              label="First Name"
-              type="text"
-              id="first_name"
-              style={{ width: '250px', marginRight: '15px' }}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              style={{ width: '250px' }}
-              name="last_name"
-              label="Last Name"
-              type="text"
-              id="last_name"
-            />
-          </div>
-        </div>
-        <div style={{ width: '515px', alignItems: "right" }}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="passout_year"
-            label="Passout Year"
-            name="passout_year"
-          />
-          <FormControl className={classes.formControl} style={{ width: "50ch" }}>
-            <InputLabel>Select Branch</InputLabel>
-            <Select
-              value={branch}
-              onChange={branchChange}
-              label="Select Branch"
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value="cse">Computer Science and Engineering</MenuItem>
-              <MenuItem value="it">Information Technology</MenuItem>
-              <MenuItem value="mech">Mechanical Engineering</MenuItem>
-              <MenuItem value="civil">Civil Engineering</MenuItem>
-              <MenuItem value="electrical">Electrical Engineering</MenuItem>
-              <MenuItem value="electronics">Electronics Engineering</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl} style={{ width: "50ch" }}>
-            <InputLabel>Select Programme</InputLabel>
-            <Select
-              value={programme}
-              onChange={programmeChange}
-              label="Select Branch"
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value="ug">UG</MenuItem>
-              <MenuItem value="pg">PG</MenuItem>
-              <MenuItem value="phd">PhD</MenuItem>
-              <MenuItem value="diploma">Diploma</MenuItem>
-            </Select>
-          </FormControl>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="current_post"
-            label="Current Post (Ex. Software Engineer)"
-            name="current_post"
-          />
+          <hr/>
+          <div>
+            <Grid container spacing={2} style={{justifyContent:'center'}}> 
+              <Grid item xs={12} sm={6} >
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  autoFocus
+                  fullWidth
+                  name="first_name"
+                  label="First Name"
+                  type="text"
+                  id="first_name"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} >
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="last_name"
+                  label="Last Name"
+                  type="text"
+                  id="last_name"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="passout_year"
+                  label="Passout Year"
+                  name="passout_year"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                  <FormControl className={classes.formControl} style={{ width: "100%" }}>
+                  <InputLabel>Select Branch</InputLabel>
+                  <Select
+                    value={branch}
+                    onChange={branchChange}
+                    label="Select Branch"
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value="cse">Computer Science and Engineering</MenuItem>
+                    <MenuItem value="it">Information Technology</MenuItem>
+                    <MenuItem value="mech">Mechanical Engineering</MenuItem>
+                    <MenuItem value="civil">Civil Engineering</MenuItem>
+                    <MenuItem value="electrical">Electrical Engineering</MenuItem>
+                    <MenuItem value="electronics">Electronics Engineering</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <FormControl className={classes.formControl} style={{ width: "100%" }}>
+                  <InputLabel>Select Programme</InputLabel>
+                  <Select
+                    value={programme}
+                    onChange={programmeChange}
+                    label="Select Branch"
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value="ug">UG</MenuItem>
+                    <MenuItem value="pg">PG</MenuItem>
+                    <MenuItem value="phd">PhD</MenuItem>
+                    <MenuItem value="diploma">Diploma</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} >
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="current_post"
+                  label="Current Post (Ex. Software Engineer)"
+                  name="current_post"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="current_organization"
+                  label="Current Organization/Company/Institute"
+                  name="current_organization"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="city"
+                  label="City Location"
+                  name="city"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    id="alternate_email"
+                    label="Alternate Email Address (if any)"
+                    name="alternate_email"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="mobile"
+                    label="Mobile No"
+                    type="tel"
+                    id="mobile"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    name="alternate_mobile"
+                    label="Alternate Mobile No (if any)"
+                    type="tel"
+                    id="alternate_mobile"
+                  />
+                </Grid>
+              
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="area_of_expertise"
+                    label="Area Of Expertise (Ex. Machine Learning, CAD Designing)"
+                    name="area_of_expertise"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    margin="normal"
+                    label="Brief your idea about Conduction/Implementation of the Activity"
+                    multiline
+                    fullWidth
+                    rows={5}
+                    variant="outlined"
+                    id="idea_description"
+                    name="idea_description"
+                  />
+                </Grid>
 
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="current_organization"
-            label="Current Organization/Company/Institute"
-            name="current_organization"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="city"
-            label="City Location"
-            name="city"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            id="alternate_email"
-            label="Alternate Email Address (if any)"
-            name="alternate_email"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="mobile"
-            label="Mobile No"
-            type="tel"
-            id="mobile"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            name="alternate_mobile"
-            label="Alternate Mobile No (if any)"
-            type="tel"
-            id="alternate_mobile"
-          />
+              <div style={{ color: "red", fontSize: "medium",margin:"3%" }}>
+                {helperText}
+              </div>
+             
+              <div style={{ display : 'flex' }}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  style={{ background: 'black' }}
+                  className={classes.submit}
+                  >
+                  <div style={{color:"white"}}>
+                    {isLoading? <CircularProgress color="inherit" size="25px"/> : "Submit"} 
+                  </div>
+                </Button>
+                <Button
+                  style={{ margin:"24px 10px 16px", background: 'black'}}
+                  variant="contained"
+                  onClick = { () => {
+                    history.push("/activities")
+                  }}
+                  >
+                    <div style={{ color: "white" }}>Cancel</div>
+                </Button>
+              </div>
+            </Grid> 
           </div>
-          </div>
-          <div style={{ width: '515px', alignItems: "right" }}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="area_of_expertise"
-            label="Area Of Expertise (Ex. Machine Learning, CAD Designing)"
-            name="area_of_expertise"
-          />
-          <TextField
-            margin="normal"
-            label="Brief your idea about Conduction/Implementation of the Activity"
-            multiline
-            fullWidth
-            rows={5}
-            variant="outlined"
-            id="idea_description"
-            name="idea_description"
-          />
-          </div>
-        <div style={{ color: "red", fontSize: "medium" }}>
-          {helperText}
-        </div>
-        <div style={{ display : 'flex',  }}>
-          <Button
-            type="submit"
-            variant="contained"
-            style={{ background: 'black' }}
-            className={classes.submit}
-            >
-            <div style={{color:"white"}}>
-              {isLoading? <CircularProgress color="inherit" size="25px"/> : "Submit"} 
-            </div>
-          </Button>
-          <Button
-            style={{ margin:"24px 10px 16px", background: 'black'}}
-            variant="contained"
-            onClick = { () => {
-              history.push("/activities")
-            }}
-            >
-            <div style={{ color: "white" }}>Cancel</div>
-          </Button>
         </div>
       </form>
     </div>

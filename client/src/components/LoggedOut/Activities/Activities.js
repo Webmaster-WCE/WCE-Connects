@@ -18,16 +18,16 @@ function Activities() {
             <div>
                 <p style={{ fontSize: "x-large", fontWeight: "bold", fontFamily: "Montserrat" }}>Alumni Activities</p>
                 <div>
-                <p style={{ fontWeight: "bold", fontFamily: "Montserrat", fontStyle: "italic" }}>
-                    <Link to='/activities/form' style={{ color: "#702aff", textDecoration:"none",cursor:"pointer" }}>
-                        <p>
-                            Click here to select activities that you would like to contribute...
-                        </p>
-                    </Link>
-                </p>
+                    <div style={{ fontWeight: "bold", fontFamily: "Montserrat", fontStyle: "italic" }}>
+                        <Link to='/activities/form' style={{ color: "#702aff", textDecoration:"none",cursor:"pointer" }}>
+                            <p>
+                                Click here to select activities that you would like to contribute...
+                            </p>
+                        </Link>
+                    </div>
                 {/* <Button variant="outlined" color="primary" onClick={()=>{history.push("/activities/form")}}>
                 </Button> */}
-            </div>
+                </div>
             </div>
             <div style={{ textAlign: "left", marginBottom: "50px", borderRadius: "50px", padding: '30px', fontFamily: "Montserrat", maxWidth: "700px", backgroundColor: "#ededed" }}>
                 <p style={{ textAlign: "left" }}><strong>1. Serve as the single point of contact (SPOC) for Alumni &amp;
