@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { makeStyles,useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,13 +16,11 @@ import {
  import swal from 'sweetalert';
 import { Link, useLocation } from 'react-router-dom';
 // import {  } from 'react-router-dom';
-
-
+import ImageIcon from '@material-ui/icons/Image';
+import EventIcon from '@material-ui/icons/Event';
 
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
-import SchoolIcon from "@material-ui/icons/School";
-import PersonIcon from "@material-ui/icons/Person";
 import BookmarksIcon from "@material-ui/icons/Bookmarks";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
@@ -54,6 +52,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const useOutsideAlerter = (ref,setAnchor) =>  {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          //alert("You clicked outside of me!");
+          setAnchor(null)
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+
 export default function Navigation() {
   const classes = useStyles();
   // const history = useHistory();
@@ -70,6 +88,11 @@ export default function Navigation() {
   const handleMenu = (event) => {
     setAnchor(event.currentTarget);
   };
+
+
+  
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef,setAnchor);
   return (
     <div className={classes.root} >
       <AppBar position="fixed" style={{backgroundColor:"#011940", color:"white"}}>
@@ -92,6 +115,7 @@ export default function Navigation() {
                   edge="start"
                   aria-label="menu"
                   onClick={handleMenu}
+                  ref={wrapperRef}
                 >
                   <MenuIcon />
                 </IconButton>
@@ -125,20 +149,42 @@ export default function Navigation() {
                     to="/gallery"
                   >
                     <ListItemIcon>
-                      <SchoolIcon />
+                      <ImageIcon />
                     </ListItemIcon>
                     <Typography variant="h6"> Gallery </Typography>
                   </MenuItem>
+                  {/* <MenuItem
+                    onClick={() => setAnchor(null)}
+                    component={Link}
+                    to="/gallery"
+                  >
+                    <ListItemIcon>
+                      <ImageIcon />
+                    </ListItemIcon>
+                    <Typography variant="h6"> Gallery </Typography>
+                  </MenuItem> */}
                   <MenuItem
                     onClick={() => setAnchor(null)}
                     component={Link}
                     to="/events"
                   >
                     <ListItemIcon>
-                      <PersonIcon />
+                      <EventIcon />
                     </ListItemIcon>
                     <Typography variant="h6"> Events</Typography>
                   </MenuItem>
+
+                   <MenuItem
+                    onClick={() => setAnchor(null)}
+                    component={Link}
+                    to="/donorpackage"
+                  >
+                    <ListItemIcon>
+                      <BookmarksIcon />
+                    </ListItemIcon>
+                    <Typography variant="h6"> Donor Package </Typography>
+                  </MenuItem>
+
                   <MenuItem
                     onClick={() => setAnchor(null)}
                     component={Link}
@@ -167,7 +213,7 @@ export default function Navigation() {
                     to="/login"
                   >
                     <ListItemIcon>
-                      <PersonIcon />
+                      <EventIcon />
                     </ListItemIcon>
                     <Typography variant="h6"> Login </Typography>
                   </MenuItem> */}
@@ -184,6 +230,13 @@ export default function Navigation() {
                       </Button>
                     </Link>
                 </div>
+                {/* <div>
+                    <Link to="/departmentactivities" style={{textDecoration:"none"}}>
+                      <Button className={activeNav.startsWith('/departmentactivities') ? classes.active : classes.navitem}>
+                        <Typography variant="subtitle2" className={classes.navitem}>Department Activities</Typography>
+                      </Button>
+                    </Link>
+                </div> */}
                 <div>
                   <Link to="/gallery" style={{textDecoration:"none"}}>
                     <Button  className={activeNav.startsWith('/gallery') ? classes.active : classes.navitem}>
@@ -191,10 +244,18 @@ export default function Navigation() {
                     </Button>
                   </Link>
                 </div>
-                 <div>
+                <div>
                   <Link to="/events" style={{textDecoration:"none"}}>
                     <Button  className={activeNav.startsWith('/events') ? classes.active : classes.navitem}>
                       <Typography variant="subtitle2" className={classes.navitem}>Events</Typography>
+                    </Button>
+                  </Link>
+                </div>
+
+                <div>
+                  <Link to="/donorpackage" style={{textDecoration:"none"}}>
+                    <Button  className={activeNav.startsWith('/donorpackage') ? classes.active : classes.navitem}>
+                      <Typography variant="subtitle2" className={classes.navitem}>Donor Packages</Typography>
                     </Button>
                   </Link>
                 </div>
